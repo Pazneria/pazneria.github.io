@@ -1,12 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pazneria Blog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pazneria Blog</title>
+  <style>
+    /* Basic styles for countdown container */
+    #agi-countdown {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 1.2em;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 5px;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-<h1>Welcome to my blog</h1>
-<p>This is a basic skeleton site created on July 24, 2025.</p>
+  <h1>Welcome to my blog</h1>
+  <p>This is a basic skeleton site created on July 24, 2025.</p>
+
+  <!-- Countdown for AGI arrival -->
+  <div id="agi-countdown">Loading AGI countdown…</div>
+
+  <script>
+    (function() {
+      const countdownEl = document.getElementById('agi-countdown');
+      // Set the target date for AGI arrival (e.g., January 1, 2035 UTC)
+      const targetDate = new Date('2035-01-01T00:00:00Z').getTime();
+
+      function updateCountdown() {
+        const now = Date.now();
+        const diff = targetDate - now;
+        if (diff <= 0) {
+          countdownEl.textContent = 'AGI has arrived!';
+          return;
+        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        countdownEl.textContent = `AGI arrival in ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    })();
+  </script>
 </body>
 </html>
