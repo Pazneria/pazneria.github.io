@@ -51,7 +51,7 @@
       <p>Advances in large language models and multimodal AI raise pressing questions about when artificial general intelligence (AGI) might emerge. This page synthesises information from recent technical reports on compute scaling, human brain computational requirements, recursive self‑improvement (RSI), memory architectures, embodiment and energy infrastructure. It presents our current AGI timeline forecast and will be updated as new data become available.</p>
 
       <!-- Compute scaling and brain parity section -->
-      <h2>2&nbsp;Compute scaling and brain parity</h2>
+      <h2>1&nbsp;Compute scaling and brain parity</h2>
       <h3>Training FLOPs Over Time</h3>
       <p>Over the past decade, the total compute used to train frontier LLMs has grown explosively, far outpacing Moore’s Law. OpenAI’s GPT‑3 (2020) required on the order of <em>3×10<sup>23</sup></em> FLOPs for training, whereas its successor GPT‑4 (2023) consumed an estimated <em>10<sup>25</sup></em> FLOPs (tens of yottaFLOPs) – roughly 30× more compute than GPT‑3<sup>(LLM vs Brain Efficiency)</sup>. This reflects an overall exponential scaling trend: from 2016 to 2023, the training compute for milestone models increased by about <strong>8 orders of magnitude</strong>, rising from the petaflop-scale to nearly 10<sup>26</sup> total operations for the largest 2023 models<sup>(LLM vs Brain Efficiency)</sup>. In practice, each new generation of model (e.g. GPT‑2 → GPT‑3 → GPT‑4) has often needed about <strong>10×</strong> more FLOPs than its predecessor to reach higher performance<sup>(LLM vs Brain Efficiency)</sup>, underscoring the steep compute requirements of pushing state‑of‑the‑art capabilities.</p>
 
@@ -84,24 +84,24 @@
       <!-- End compute scaling and brain parity section -->
 
       <!-- Recursive self-improvement section and other original content -->
-      <h2>3&nbsp;Recursive self‑improvement (RSI)</h2>
+      <h2>2&nbsp;Recursive self‑improvement (RSI)</h2>
       <p>RSI refers to AI systems that iteratively improve their code, model or behaviour.  Early prototypes include agents that write their own functions (Voyager, SWE‑Agent)〖62982452424681†L28-L44〗, frameworks that use self‑reflection to fix mistakes〖62982452424681†L49-L89〗, and models that fine‑tune themselves using self‑generated solutions〖62982452424681†L100-L113〗.</p>
       <p>The RSI report speculates that once an AGI‑level system is developed (perhaps by 2030), recursive self‑improvement could push it to super‑human performance within months〖62982452424681†L960-L993〗.  This “hard takeoff” would drastically shorten the time between achieving AGI and reaching super‑intelligence.</p>
       <p><img src="rsi_timeline.png" alt="RSI timeline" /></p>
       <p><em>Figure 4 – Hypothetical RSI timeline.  Early prototypes appear around 2023–2024, broader agent frameworks by 2026, AGI‑level RSI around 2030 and potential super‑intelligence by 2031〖62982452424681†L960-L993〗.</em></p>
 
-      <h2>4&nbsp;Memory architectures</h2>
+      <h2>3&nbsp;Memory architectures</h2>
       <p>Today’s LLMs are largely stateless, but new memory mechanisms are emerging: episodic user memory, external vector databases (retrieval‑augmented generation), scratchpads for chain‑of‑thought and agentic frameworks that persist state across tool calls〖677865633633646†L0-L33〗〖677865633633646†L80-L105〗.  Research is pushing toward million‑token context windows and memory‑augmented transformers〖677865633633646†L110-L140〗.</p>
       <p>The Memory report argues that persistent memory could shorten AGI timelines by 5–10 years〖677865633633646†L380-L470〗.  By enabling lifelong learning and cumulative knowledge, memory may bend the compute scaling curve and allow smaller models with external memory to match larger models〖677865633633646†L403-L417〗.</p>
 
-      <h2>5&nbsp;Embodiment and multi‑modal integration</h2>
+      <h2>4&nbsp;Embodiment and multi‑modal integration</h2>
       <p>Some researchers insist that sensorimotor grounding is essential for AGI〖883213420231783†L20-L40〗, citing the richness of physical experience.  The Stanford AI100 study predicted service robots by 2030 but anticipated that reliable, general‑purpose home robots would still be elusive〖883213420231783†L634-L641〗.  If physical embodiment is required, AGI might not emerge until mid‑century〖883213420231783†L634-L653〗.</p>
       <p>On the other hand, multi‑modal models like GPT‑4o, Gemini 1.5 and Claude 3 Opus already handle text, images, audio and actions〖526013081930174†L0-L30〗.  When combined with memory and tool use, these systems could achieve disembodied AGI within a decade〖526013081930174†L26-L30〗.  A hybrid scenario envisions disembodied AGI first (within 5–15 years), followed by embodied AGI decades later〖883213420231783†L688-L742〗.</p>
 
-      <h2>6&nbsp;Energy infrastructure</h2>
+      <h2>5&nbsp;Energy infrastructure</h2>
       <p>Compute scaling hinges on electricity supply.  An aggressive U.S. scenario projects data‑center consumption of ~500 TWh/year by 2028 (≈10% of U.S. electricity)〖124710196490884†L10-L25〗.  Such growth demands significant grid and transmission upgrades; delays in permitting and supply chains could limit AI compute and slow AGI progress〖124710196490884†L755-L779〗.  Shortages of transformers, power equipment and GPUs pose additional bottlenecks〖124710196490884†L803-L833〗.</p>
 
-      <h2>7&nbsp;AGI timeline scenarios</h2>
+      <h2>6&nbsp;AGI timeline scenarios</h2>
       <p>The interplay of compute scaling, memory, RSI, embodiment and infrastructure yields several plausible AGI emergence scenarios.  We model three rough timelines (not literal probabilities):</p>
       <table>
         <thead>
