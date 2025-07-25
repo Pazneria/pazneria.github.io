@@ -1,35 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pazneria Blog</title>
   <style>
-    /* Basic styles for countdown container */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    /* Navigation tabs */
+    .nav-tabs {
+      display: flex;
+      background-color: #4caf50;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .nav-tabs button {
+      flex: 1;
+      padding: 14px 16px;
+      border: none;
+      background: inherit;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .nav-tabs button:hover {
+      background-color: #45a049;
+    }
+    .nav-tabs button.active {
+      background-color: #2e7d32;
+    }
+    /* Tab content */
+    .tab-content {
+      display: none;
+      padding: 20px;
+      animation: fadeEffect 0.5s;
+      min-height: calc(100vh - 50px);
+    }
+    .tab-content.active {
+      display: block;
+    }
+    /* Fade animation */
+    @keyframes fadeEffect {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    /* Colorful backgrounds for different tabs */
+    #home {
+      background-color: #f9f9f9;
+    }
+    #countdown {
+      background-color: #fff5e6;
+    }
+    #about {
+      background-color: #e6f7ff;
+    }
+    #projects {
+      background-color: #e6ffe6;
+    }
+    #contact {
+      background-color: #ffe6f7;
+    }
+    /* Countdown styles */
     #agi-countdown {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      font-size: 1.2em;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 5px;
-      border-radius: 5px;
+      font-size: 1.5em;
+      color: #333;
+      background: #ffffffcc;
+      display: inline-block;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to my blog</h1>
-  <p>This is a basic skeleton site created on July 24, 2025.</p>
+  <!-- Navigation bar -->
+  <div class="nav-tabs">
+    <button class="tablink active" data-tab="home">Home</button>
+    <button class="tablink" data-tab="countdown">AGI Countdown</button>
+    <button class="tablink" data-tab="about">About</button>
+    <button class="tablink" data-tab="projects">Projects</button>
+    <button class="tablink" data-tab="contact">Contact</button>
+  </div>
 
-  <!-- Countdown for AGI arrival -->
-  <div id="agi-countdown">Loading AGI countdown…</div>
+  <!-- Tab contents -->
+  <div id="home" class="tab-content active">
+    <h1>Welcome to my blog</h1>
+    <p>This is a basic skeleton site created on July 24, 2025.</p>
+  </div>
+
+  <div id="countdown" class="tab-content">
+    <h1>AGI Countdown</h1>
+    <p>The estimated arrival of Artificial General Intelligence:</p>
+    <div id="agi-countdown">Loading AGI countdown…</div>
+  </div>
+
+  <div id="about" class="tab-content">
+    <h1>About</h1>
+    <p>You can add information about yourself or your site here.</p>
+  </div>
+
+  <div id="projects" class="tab-content">
+    <h1>Projects</h1>
+    <p>Showcase your projects or portfolio items in this section.</p>
+  </div>
+
+  <div id="contact" class="tab-content">
+    <h1>Contact</h1>
+    <p>Add your contact information or a contact form here.</p>
+  </div>
 
   <script>
+    // Tab switching logic
+    const tabButtons = document.querySelectorAll('.nav-tabs button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active state from all buttons
+        tabButtons.forEach(b => b.classList.remove('active'));
+        // Hide all tab contents
+        tabContents.forEach(c => c.classList.remove('active'));
+        // Activate clicked tab button
+        btn.classList.add('active');
+        // Show the corresponding tab content
+        const targetId = btn.getAttribute('data-tab');
+        document.getElementById(targetId).classList.add('active');
+      });
+    });
+
+    // AGI countdown script
     (function() {
       const countdownEl = document.getElementById('agi-countdown');
-      // Set the target date for AGI arrival (e.g., January 1, 2035 UTC)
       const targetDate = new Date('2035-01-01T00:00:00Z').getTime();
-
       function updateCountdown() {
         const now = Date.now();
         const diff = targetDate - now;
@@ -43,7 +151,6 @@
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
         countdownEl.textContent = `AGI arrival in ${days}d ${hours}h ${minutes}m ${seconds}s`;
       }
-
       updateCountdown();
       setInterval(updateCountdown, 1000);
     })();
