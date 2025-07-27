@@ -1,183 +1,53 @@
+<!--
+  Main entry point for the Pazneria site.
+
+  This new structure breaks the monolithic tabbed page into separate
+  documents, making it much easier to grow the site over time. Each
+  major feature lives on its own page (e.g. AGI forecasting, the
+  tile‑based game) and shares a common navigation bar and styling.
+
+  To add new sections, simply create another HTML file in the root
+  directory (or a subfolder) and add a corresponding link to the
+  navigation below.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pazneria Blog</title>
-  <style>
-    body { margin: 0; font-family: Arial, sans-serif; }
-    /* Navigation tabs */
-    .nav-tabs { display: flex; background-color: #4caf50; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
-    .nav-tabs button { flex: 1; padding: 14px 16px; border: none; background: inherit; color: white; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease; }
-    .nav-tabs button:hover { background-color: #45a049; }
-    .nav-tabs button.active { background-color: #2e7d32; }
-    /* Tab content */
-    .tab-content { display: none; padding: 20px; animation: fadeEffect 0.5s; min-height: calc(100vh - 50px); }
-    .tab-content.active { display: block; }
-    @keyframes fadeEffect { from { opacity: 0; } to { opacity: 1; } }
-    /* Countdown specific styles */
-    #sticky-countdown { position: sticky; top: 0; background: rgba(255, 255, 255, 0.8); display: block; padding: 10px; z-index: 1000; font-size: 1.2rem; font-weight: bold; text-align:center; }
-    /* AGI section styles */
-    .agi-section { max-width: 900px; margin: 20px auto; padding: 10px; }
-    .agi-section img { display: block; max-width: 100%; height: auto; margin: 20px auto; }
-    .agi-section table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-    .agi-section th, .agi-section td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-    .agi-section th { background-color: #f0f8ff; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pazneria</title>
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-  <div class="nav-tabs">
-    <button class="active" data-tab-target="home">Home</button>
-    <button data-tab-target="countdown">AGI Countdown</button>
-    <button data-tab-target="about">About</button>
-    <button data-tab-target="projects">Projects</button>
-    <button data-tab-target="contact">Contact</button>
-  </div>
-
-  <!-- Home Tab -->
-  <div id="home" class="tab-content active">
-    <h1>Welcome to Pazneria Blog</h1>
-    <p>This is the homepage. Please check the AGI Countdown tab to see our research on the timeline for artificial general intelligence.</p>
-  </div>
-
-  <!-- AGI Countdown Tab -->
-  <div id="countdown" class="tab-content">
-    <div id="sticky-countdown"><span id="agi-countdown">Loading AGI countdown...</span></div>
-    <div class="agi-section">
-      <h2>Forecasting AGI: compute trends, brain parity and self‑improvement</h2>
-
-      <p><strong>Last updated: July 2025</strong></p>
-
-      <p>Advances in large language models and multimodal AI raise pressing questions about when artificial general intelligence (AGI) might emerge. This page synthesises information from recent technical reports on compute scaling, human brain computational requirements, recursive self‑improvement (RSI), memory architectures, embodiment and energy infrastructure. It presents our current AGI timeline forecast and will be updated as new data become available.</p>
-
-      <!-- Compute scaling and brain parity section -->
-      <h2>1&nbsp;Compute scaling and brain parity</h2>
-      <h3>Training FLOPs Over Time</h3>
-      <p>Over the past decade, the total compute used to train frontier LLMs has grown explosively, far outpacing Moore’s Law. OpenAI’s GPT‑3 (2020) required on the order of <em>3×10<sup>23</sup></em> FLOPs for training, whereas its successor GPT‑4 (2023) consumed an estimated <em>10<sup>25</sup></em> FLOPs (tens of yottaFLOPs) – roughly 30× more compute than GPT‑3<sup>(LLM vs Brain Efficiency)</sup>. This reflects an overall exponential scaling trend: from 2016 to 2023, the training compute for milestone models increased by about <strong>8 orders of magnitude</strong>, rising from the petaflop-scale to nearly 10<sup>26</sup> total operations for the largest 2023 models<sup>(LLM vs Brain Efficiency)</sup>. In practice, each new generation of model (e.g. GPT‑2 → GPT‑3 → GPT‑4) has often needed about <strong>10×</strong> more FLOPs than its predecessor to reach higher performance<sup>(LLM vs Brain Efficiency)</sup>, underscoring the steep compute requirements of pushing state‑of‑the‑art capabilities.</p>
-
-      <p><img src="training_flops_trend.png" alt="Training compute trend" /></p>
-      <p><em>Figure 1 – Illustration of training compute scaling.  The shaded band shows the exponential increase in training FLOPs.  Dotted lines mark improvements in algorithmic efficiency.</em></p>
-
-      <h3>Inference FLOPs per Token and FLOPs/sec Throughput</h3>
-      <p>Large language models also demand enormous compute at inference time on a per‑token basis. For example, <strong>GPT‑3</strong> (175 B parameters) requires roughly <em>3.5×10<sup>11</sup></em> FLOPs to generate a single token, whereas <strong>GPT‑4</strong> (with a larger ~1.8 T parameter Mixture‑of‑Experts architecture) is around <em>10<sup>12</sup></em> FLOPs per token – about 3× higher<sup>(Frontier LLM Inference)</sup>. <strong>Anthropic Claude 3.5</strong> (2024) has a similar size to GPT‑3 (≈175 B params) and likewise uses on the order of <em>3.5×10<sup>11</sup></em> FLOPs per token in its dense form<sup>(Frontier LLM Inference)</sup>. Google’s <strong>Gemini 1.5</strong> (2024) employs sparse activation (Mixture‑of‑Experts) to reduce compute, so despite possibly trillions of parameters total, only a fraction are active per token – yielding an effective per‑token cost on the same order as GPT‑4, roughly ~10<sup>12</sup> FLOPs per token<sup>(Frontier LLM Inference)</sup>. These figures illustrate that each token generated by a frontier model entails hundreds of billions to a trillion‑plus math operations.</p>
-
-      <p>When accumulated over time, the inference throughput becomes astronomical. At a generation rate of about <strong>100 tokens per second</strong>, GPT‑4 would require on the order of <em>10<sup>14</sup></em> FLOPs/sec of compute, whereas Claude 3.5 would need ~3.5×10<sup>13</sup> FLOPs/sec for the same rate<sup>(Frontier LLM Inference)</sup>. In other words, serving a single large model can easily consume tens of trillions of operations each second in deployment. Such high throughput generally demands massive parallelism: for instance, GPT‑4 is reported to run across roughly 128 GPUs in inference to sustain ~100 tok/s output<sup>(Frontier LLM Inference)</sup>. This illustrates the extreme compute intensity of running cutting‑edge LLMs – even after training, their inference is costly on the order of petaflop/s‑scale computing for real‑time use.</p>
-
-      <p><img src="inference_flops_trend.png" alt="Inference compute and brain parity" /></p>
-      <p><em>Figure 2 – Projected raw vs. effective inference compute.  The orange line (effective compute) grows faster than the yellow line (raw compute) due to algorithmic efficiency.  The dashed line marks the estimated human brain parity at 10<sup>16</sup> FLOPs/s.  The effective compute curve crosses this threshold around 2035–2036.</em></p>
-
-      <h3>Comparison to Human Brain Estimates</h3>
-      <p>The <strong>human brain</strong>’s computational throughput is difficult to pin down, but most estimates place it on the order of 10<sup>15</sup>–10<sup>16</sup> FLOPs per second for the whole brain’s activity. Different modeling approaches converge on this ballpark. A <strong>mechanistic</strong> estimate (treating each neural spike as an “operation”) with ~10<sup>14</sup>–10<sup>15</sup> synapses firing at tens of Hz yields roughly ~10<sup>15</sup>–10<sup>16</sup> ops/sec<sup>(Human Brain Throughput Survey)</sup>. Likewise, <strong>functional</strong> or task‑based analyses (e.g. analyzing the brain’s performance on vision or auditory tasks) tend to imply a similar scale: for instance, Kurzweil (2005) estimated ~10<sup>14</sup> FLOPs/s for human‑level pattern recognition, extrapolating to ~10<sup>16</sup> FLOPs/s for overall brain capacity<sup>(Human Brain Throughput Survey)</sup>. Even alternative methods (like treating neural signalling bandwidth as equivalent to TEPS/communication in a computer) land in the 10<sup>16</sup>–10<sup>17</sup> FLOP/s range<sup>(Human Brain Throughput Survey)</sup>. In contrast, extremely detailed brain simulations that account for every molecular interaction have produced <strong>upper‑bound</strong> estimates up to ~10<sup>25</sup> FLOPs/s, but these are likely overkill for functional equivalence<sup>(Human Brain Throughput Survey)</sup>. Overall, recent surveys argue that on the order of 10<sup>15</sup> FLOPs/s is <strong>sufficient</strong> to match the brain’s computational power for intelligent behaviour, and almost certainly less than 10<sup>18</sup> required if we avoid low‑level biochemical emulation<sup>(Human Brain Throughput Survey)</sup>. For consistency, AI researchers often take ~10<sup>15</sup>–10<sup>16</sup> FLOPs/s as a representative “brain‑level” compute throughput<sup>(LLM vs Brain Efficiency)</sup>.</p>
-
-      <p>How do current AI models stack up against this benchmark? In raw computational terms, a deployed model like GPT‑4 (running on dozens of top‑end GPUs) might achieve on the order of 10<sup>14</sup> FLOPs/s of inference throughput – still one to two orders of magnitude below the human brain’s ~10<sup>16</sup> FLOPs/s scale. In other words, even <strong>hardware‑wise</strong>, today’s largest models are consuming only a few percent of the operations per second that a brain does. More striking is the difference in <strong>training</strong> efficiency: the brain essentially “trains” in real time using the same ~10<sup>16</sup> FLOPs/s it uses for inference, over the course of a lifetime (~10<sup>8</sup> seconds of experience). In contrast, an LLM like GPT‑4 expends on the order of 10<sup>25</sup> FLOPs in a separate training phase to learn from its data before it ever sees a user query. This implies that current AI systems use vastly more total compute to reach human‑like performance on cognitive tasks. One analysis highlighted an “efficiency gap” of roughly <strong>7 orders of magnitude</strong> between the brain’s learning ability and that of a transformer trained via brute‑force gradient descent<sup>(Executive Summary)</sup>. In sum, the human brain achieves incredible cognitive output with ~10<sup>15</sup>–10<sup>16</sup> FLOPs/sec and ~20 W of power – a level of efficiency that today’s AI can only approach in narrow bursts and with far greater energy and compute expenditure.</p>
-
-      <p><img src="brain_parity_window.png" alt="Brain parity window" /></p>
-      <p><em>Figure 3 – Brain parity window.  Shaded bands show mechanistic/functional estimates (~10<sup>15</sup>–10<sup>18</sup> FLOPs/s) and simulation‑level estimates (~10<sup>18</sup>–10<sup>22</sup> FLOPs/s).  The effective AI compute curve enters the lower band around 2035.</em></p>
-
-      <h3>Projection Window for Brain Parity</h3>
-      <p>What would it take for AI systems to reach <strong>brain parity</strong> in compute – i.e. to match the human brain’s effective 10<sup>16</sup> FLOPs/sec throughput? Extrapolating current trends provides a tentative timeline. On the hardware side, the available <strong>raw FLOPs/s</strong> for frontier models has been climbing by roughly <strong>2× per year</strong> recently (thanks to faster GPUs/TPUs and larger model clusters)<sup>(Frontier LLM Inference)</sup>. On the algorithmic side, new model architectures and training improvements have been yielding even greater gains in <strong>effective compute efficiency</strong> – roughly <strong>3× improvement per year</strong> in how much “intelligent work” is accomplished per FLOP, based on trends from 2017–2023<sup>(Frontier LLM Inference)</sup>. If we assume these rates (~2× yearly increase in available FLOPs and ~3× in efficiency) continue, that implies an overall ~6× increase in effective performance per year. Under such compound growth, the compute gap could close surprisingly soon.</p>
-
-      <p>Indeed, a simple projection suggests that by the mid‑2030s, AI models might achieve <strong>brain‑level throughput</strong>. For instance, starting from ~3×10<sup>13</sup> FLOPs/s in 2020 (GPT‑3’s inference at ~100 tok/s) and doubling raw power each year, we’d reach ~10<sup>18</sup> FLOPs/s of hardware by ~2035. If simultaneously each FLOP is made ~3× more useful every year (via algorithmic advances), the <strong>effective</strong> compute – i.e. brain‑equivalent FLOPs/s – grows even faster. One detailed scenario forecasted that by around <strong>2036</strong> a frontier model could reach ~10<sup>16</sup> effective FLOPs/s, achieving parity with a human brain’s throughput<sup>(Frontier LLM Inference)</sup>. In that projection, the model might be using on the order of 10<sup>18</sup> raw FLOPs/s by 2036 (a quintillion operations per second across its distributed hardware) but would only need to be about <strong>1% as algorithmically efficient</strong> as the brain to produce equivalent cognitive output<sup>(Frontier LLM Inference)</sup>. Notably, the <strong>effective</strong> performance grows much faster than raw FLOPs alone due to the compounding of efficiency gains – the curve for “brain‑equivalent” FLOPs/s accelerates and crosses the human baseline earlier than the raw hardware curve would by itself.</p>
-
-      <p>Of course, these extrapolations are speculative. They assume current scaling trends persist uninterrupted. In reality, hardware improvements could slow down, or algorithmic breakthroughs might plateau, pushing out the timeline for parity. Conversely, surprise innovations (e.g. radically better architectures or new computing paradigms) could pull parity in sooner. The projection above should be viewed as a <strong>scenario</strong> rather than a certain prediction<sup>(Frontier LLM Inference)</sup>. That said, the overall trajectory is clear: the gap is <strong>shrinking</strong>. Each year, our machines get roughly twice as capable in brute‑force FLOPs and additionally more efficient in how they leverage those FLOPs for intelligence. This compounding progress suggests that achieving brain‑like computational prowess is a matter of “when, not if” assuming no fundamental barriers emerge. In the meantime, the human brain remains the unmatched reference point – a 20 W biological system performing at petascale levels – but one that artificial systems are rapidly closing in on<sup>(Executive Summary)</sup>.</p>
-
-      <!-- End compute scaling and brain parity section -->
-
-      <!-- Recursive self-improvement section and other original content -->
-      <h2>2&nbsp;Recursive self‑improvement (RSI)</h2>
-      <p>RSI refers to AI systems that iteratively improve their code, model or behaviour.  Early prototypes include agents that write their own functions (Voyager, SWE‑Agent)〖62982452424681†L28-L44〗, frameworks that use self‑reflection to fix mistakes〖62982452424681†L49-L89〗, and models that fine‑tune themselves using self‑generated solutions〖62982452424681†L100-L113〗.</p>
-      <p>The RSI report speculates that once an AGI‑level system is developed (perhaps by 2030), recursive self‑improvement could push it to super‑human performance within months〖62982452424681†L960-L993〗.  This “hard takeoff” would drastically shorten the time between achieving AGI and reaching super‑intelligence.</p>
-      <p><img src="rsi_timeline.png" alt="RSI timeline" /></p>
-      <p><em>Figure 4 – Hypothetical RSI timeline.  Early prototypes appear around 2023–2024, broader agent frameworks by 2026, AGI‑level RSI around 2030 and potential super‑intelligence by 2031〖62982452424681†L960-L993〗.</em></p>
-
-      <h2>3&nbsp;Memory architectures</h2>
-      <p>Today’s LLMs are largely stateless, but new memory mechanisms are emerging: episodic user memory, external vector databases (retrieval‑augmented generation), scratchpads for chain‑of‑thought and agentic frameworks that persist state across tool calls〖677865633633646†L0-L33〗〖677865633633646†L80-L105〗.  Research is pushing toward million‑token context windows and memory‑augmented transformers〖677865633633646†L110-L140〗.</p>
-      <p>The Memory report argues that persistent memory could shorten AGI timelines by 5–10 years〖677865633633646†L380-L470〗.  By enabling lifelong learning and cumulative knowledge, memory may bend the compute scaling curve and allow smaller models with external memory to match larger models〖677865633633646†L403-L417〗.</p>
-
-      <h2>4&nbsp;Embodiment and multi‑modal integration</h2>
-      <p>Some researchers insist that sensorimotor grounding is essential for AGI〖883213420231783†L20-L40〗, citing the richness of physical experience.  The Stanford AI100 study predicted service robots by 2030 but anticipated that reliable, general‑purpose home robots would still be elusive〖883213420231783†L634-L641〗.  If physical embodiment is required, AGI might not emerge until mid‑century〖883213420231783†L634-L653〗.</p>
-      <p>On the other hand, multi‑modal models like GPT‑4o, Gemini 1.5 and Claude 3 Opus already handle text, images, audio and actions〖526013081930174†L0-L30〗.  When combined with memory and tool use, these systems could achieve disembodied AGI within a decade〖526013081930174†L26-L30〗.  A hybrid scenario envisions disembodied AGI first (within 5–15 years), followed by embodied AGI decades later〖883213420231783†L688-L742〗.</p>
-
-      <h2>5&nbsp;Energy infrastructure</h2>
-      <p>Compute scaling hinges on electricity supply.  An aggressive U.S. scenario projects data‑center consumption of ~500 TWh/year by 2028 (≈10% of U.S. electricity)〖124710196490884†L10-L25〗.  Such growth demands significant grid and transmission upgrades; delays in permitting and supply chains could limit AI compute and slow AGI progress〖124710196490884†L755-L779〗.  Shortages of transformers, power equipment and GPUs pose additional bottlenecks〖124710196490884†L803-L833〗.</p>
-
-      <h2>6&nbsp;AGI timeline scenarios</h2>
-      <p>The interplay of compute scaling, memory, RSI, embodiment and infrastructure yields several plausible AGI emergence scenarios.  We model three rough timelines (not literal probabilities):</p>
-      <table>
-        <thead>
-          <tr><th>Scenario</th><th>Description</th><th>Mean year (σ)</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>RSI‑Turbo</strong></td><td>AGI appears ~2029–2031; memory and RSI drive rapid self‑improvement, and super‑intelligence follows within months〖62982452424681†L960-L993〗.</td><td>2030 (σ≈1.5 yrs)</td></tr>
-          <tr><td><strong>Functional‑Scaling</strong></td><td>AGI emerges 2033–2037 via continued compute scaling and functional parity.  Memory and multi‑modal integration gradually bridge cognitive gaps〖842880321965119†L292-L335〗.</td><td>2035 (σ≈2 yrs)</td></tr>
-          <tr><td><strong>Embodied‑Path</strong></td><td>AGI requires sensorimotor grounding; disembodied AI excels earlier, but true AGI appears 2045–2055〖883213420231783†L634-L653〗.</td><td>2050 (σ≈5 yrs)</td></tr>
-        </tbody>
-      </table>
-
-      <p><img src="agi_emergence_scenarios.png" alt="AGI emergence scenarios" /></p>
-      <p><em>Figure 5 – AGI emergence scenarios represented as probability curves.  The RSI‑Turbo peak around 2030 assumes strong self‑improvement; the Functional‑Scaling peak around 2035 aligns with current compute projections; the Embodied‑Path curve peaks around 2050 for physical AGI.</em></p>
-
-      <h2>7&nbsp;Our current forecast</h2>
-      <p>Based on the evidence above, our <strong>central forecast</strong> places disembodied AGI achieving functional parity with human cognition between 2033 and 2037, with a median around <strong>2035</strong>.  We assign roughly 30% probability to an earlier arrival (~2030) driven by RSI and memory breakthroughs, and a similar probability to a later arrival (>2045) if physical embodiment or infrastructural constraints dominate.  As of July 2025, the mid‑point AGI arrival is about <strong>10 years away</strong>.</p>
-      <p>This forecast will evolve as new data emerge.  The countdown timer at the top of this page counts down to our current central estimate (1 January 2035).  As progress accelerates or slows, we will update the date accordingly.</p>
-
-      <h2>8&nbsp;Caveats</h2>
-      <ul>
-        <li><strong>Uncertainty:</strong> Brain FLOP estimates vary by many orders of magnitude〖562061693347473†L37-L96〗, and algorithmic breakthroughs or paradigm shifts (e.g. neuromorphic hardware) could change timelines drastically.</li>
-        <li><strong>Memory and alignment:</strong> Persistent memory may accelerate progress〖677865633633646†L380-L470〗, but aligning long‑term AI behaviour remains challenging〖63576129267672†L1048-L1090〗.</li>
-        <li><strong>Infrastructure:</strong> Energy and component bottlenecks could limit compute growth〖124710196490884†L755-L833〗.  Government policies and global competition introduce additional uncertainty〖124710196490884†L871-L895〗.</li>
-        <li><strong>Embodiment:</strong> If physical interaction is essential, AGI may be decades away〖883213420231783†L634-L653〗.  Disembodied AGI could still have profound societal impacts long before robots match human dexterity〖883213420231783†L688-L740〗.</li>
+  <header>
+    <nav class="site-nav">
+      <a href="index.html" class="logo">Pazneria</a>
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="agi.html" class="nav-link">AGI Forecasting</a></li>
+        <li><a href="game.html" class="nav-link">Dataforge Game</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
-      <p><strong>Disclaimer:</strong> This forecast is speculative and for research purposes only.  It does not represent a guarantee of future outcomes.</p>
-    </div>
-  </div>
-
-  <!-- About Tab -->
-  <div id="about" class="tab-content">
-    <h2>About</h2>
-    <p>This site discusses AI, technology and personal projects. The AGI Countdown tab provides a forecast for artificial general intelligence based on current research.</p>
-  </div>
-
-  <!-- Projects Tab -->
-  <div id="projects" class="tab-content">
-    <h2>Projects</h2>
-    <p>Coming soon!</p>
-  </div>
-
-  <!-- Contact Tab -->
-  <div id="contact" class="tab-content">
-    <h2>Contact</h2>
-    <p>You can reach me via GitHub issues.</p>
-  </div>
-
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>Welcome to Pazneria</h1>
+      <p>
+        This site is a playground for experiments in AI, computer
+        science and interactive art. Explore our AGI forecasting research,
+        play the Dataforge game or browse other projects as they are
+        added.
+      </p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; <span id="year"></span> Pazneria. All rights reserved.</p>
+  </footer>
   <script>
-    // Tab switching logic
-    const tabs = document.querySelectorAll('.nav-tabs button');
-    const contents = document.querySelectorAll('.tab-content');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const target = tab.getAttribute('data-tab-target');
-        contents.forEach(c => { c.classList.remove('active'); });
-        document.getElementById(target).classList.add('active');
-      });
-    });
-    // Countdown timer (counts down to Jan 1, 2035 by default)
-    const targetDate = new Date('2035-01-01T00:00:00Z').getTime();
-    const countdownSpan = document.getElementById('agi-countdown');
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-      if (distance < 0) { countdownSpan.textContent = 'AGI has arrived!'; return; }
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      countdownSpan.textContent = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's until AGI (est.)';
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    // Update the footer year dynamically.
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
