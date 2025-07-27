@@ -1,0 +1,56 @@
+<!--
+  About page for Pazneria.
+
+  This page provides background information on the site and its
+  creator. Feel free to expand this section with your own
+  biography, project histories or philosophy on AI and
+  computing.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About – Pazneria</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header>
+    <nav class="site-nav">
+      <a href="index.html" class="logo">Pazneria</a>
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="agi.html" class="nav-link">AGI Forecasting</a></li>
+        <li><a href="game.html" class="nav-link">Dataforge Game</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>About Pazneria</h1>
+      <p>
+        Pazneria began as a simple blog exploring predictions on
+        artificial intelligence and machine learning. Over time it
+        evolved into a playground for creative coding, art
+        experiments and interactive media. Whether it’s a sci‑fi
+        inspired idle game or a deep dive into AGI timelines, this
+        site is meant to grow organically with each new idea.
+      </p>
+      <p>
+        Your feedback and curiosity help shape this space. Don’t
+        hesitate to reach out via the contact page or contribute
+        inspiration for future projects.
+      </p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; <span id="year"></span> Pazneria. All rights reserved.</p>
+  </footer>
+  <script>
+    // Dynamic year for footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
