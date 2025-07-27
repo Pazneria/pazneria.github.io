@@ -1,0 +1,98 @@
+<!--
+  AGI Forecasting page.
+
+  This page presents a simple countdown timer toward a target
+  date representing a speculative arrival of artificial general
+  intelligence. In the future, additional analysis and charts
+  can be added here without affecting other pages thanks to
+  the modular site design.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGI Forecasting – Pazneria</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header>
+    <nav class="site-nav">
+      <a href="index.html" class="logo">Pazneria</a>
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="agi.html" class="nav-link">AGI Forecasting</a></li>
+        <li><a href="game.html" class="nav-link">Dataforge Game</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>AGI Forecasting</h1>
+      <p>
+        At Pazneria we explore possible trajectories for when
+        artificial general intelligence might emerge. These
+        projections are speculative and intended to spark
+        discussion rather than offer precise predictions. As more
+        information becomes available we plan to update this
+        page with interactive charts and detailed reasoning.
+      </p>
+    </section>
+    <section>
+      <h2>Countdown to AGI</h2>
+      <p>Based on current trends and educated guesses, we set a target date for AGI below. How close are we?</p>
+      <div class="countdown-container">
+        <div class="countdown-box">
+          <span id="days">--</span>
+          <small>Days</small>
+        </div>
+        <div class="countdown-box">
+          <span id="hours">--</span>
+          <small>Hours</small>
+        </div>
+        <div class="countdown-box">
+          <span id="minutes">--</span>
+          <small>Minutes</small>
+        </div>
+        <div class="countdown-box">
+          <span id="seconds">--</span>
+          <small>Seconds</small>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; <span id="year"></span> Pazneria. All rights reserved.</p>
+  </footer>
+  <script>
+    // Update footer year.
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Set the target date for AGI arrival. This is purely speculative.
+    const targetDate = new Date('2030-01-01T00:00:00Z');
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+      if (diff <= 0) {
+        daysEl.textContent = hoursEl.textContent = minutesEl.textContent = secondsEl.textContent = '0';
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minutesEl.textContent = String(minutes).padStart(2, '0');
+      secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
