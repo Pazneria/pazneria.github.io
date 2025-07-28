@@ -1,4 +1,5 @@
 import { tileSize, mapWidth, mapHeight, resourceColors, defaultTileColor, resourceRespawnTicks } from './config.js';
+import { defaultMap } from './world_map.js';
 
 export default class World {
   constructor() {
@@ -9,20 +10,22 @@ export default class World {
   }
 
   generateTiles() {
-    // Initialize tiles with random resources
+    // Initialize tiles using the layout from defaultMap. Characters in the map
+    // correspond to resource types:
+    //   'o' -> ore, 's' -> scrap, '.' -> empty
     for (let y = 0; y < this.height; y++) {
       this.tiles[y] = [];
+      const row = defaultMap[y] || '';
       for (let x = 0; x < this.width; x++) {
+        const ch = row[x] || '.';
         let type = 'empty';
-        const rnd = Math.random();
-        // 5% chance for ore, next 5% for scrap
-        if (rnd < 0.05) {
+        if (ch === 'o') {
           type = 'ore';
-        } else if (rnd < 0.10) {
+        } else if (ch === 's') {
           type = 'scrap';
         }
         this.tiles[y][x] = {
-          type: type,
+          type,
           respawnType: null,
           respawnTicksRemaining: 0,
         };

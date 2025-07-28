@@ -21,6 +21,7 @@ export const playerColor = '#00ffab';
 
 // Respawn time ranges for resources in ticks (ticksPerMinute = 100).
 export const resourceRespawnTicks = {
-  ore: { min: 300, max: 600 },   // 3–6 seconds
-  scrap: { min: 200, max: 500 }  // 2–5 seconds
+  // Approximately 10–20 seconds at 100 ticks per minute
+  ore: { min: 17, max: 34 },
+  scrap: { min: 17, max: 34 }
 };
