@@ -2,8 +2,9 @@ export const tileSize = 32;
 export const mapWidth = 20;
 export const mapHeight = 15;
 
-export const tickRate = 100; // ticks per second
-export const tickDuration = 1000 / tickRate; // milliseconds per tick
+export const ticksPerMinute = 100; // ticks per minute
+export const tickRate = ticksPerMinute / 60; // ticks per second
+export const tickDuration = 60000 / ticksPerMinute; // milliseconds per tick
 
 export const backgroundColor = '#0b0f27';
 
@@ -16,7 +17,7 @@ export const resourceColors = {
 
 export const playerColor = '#00ffab';
 
-// Respawn time ranges for resources in ticks (tickRate = 100 ticks per second).
+// Respawn time ranges for resources in ticks (ticksPerMinute = 100).
 export const resourceRespawnTicks = {
   ore: { min: 300, max: 600 },   // 3–6 seconds
   scrap: { min: 200, max: 500 }  // 2–5 seconds
