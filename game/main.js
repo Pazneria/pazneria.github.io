@@ -24,8 +24,13 @@ function createGame() {
 
   canvas.addEventListener('click', (event) => {
     const rect = canvas.getBoundingClientRect();
-    const pixelX = event.clientX - rect.left;
-    const pixelY = event.clientY - rect.top;
+    // Scale the click position from the displayed size back to the
+    // canvas's internal coordinate system. Without this the player
+    // would walk to the wrong tile when the canvas is stretched by CSS.
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const pixelX = (event.clientX - rect.left) * scaleX;
+    const pixelY = (event.clientY - rect.top) * scaleY;
     const { x, y } = world.getTileCoordinates(pixelX, pixelY);
     player.moveTo(x, y);
   });
