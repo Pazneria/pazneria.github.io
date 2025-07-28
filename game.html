@@ -1,6 +1,6 @@
 <!--
 Pazneria Game – futuristic tile‑based RPG.
-This page replaces the old Dataforge idle game with a new Phaser powered
+This page replaces the old Dataforge idle game with a custom canvas‑based
 RPG.  The global navigation and site styling remain shared via
 assets/style.css, while game specific styling lives in assets/game.css.
 -->
@@ -20,16 +20,22 @@ assets/style.css, while game specific styling lives in assets/game.css.
       <ul class="nav-list">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="agi.html" class="nav-link">AGI Forecasting</a></li>
-        <li><a href="game.html" class="nav-link nav-link--active">Dataforge Game</a></li>
+        <li><a href="game.html" class="nav-link nav-link--active">Game</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
     </nav>
-    <h1 class="hero-title" style="text-align:center; margin-top:1.5rem;">Pazneria Game</h1>
+    <h1 class="hero-title" style="text-align:center; margin-top:1.5rem;">Pazneria RPG</h1>
   </header>
   <main>
-    <!-- This container will be filled by Phaser -->
-    <div id="game-container"></div>
+    <!-- Game container: holds the canvas and the heads‑up display -->
+    <div id="game-container">
+      <div id="hud">
+        <div class="hud-item">XP: <span id="hud-xp">0</span></div>
+        <div class="hud-item">Ore: <span id="hud-ore">0</span></div>
+        <div class="hud-item">Scrap: <span id="hud-scrap">0</span></div>
+      </div>
+    </div>
   </main>
   <footer>
     <p>&copy; <span id="year"></span> Pazneria. All rights reserved.</p>
@@ -38,7 +44,7 @@ assets/style.css, while game specific styling lives in assets/game.css.
     // Update copyright year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-  <!-- Load the Phaser game entry point as an ES module -->
+  <!-- Load the game entry point as an ES module -->
   <script type="module" src="game/main.js"></script>
 </body>
 </html>
