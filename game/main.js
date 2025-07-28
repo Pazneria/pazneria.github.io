@@ -9,19 +9,22 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
-    // create world and player
+    // Create world
     this.world = new World(this);
-    this.player = new Player(this, this.world);
-
-    // handle pointer or tap input
+    // Determine spawn position from saved state or center of map
+    const savedState = JSON.parse(localStorage.getItem('pazneriaGameState') || '{}');
+    const spawnX = savedState.x !== undefined ? savedState.x : Math.floor(mapWidth / 2);
+    const spawnY = savedState.y !== undefined ? savedState.y : Math.floor(mapHeight / 2);
+    // Create player
+    this.player = new Player(this, this.world, spawnX, spawnY);
+    // Handle pointer or tap input
     this.input.on('pointerup', (pointer) => {
       const { x, y } = this.world.getTileCoordinates(pointer.x, pointer.y);
       if (this.world.isWalkable(x, y)) {
-        this.player.moveTo(x, y, this.world);
+        this.player.moveTo(x, y);
       }
     });
-
-    // camera bounds and centering
+    // Camera bounds and centering
     this.cameras.main.setBounds(0, 0, mapWidth * tileSize, mapHeight * tileSize);
     this.cameras.main.centerOn(mapWidth * tileSize / 2, mapHeight * tileSize / 2);
   }
