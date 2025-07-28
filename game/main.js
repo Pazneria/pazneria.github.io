@@ -1,46 +1,53 @@
-import Phaser from 'https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.esm.js';
 import { tileSize, mapWidth, mapHeight, backgroundColor } from './config.js';
-import Player from './player.js';
 import World from './world.js';
+import Player from './player.js';
 
-class MainScene extends Phaser.Scene {
-  constructor() {
-    super('MainScene');
+// Initialise the game once the DOM is ready. Creates a canvas
+// sized to the world, instantiates the world and player, and
+// starts the animation loop.
+function createGame() {
+  const container = document.getElementById('game-container');
+  // Clear any existing content (useful during hot reloads)
+  container.innerHTML = '';
+
+  const canvas = document.createElement('canvas');
+  canvas.width = mapWidth * tileSize;
+  canvas.height = mapHeight * tileSize;
+  container.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+
+  const world = new World();
+  const saved = JSON.parse(localStorage.getItem('pazneriaGameState') || '{}');
+  const spawnX = saved.x !== undefined ? saved.x : Math.floor(mapWidth / 2);
+  const spawnY = saved.y !== undefined ? saved.y : Math.floor(mapHeight / 2);
+  const player = new Player(world, spawnX, spawnY);
+
+  // Handle click/tap input to move the player
+  canvas.addEventListener('click', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    const pixelX = event.clientX - rect.left;
+    const pixelY = event.clientY - rect.top;
+    const { x, y } = world.getTileCoordinates(pixelX, pixelY);
+    if (world.isWalkable(x, y)) {
+      player.moveTo(x, y);
+    }
+  });
+
+  function gameLoop() {
+    // Clear the canvas with the background colour
+    ctx.fillStyle = backgroundColor;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw world and player
+    world.draw(ctx);
+    player.update();
+    player.draw(ctx);
+
+    requestAnimationFrame(gameLoop);
   }
 
-  create() {
-    // Create world
-    this.world = new World(this);
-    // Determine spawn position from saved state or center of map
-    const savedState = JSON.parse(localStorage.getItem('pazneriaGameState') || '{}');
-    const spawnX = savedState.x !== undefined ? savedState.x : Math.floor(mapWidth / 2);
-    const spawnY = savedState.y !== undefined ? savedState.y : Math.floor(mapHeight / 2);
-    // Create player
-    this.player = new Player(this, this.world, spawnX, spawnY);
-    // Handle pointer or tap input
-    this.input.on('pointerup', (pointer) => {
-      const { x, y } = this.world.getTileCoordinates(pointer.x, pointer.y);
-      if (this.world.isWalkable(x, y)) {
-        this.player.moveTo(x, y);
-      }
-    });
-    // Camera bounds and centering
-    this.cameras.main.setBounds(0, 0, mapWidth * tileSize, mapHeight * tileSize);
-    this.cameras.main.centerOn(mapWidth * tileSize / 2, mapHeight * tileSize / 2);
-  }
+  gameLoop();
 }
 
-const config = {
-  type: Phaser.AUTO,
-  parent: 'game-container',
-  backgroundColor: backgroundColor,
-  width: mapWidth * tileSize,
-  height: mapHeight * tileSize,
-  scene: MainScene,
-  scale: {
-    mode: Phaser.Scale.FIT,
-    autoCenter: Phaser.Scale.CENTER_BOTH
-  }
-};
-
-new Phaser.Game(config);
+window.addEventListener('DOMContentLoaded', createGame);

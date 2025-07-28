@@ -1,8 +1,11 @@
-import { tileSize, mapWidth, mapHeight, resourceColors } from './config.js';
+import { tileSize, mapWidth, mapHeight, resourceColors, defaultTileColor } from './config.js';
 
+// The World class encapsulates the tile grid and resource logic.
+// It generates a map of randomly placed resources and knows how
+// to draw itself to a Canvas 2D context. Tiles store only
+// their type; drawing is delegated to the draw() method.
 export default class World {
-  constructor(scene) {
-    this.scene = scene;
+  constructor() {
     this.tiles = [];
     this.generateTiles();
   }
@@ -11,7 +14,6 @@ export default class World {
     for (let y = 0; y < mapHeight; y++) {
       this.tiles[y] = [];
       for (let x = 0; x < mapWidth; x++) {
-        // assign random resources: 5% ore, additional 5% scrap
         let type = 'empty';
         const rand = Math.random();
         if (rand < 0.05) {
@@ -19,15 +21,7 @@ export default class World {
         } else if (rand < 0.10) {
           type = 'scrap';
         }
-        const rect = this.scene.add.rectangle(
-          x * tileSize + tileSize / 2,
-          y * tileSize + tileSize / 2,
-          tileSize - 2,
-          tileSize - 2,
-          this.getTileColor(type)
-        );
-        rect.setStrokeStyle(1, 0x2a3359);
-        this.tiles[y][x] = { type, rect };
+        this.tiles[y][x] = { type };
       }
     }
   }
@@ -35,13 +29,25 @@ export default class World {
   getTileColor(type) {
     if (type === 'ore') return resourceColors.ore;
     if (type === 'scrap') return resourceColors.scrap;
-    return 0x1a253a; // default base tile color
+    return defaultTileColor;
   }
 
-  getTileCoordinates(worldX, worldY) {
-    const x = Math.floor(worldX / tileSize);
-    const y = Math.floor(worldY / tileSize);
-    return { x, y };
+  // Render all tiles to the provided canvas context. A small
+  // margin around each tile is left to create grid lines.
+  draw(ctx) {
+    for (let y = 0; y < mapHeight; y++) {
+      for (let x = 0; x < mapWidth; x++) {
+        ctx.fillStyle = this.getTileColor(this.tiles[y][x].type);
+        ctx.fillRect(x * tileSize + 1, y * tileSize + 1, tileSize - 2, tileSize - 2);
+      }
+    }
+  }
+
+  getTileCoordinates(pixelX, pixelY) {
+    return {
+      x: Math.floor(pixelX / tileSize),
+      y: Math.floor(pixelY / tileSize)
+    };
   }
 
   isWithinBounds(x, y) {
@@ -52,32 +58,13 @@ export default class World {
     return this.isWithinBounds(x, y);
   }
 
-  getTileAt(x, y) {
-    if (!this.isWithinBounds(x, y)) return null;
-    return this.tiles[y][x];
-  }
-
   handleResourceAt(x, y, player) {
-    const tile = this.getTileAt(x, y);
-    if (!tile) return;
+    if (!this.isWithinBounds(x, y)) return;
+    const tile = this.tiles[y][x];
     if (tile.type === 'ore' || tile.type === 'scrap') {
-      // increment player's inventory and xp
-      if (!player.inventory[tile.type]) {
-        player.inventory[tile.type] = 0;
-      }
-      player.inventory[tile.type] += 1;
+      player.inventory[tile.type] = (player.inventory[tile.type] || 0) + 1;
       player.xp += 1;
-      // change tile to empty and update color
       tile.type = 'empty';
-      tile.rect.fillColor = this.getTileColor('empty');
-      // trigger a small tint flash as feedback
-      this.scene.tweens.add({
-        targets: tile.rect,
-        alpha: { from: 1, to: 0.4 },
-        yoyo: true,
-        duration: 100,
-        repeat: 2
-      });
     }
   }
 }
