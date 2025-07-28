@@ -6,7 +6,7 @@
   touch-action: none;
 }
 
-/* Ensure the Phaser canvas fills the container */
+/* Ensure the game canvas fills the container */
 #game-container canvas {
   width: 100% !important;
   height: 100% !important;
