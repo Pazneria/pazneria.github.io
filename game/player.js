@@ -47,7 +47,7 @@ export default class Player {
       this.y = this.targetTileY;
       this.isMoving = false;
       // Collect any resource on arrival
-      this.world.handleResourceAt(this.x, this.y, this);
+      this.world.gatherResourceAt(this.x, this.y, this);
       this.saveState();
     } else {
       const stepX = (dx / dist) * walkSpeed;
