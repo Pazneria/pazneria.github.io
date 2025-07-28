@@ -2,6 +2,8 @@ export const tileSize = 32;
 export const mapWidth = 20;
 export const mapHeight = 15;
 
+// Game time is measured exclusively in ticks. 100 ticks per minute means
+// one tick every 600ms.
 export const ticksPerMinute = 100; // ticks per minute
 export const tickRate = ticksPerMinute / 60; // ticks per second
 export const tickDuration = 60000 / ticksPerMinute; // milliseconds per tick

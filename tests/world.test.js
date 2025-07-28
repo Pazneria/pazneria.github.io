@@ -41,3 +41,21 @@ test('gathering a resource respawns after the configured number of ticks', () =>
   assert.equal(tile.respawnType, null, 'respawnType cleared');
   assert.equal(tile.respawnTicksRemaining, 0, 'respawn timer reset');
 });
+
+// Test gathering multiple resources around a center tile
+test('gatherAdjacentResources collects from all neighbouring tiles', () => {
+  const world = new World();
+  const player = createPlayer();
+
+  // Place three resources around (0,0)
+  world.tiles[0][1] = { type: 'ore', respawnType: null, respawnTicksRemaining: 0 };
+  world.tiles[1][0] = { type: 'scrap', respawnType: null, respawnTicksRemaining: 0 };
+  world.tiles[1][1] = { type: 'ore', respawnType: null, respawnTicksRemaining: 0 };
+
+  const count = world.gatherAdjacentResources(0, 0, player);
+
+  assert.equal(count, 3, 'gathered three resources');
+  assert.equal(world.tiles[0][1].type, 'empty');
+  assert.equal(world.tiles[1][0].type, 'empty');
+  assert.equal(world.tiles[1][1].type, 'empty');
+});
