@@ -1,21 +1,17 @@
 <!--
-  Dataforge World – tile‑based idle game.
-
-  This version of the Dataforge game combines the global site
-  navigation with the tile‑based game world. Players move around a
-  grid to gather raw data, process it into compute, run training
-  experiments and purchase upgrades. Progress persists using
-  localStorage. Styling is shared with the rest of the site via
-  assets/style.css, while game‑specific styles live in tilegame.css.
+Pazneria Game – futuristic tile‑based RPG.
+This page replaces the old Dataforge idle game with a new Phaser powered
+RPG.  The global navigation and site styling remain shared via
+assets/style.css, while game specific styling lives in assets/game.css.
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dataforge World – Pazneria</title>
+  <title>Pazneria Game</title>
   <link rel="stylesheet" href="assets/style.css">
-  <link rel="stylesheet" href="tilegame.css">
+  <link rel="stylesheet" href="assets/game.css">
 </head>
 <body>
   <header>
@@ -24,30 +20,25 @@
       <ul class="nav-list">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="agi.html" class="nav-link">AGI Forecasting</a></li>
-        <li><a href="game.html" class="nav-link">Dataforge Game</a></li>
+        <li><a href="game.html" class="nav-link nav-link--active">Dataforge Game</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
     </nav>
-    <h1 class="hero-title" style="text-align:center; margin-top:1.5rem;">Dataforge World</h1>
+    <h1 class="hero-title" style="text-align:center; margin-top:1.5rem;">Pazneria Game</h1>
   </header>
   <main>
-    <div id="resource-panel" class="resource-panel">
-      <span>Raw Data: <span id="rawDataCount">0</span></span>
-      <span>Compute: <span id="computeCount">0</span></span>
-      <span>XP: <span id="xpCount">0</span></span>
-      <span>Level: <span id="levelCount">1</span></span>
-    </div>
-    <div id="game-board" class="board"></div>
-    <div id="actions-panel" class="actions-panel"></div>
+    <!-- This container will be filled by Phaser -->
+    <div id="game-container"></div>
   </main>
   <footer>
     <p>&copy; <span id="year"></span> Pazneria. All rights reserved.</p>
   </footer>
   <script>
-    // Dynamic year for footer
+    // Update copyright year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-  <script src="tilegame.js"></script>
+  <!-- Load the Phaser game entry point as an ES module -->
+  <script type="module" src="game/main.js"></script>
 </body>
 </html>
