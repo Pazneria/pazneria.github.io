@@ -91,10 +91,10 @@ export default class World {
       // Set respawn info and clear tile
       tile.respawnType = tile.type;
       tile.respawnTicksRemaining = Math.floor(
-        (resourceRespawnTicks[tile.type].min +
+        resourceRespawnTicks[tile.type].min +
           Math.random() *
             (resourceRespawnTicks[tile.type].max -
-              resourceRespawnTicks[tile.type].min)) * 100
+              resourceRespawnTicks[tile.type].min)
       );
       tile.type = 'empty';
       return true;
