@@ -56,12 +56,13 @@ export default class Player {
       this.pixelX = this.x * tileSize + tileSize / 2;
       this.pixelY = this.y * tileSize + tileSize / 2;
     } else {
-      // If reached destination and have gather target, check adjacency
+      // If reached destination and have a gather target, check adjacency and
+      // collect from all surrounding tiles.
       if (this.gatherTarget) {
         const gx = this.gatherTarget.x;
         const gy = this.gatherTarget.y;
         if (Math.abs(gx - this.x) <= 1 && Math.abs(gy - this.y) <= 1) {
-          this.world.gatherResourceAt(gx, gy, this);
+          this.world.gatherAdjacentResources(this.x, this.y, this);
           this.gatherTarget = null;
           this.saveState();
         }

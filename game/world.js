@@ -1,4 +1,4 @@
-import { tileSize, mapWidth, mapHeight, resourceColors, defaultTileColor, resourceRespawnTicks, tickRate } from './config.js';
+import { tileSize, mapWidth, mapHeight, resourceColors, defaultTileColor, resourceRespawnTicks } from './config.js';
 
 export default class World {
   constructor() {
@@ -88,19 +88,36 @@ export default class World {
     if (tile.type === 'ore' || tile.type === 'scrap') {
       player.xp += 1;
       player.inventory[tile.type] = (player.inventory[tile.type] || 0) + 1;
-      // Set respawn info and clear tile (respawn range is in seconds,
-      // converted to ticks using tickRate)
+      // Set respawn info and clear tile. Respawn times are defined in ticks,
+      // so no conversion is needed here.
       tile.respawnType = tile.type;
       tile.respawnTicksRemaining = Math.floor(
-        (resourceRespawnTicks[tile.type].min +
+        resourceRespawnTicks[tile.type].min +
           Math.random() *
             (resourceRespawnTicks[tile.type].max -
-              resourceRespawnTicks[tile.type].min)) * tickRate
+              resourceRespawnTicks[tile.type].min)
       );
       tile.type = 'empty';
       return true;
     }
     return false;
+  }
+
+  // Gather resources from all tiles adjacent (including diagonally) to the
+  // specified center tile. Returns the number of resources gathered.
+  gatherAdjacentResources(cx, cy, player) {
+    let count = 0;
+    for (let dy = -1; dy <= 1; dy++) {
+      for (let dx = -1; dx <= 1; dx++) {
+        if (dx === 0 && dy === 0) continue;
+        const nx = cx + dx;
+        const ny = cy + dy;
+        if (this.gatherResourceAt(nx, ny, player)) {
+          count += 1;
+        }
+      }
+    }
+    return count;
   }
 
   tick() {
