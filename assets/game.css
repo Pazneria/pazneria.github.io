@@ -1,0 +1,14 @@
+#game-container {
+  width: 100%;
+  height: calc(100vh - var(--nav-height));
+  overflow: hidden;
+  position: relative;
+  touch-action: none;
+}
+
+/* Ensure the Phaser canvas fills the container */
+#game-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
