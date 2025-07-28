@@ -1,4 +1,4 @@
-import { tileSize, mapWidth, mapHeight, backgroundColor, tickRate } from './config.js';
+import { tileSize, mapWidth, mapHeight, backgroundColor, tickDuration } from './config.js';
 import World from './world.js';
 import Player from './player_osrs.js';
 
@@ -33,7 +33,7 @@ function createGame() {
   setInterval(() => {
     player.update();
     world.tick();
-  }, 1000 / tickRate);
+  }, tickDuration);
 
   requestAnimationFrame(gameLoop);
 }

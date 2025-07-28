@@ -1,4 +1,4 @@
-import { tileSize, mapWidth, mapHeight, resourceColors, defaultTileColor, resourceRespawnTicks } from './config.js';
+import { tileSize, mapWidth, mapHeight, resourceColors, defaultTileColor, resourceRespawnTicks, tickRate } from './config.js';
 
 export default class World {
   constructor() {
@@ -88,13 +88,14 @@ export default class World {
     if (tile.type === 'ore' || tile.type === 'scrap') {
       player.xp += 1;
       player.inventory[tile.type] = (player.inventory[tile.type] || 0) + 1;
-      // Set respawn info and clear tile
+      // Set respawn info and clear tile (respawn range is in seconds,
+      // converted to ticks using tickRate)
       tile.respawnType = tile.type;
       tile.respawnTicksRemaining = Math.floor(
         (resourceRespawnTicks[tile.type].min +
           Math.random() *
             (resourceRespawnTicks[tile.type].max -
-              resourceRespawnTicks[tile.type].min)) * 100
+              resourceRespawnTicks[tile.type].min)) * tickRate
       );
       tile.type = 'empty';
       return true;
