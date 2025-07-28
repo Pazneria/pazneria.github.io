@@ -12,3 +12,23 @@
   height: 100% !important;
   display: block;
 }
+
+/* HUD overlay */
+#hud {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 100;
+  background: rgba(11, 15, 39, 0.8);
+  color: var(--text-color);
+  padding: 8px 12px;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+#hud span {
+  margin-left: 4px;
+  margin-right: 12px;
+  font-weight: bold;
+}
