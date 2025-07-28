@@ -1,11 +1,9 @@
-export default {
-  tileSize: 32,
-  mapWidth: 20,
-  mapHeight: 15,
-  walkSpeed: 200,
-  backgroundColor: '#0b0f27',
-  resourceColors: {
-    ore: 0x8888aa,
-    scrap: 0xaa8844
-  }
+export const tileSize = 32;
+export const mapWidth = 20;
+export const mapHeight = 15;
+export const walkSpeed = 200;
+export const backgroundColor = '#0b0f27';
+export const resourceColors = {
+  ore: 0x8888aa,
+  scrap: 0xaa8844
 };
