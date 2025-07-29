@@ -33,3 +33,27 @@ test('player gathers only the targeted resource', () => {
   assert.equal(player.inventory.ore, 1);
   assert.ok(!player.inventory.scrap);
 });
+
+test('player chooses the closest adjacent tile to gather', () => {
+  globalThis.localStorage = {
+    getItem() { return null; },
+    setItem() {}
+  };
+  const world = new World();
+  // Clear map
+  for (let y = 0; y < world.height; y++) {
+    for (let x = 0; x < world.width; x++) {
+      world.tiles[y][x].type = 'empty';
+    }
+  }
+  // Place a resource two tiles east of the player
+  world.tiles[1][3] = { type: 'ore', respawnType: null, respawnTicksRemaining: 0 };
+
+  const player = new Player(world, 1, 1);
+
+  player.moveTo(3, 1);
+
+  // The first step in the path should be to the tile east of the start (2,1)
+  assert.equal(player.path[0].x, 2);
+  assert.equal(player.path[0].y, 1);
+});
