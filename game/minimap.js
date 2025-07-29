@@ -8,6 +8,9 @@ export default class Minimap {
     this.canvas.id = 'minimap';
     this.canvas.width = world.width * this.scale;
     this.canvas.height = world.height * this.scale;
+    // Use inline dimensions so CSS rules won't stretch the minimap
+    this.canvas.style.width = `${this.canvas.width}px`;
+    this.canvas.style.height = `${this.canvas.height}px`;
     this.ctx = this.canvas.getContext('2d');
   }
 

@@ -16,6 +16,7 @@ function createGame() {
   const container = document.getElementById('game-container');
   container.innerHTML = '';
   canvas = document.createElement('canvas');
+  canvas.id = 'game-canvas';
   canvas.width = mapWidth * tileSize;
   canvas.height = mapHeight * tileSize;
   container.appendChild(canvas);
