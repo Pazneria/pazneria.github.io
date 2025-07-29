@@ -14,6 +14,11 @@ let lastFrameTime = 0;
 
 function createGame() {
   const container = document.getElementById('game-container');
+  // Shift the entire game container down by two tiles so the
+  // canvas isn't flush against the header. The tileSize constant
+  // is defined in config.js, so this offset will automatically
+  // adjust if the tile dimensions change.
+  container.style.marginTop = `${tileSize * 2}px`;
   container.innerHTML = '';
   canvas = document.createElement('canvas');
   canvas.id = 'game-canvas';
