@@ -14,12 +14,18 @@ main {
 }
 
 #game-container {
+  /* Limit width to keep the game centered like other content */
+  max-width: 1000px;
   width: 100%;
+  margin: 0 auto;
   /* Fill the viewport minus header and footer */
   height: calc(100vh - var(--nav-height) - var(--footer-height));
   overflow: hidden;
   position: relative;
   touch-action: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Ensure the main game canvas fills the container */
