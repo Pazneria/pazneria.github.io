@@ -19,6 +19,11 @@ export default class Player {
     // Pathfinding and gathering state
     this.path = [];
     this.gatherTarget = null;
+
+    // Sprite information; can be set externally
+    this.spriteSheet = null;
+    this.spriteOffsetX = 0;
+    this.spriteOffsetY = 0;
   }
 
   moveTo(tileX, tileY) {
@@ -86,14 +91,24 @@ export default class Player {
   }
 
   draw(ctx, cameraX = 0, cameraY = 0) {
-    ctx.fillStyle = playerColor;
-    // Draw as a rectangle with margin for separation
-    ctx.fillRect(
-      (this.x - cameraX) * tileSize + 3,
-      (this.y - cameraY) * tileSize + 3,
-      tileSize - 6,
-      tileSize - 6
-    );
+    const drawX = (this.x - cameraX) * tileSize;
+    const drawY = (this.y - cameraY) * tileSize;
+    if (this.spriteSheet && this.spriteSheet.complete) {
+      ctx.drawImage(
+        this.spriteSheet,
+        this.spriteOffsetX,
+        this.spriteOffsetY,
+        tileSize,
+        tileSize,
+        drawX,
+        drawY,
+        tileSize,
+        tileSize
+      );
+    } else {
+      ctx.fillStyle = playerColor;
+      ctx.fillRect(drawX + 3, drawY + 3, tileSize - 6, tileSize - 6);
+    }
   }
 
   saveState() {

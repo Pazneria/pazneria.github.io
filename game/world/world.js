@@ -18,6 +18,8 @@ export default class World {
     this.width = 0;
     this.height = 0;
     this.chunks = new Set();
+    // Holds images for resources and tiles
+    this.images = {};
 
     for (let cy = 0; cy <= chunkRadius * 2; cy++) {
       for (let cx = 0; cx <= chunkRadius * 2; cx++) {
@@ -52,9 +54,27 @@ export default class World {
   }
 
   draw(ctx, cameraX = 0, cameraY = 0) {
-    // Fill background for the visible area
-    ctx.fillStyle = defaultTileColor;
-    ctx.fillRect(0, 0, mapWidth * tileSize, mapHeight * tileSize);
+    // Fill background with tile image or fallback color
+    if (this.images.tile && this.images.tile.complete) {
+      for (let y = 0; y < mapHeight; y++) {
+        for (let x = 0; x < mapWidth; x++) {
+          ctx.drawImage(
+            this.images.tile,
+            0,
+            0,
+            16,
+            16,
+            x * tileSize,
+            y * tileSize,
+            tileSize,
+            tileSize
+          );
+        }
+      }
+    } else {
+      ctx.fillStyle = defaultTileColor;
+      ctx.fillRect(0, 0, mapWidth * tileSize, mapHeight * tileSize);
+    }
 
     const baseX = Math.floor(cameraX);
     const baseY = Math.floor(cameraY);
@@ -73,8 +93,23 @@ export default class World {
         const tile = this.tiles[wy][wx];
         if (!tile) continue;
         if (tile.type !== 'empty') {
-          ctx.fillStyle = resourceColors[tile.type];
-          ctx.fillRect(vx * tileSize, vy * tileSize, tileSize, tileSize);
+          const img = this.images[tile.type];
+          if (img && img.complete) {
+            ctx.drawImage(
+              img,
+              0,
+              0,
+              img.width,
+              img.height,
+              vx * tileSize,
+              vy * tileSize,
+              tileSize,
+              tileSize
+            );
+          } else {
+            ctx.fillStyle = resourceColors[tile.type];
+            ctx.fillRect(vx * tileSize, vy * tileSize, tileSize, tileSize);
+          }
         }
       }
     }

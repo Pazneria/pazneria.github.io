@@ -4,6 +4,19 @@ import Player from './entities/player.js';
 import Camera from './camera.js';
 import Minimap from './minimap.js';
 
+// Load character sprite sheet and resource icons
+const characterSprite = new Image();
+characterSprite.src = './RPGCharacterSprites32x32.png';
+
+const oreImage = new Image();
+oreImage.src = './ore.png';
+
+const logImage = new Image();
+logImage.src = './log.png';
+
+const tileImage = new Image();
+tileImage.src = './Futuristic Industrial Tileset.png';
+
 let world;
 let player;
 let camera;
@@ -25,6 +38,8 @@ function createGame() {
   ctx = canvas.getContext('2d');
 
   world = new World();
+  // Provide resource and tile images to the world
+  world.images = { ore: oreImage, logs: logImage, tile: tileImage };
   const saved = JSON.parse(localStorage.getItem('pazneriaGameState')) || {};
   let spawnX = saved.x !== undefined ? saved.x : Math.floor(world.width / 2);
   let spawnY = saved.y !== undefined ? saved.y : Math.floor(world.height / 2);
@@ -34,6 +49,10 @@ function createGame() {
     world.tiles[spawnY][spawnX].type = 'empty';
   }
   player = new Player(world, spawnX, spawnY);
+  // Assign sprite sheet to the player
+  player.spriteSheet = characterSprite;
+  player.spriteOffsetX = 0;
+  player.spriteOffsetY = 0;
   camera = new Camera(world, player);
   minimap = new Minimap(world, player);
   minimap.attach(container);
