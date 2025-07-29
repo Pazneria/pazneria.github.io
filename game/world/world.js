@@ -2,6 +2,8 @@ import {
   tileSize,
   mapWidth,
   mapHeight,
+  chunkWidth,
+  chunkHeight,
   resourceColors,
   defaultTileColor,
   resourceDefinitions,
@@ -9,72 +11,87 @@ import {
 import { defaultMap } from './maps/default.js';
 
 export default class World {
-  constructor() {
-    this.width = mapWidth;
-    this.height = mapHeight;
+  constructor(chunkRadius = 1) {
+    this.chunkWidth = chunkWidth;
+    this.chunkHeight = chunkHeight;
     this.tiles = [];
-    this.generateTiles();
+    this.width = 0;
+    this.height = 0;
+    this.chunks = new Set();
+
+    for (let cy = 0; cy <= chunkRadius * 2; cy++) {
+      for (let cx = 0; cx <= chunkRadius * 2; cx++) {
+        this.addChunk(cx, cy);
+      }
+    }
   }
 
-  generateTiles() {
-    // Initialize tiles using the layout from defaultMap. Characters in the map
-    // correspond to resource types:
-    //   'o' -> ore, 't' -> logs, '.' -> empty
-    for (let y = 0; y < this.height; y++) {
-      this.tiles[y] = [];
-      const row = defaultMap[y] || '';
-      for (let x = 0; x < this.width; x++) {
+  addChunk(cx, cy, map = defaultMap) {
+    const offsetX = cx * this.chunkWidth;
+    const offsetY = cy * this.chunkHeight;
+    for (let y = 0; y < this.chunkHeight; y++) {
+      const globalY = offsetY + y;
+      if (!this.tiles[globalY]) this.tiles[globalY] = [];
+      const row = map[y] || '';
+      for (let x = 0; x < this.chunkWidth; x++) {
+        const globalX = offsetX + x;
         const ch = row[x] || '.';
         let type = 'empty';
-        if (ch === 'o') {
-          type = 'ore';
-        } else if (ch === 't') {
-          type = 'logs';
-        }
-        this.tiles[y][x] = {
+        if (ch === 'o') type = 'ore';
+        else if (ch === 't') type = 'logs';
+        this.tiles[globalY][globalX] = {
           type,
           respawnType: null,
           respawnTicksRemaining: 0,
         };
       }
     }
+    this.width = Math.max(this.width, offsetX + this.chunkWidth);
+    this.height = Math.max(this.height, offsetY + this.chunkHeight);
+    this.chunks.add(`${cx},${cy}`);
   }
 
-  draw(ctx) {
-    // Fill background
+  draw(ctx, cameraX = 0, cameraY = 0) {
+    // Fill background for the visible area
     ctx.fillStyle = defaultTileColor;
-    ctx.fillRect(0, 0, this.width * tileSize, this.height * tileSize);
-    // Draw resources
-    for (let y = 0; y < this.height; y++) {
-      for (let x = 0; x < this.width; x++) {
-        const tile = this.tiles[y][x];
+    ctx.fillRect(0, 0, mapWidth * tileSize, mapHeight * tileSize);
+
+    // Draw resources within the viewport
+    for (let vy = 0; vy < mapHeight; vy++) {
+      const wy = cameraY + vy;
+      if (!this.tiles[wy]) continue;
+      for (let vx = 0; vx < mapWidth; vx++) {
+        const wx = cameraX + vx;
+        const tile = this.tiles[wy][wx];
+        if (!tile) continue;
         if (tile.type !== 'empty') {
           ctx.fillStyle = resourceColors[tile.type];
-          ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+          ctx.fillRect(vx * tileSize, vy * tileSize, tileSize, tileSize);
         }
       }
     }
-    // Optionally draw grid lines (thin)
+
+    // Optional grid lines
     ctx.strokeStyle = '#222222';
     ctx.lineWidth = 1;
-    for (let x = 0; x <= this.width; x++) {
+    for (let x = 0; x <= mapWidth; x++) {
       ctx.beginPath();
       ctx.moveTo(x * tileSize, 0);
-      ctx.lineTo(x * tileSize, this.height * tileSize);
+      ctx.lineTo(x * tileSize, mapHeight * tileSize);
       ctx.stroke();
     }
-    for (let y = 0; y <= this.height; y++) {
+    for (let y = 0; y <= mapHeight; y++) {
       ctx.beginPath();
       ctx.moveTo(0, y * tileSize);
-      ctx.lineTo(this.width * tileSize, y * tileSize);
+      ctx.lineTo(mapWidth * tileSize, y * tileSize);
       ctx.stroke();
     }
   }
 
-  getTileCoordinates(pixelX, pixelY) {
+  getTileCoordinates(pixelX, pixelY, cameraX = 0, cameraY = 0) {
     return {
-      x: Math.floor(pixelX / tileSize),
-      y: Math.floor(pixelY / tileSize),
+      x: Math.floor(pixelX / tileSize) + cameraX,
+      y: Math.floor(pixelY / tileSize) + cameraY,
     };
   }
 

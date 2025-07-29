@@ -1,6 +1,12 @@
 export const tileSize = 32;
+// Size of the visible viewport in tiles
 export const mapWidth = 20;
 export const mapHeight = 15;
+
+// Size of a single chunk. The initial world is composed of multiple chunks
+// stitched together.
+export const chunkWidth = 20;
+export const chunkHeight = 15;
 
 // Game time is measured exclusively in ticks. 100 ticks per minute means
 // one tick every 600ms.

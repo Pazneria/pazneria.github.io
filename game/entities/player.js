@@ -85,10 +85,15 @@ export default class Player {
     }
   }
 
-  draw(ctx) {
+  draw(ctx, cameraX = 0, cameraY = 0) {
     ctx.fillStyle = playerColor;
     // Draw as a rectangle with margin for separation
-    ctx.fillRect(this.x * tileSize + 3, this.y * tileSize + 3, tileSize - 6, tileSize - 6);
+    ctx.fillRect(
+      (this.x - cameraX) * tileSize + 3,
+      (this.y - cameraY) * tileSize + 3,
+      tileSize - 6,
+      tileSize - 6
+    );
   }
 
   saveState() {
