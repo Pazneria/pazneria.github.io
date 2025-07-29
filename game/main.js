@@ -39,6 +39,8 @@ function createGame() {
   canvas.addEventListener('contextmenu', (e) => e.preventDefault());
 
   canvas.addEventListener('mousedown', () => {
+    // Center the game container in the viewport when the player interacts
+    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
     document.body.classList.add('game-focused');
   });
 
