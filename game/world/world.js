@@ -56,12 +56,20 @@ export default class World {
     ctx.fillStyle = defaultTileColor;
     ctx.fillRect(0, 0, mapWidth * tileSize, mapHeight * tileSize);
 
+    const baseX = Math.floor(cameraX);
+    const baseY = Math.floor(cameraY);
+    const offX = -(cameraX - baseX) * tileSize;
+    const offY = -(cameraY - baseY) * tileSize;
+
+    ctx.save();
+    ctx.translate(offX, offY);
+
     // Draw resources within the viewport
-    for (let vy = 0; vy < mapHeight; vy++) {
-      const wy = cameraY + vy;
+    for (let vy = 0; vy <= mapHeight; vy++) {
+      const wy = baseY + vy;
       if (!this.tiles[wy]) continue;
-      for (let vx = 0; vx < mapWidth; vx++) {
-        const wx = cameraX + vx;
+      for (let vx = 0; vx <= mapWidth; vx++) {
+        const wx = baseX + vx;
         const tile = this.tiles[wy][wx];
         if (!tile) continue;
         if (tile.type !== 'empty') {
@@ -86,12 +94,18 @@ export default class World {
       ctx.lineTo(mapWidth * tileSize, y * tileSize);
       ctx.stroke();
     }
+
+    ctx.restore();
   }
 
   getTileCoordinates(pixelX, pixelY, cameraX = 0, cameraY = 0) {
+    const baseX = Math.floor(cameraX);
+    const baseY = Math.floor(cameraY);
+    const adjX = pixelX + (cameraX - baseX) * tileSize;
+    const adjY = pixelY + (cameraY - baseY) * tileSize;
     return {
-      x: Math.floor(pixelX / tileSize) + cameraX,
-      y: Math.floor(pixelY / tileSize) + cameraY,
+      x: Math.floor(adjX / tileSize) + baseX,
+      y: Math.floor(adjY / tileSize) + baseY,
     };
   }
 
