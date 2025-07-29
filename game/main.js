@@ -18,8 +18,8 @@ function createGame() {
 
   world = new World();
   const saved = JSON.parse(localStorage.getItem('pazneriaGameState')) || {};
-  let spawnX = saved.x !== undefined ? saved.x : Math.floor(mapWidth / 2);
-  let spawnY = saved.y !== undefined ? saved.y : Math.floor(mapHeight / 2);
+  let spawnX = saved.x !== undefined ? saved.x : Math.floor(world.width / 2);
+  let spawnY = saved.y !== undefined ? saved.y : Math.floor(world.height / 2);
   // Ensure the spawn tile is always empty so the player doesn't start
   // on top of a resource node.
   if (world.isWithinBounds(spawnX, spawnY)) {
@@ -29,14 +29,12 @@ function createGame() {
 
   canvas.addEventListener('click', (event) => {
     const rect = canvas.getBoundingClientRect();
-    // Scale the click position from the displayed size back to the
-    // canvas's internal coordinate system. Without this the player
-    // would walk to the wrong tile when the canvas is stretched by CSS.
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
     const pixelX = (event.clientX - rect.left) * scaleX;
     const pixelY = (event.clientY - rect.top) * scaleY;
-    const { x, y } = world.getTileCoordinates(pixelX, pixelY);
+    const { camX, camY } = getCamera();
+    const { x, y } = world.getTileCoordinates(pixelX, pixelY, camX, camY);
     player.moveTo(x, y);
   });
 
@@ -48,11 +46,20 @@ function createGame() {
   requestAnimationFrame(gameLoop);
 }
 
+function getCamera() {
+  const halfW = Math.floor(mapWidth / 2);
+  const halfH = Math.floor(mapHeight / 2);
+  const camX = Math.max(0, Math.min(player.x - halfW, world.width - mapWidth));
+  const camY = Math.max(0, Math.min(player.y - halfH, world.height - mapHeight));
+  return { camX, camY };
+}
+
 function gameLoop() {
   ctx.fillStyle = backgroundColor;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  world.draw(ctx);
-  player.draw(ctx);
+  const { camX, camY } = getCamera();
+  world.draw(ctx, camX, camY);
+  player.draw(ctx, camX, camY);
   requestAnimationFrame(gameLoop);
 }
 
