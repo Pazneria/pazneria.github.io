@@ -6,16 +6,16 @@ import Minimap from './minimap.js';
 
 // Load character sprite sheet and resource icons
 const characterSprite = new Image();
-characterSprite.src = './RPGCharacterSprites32x32.png';
+characterSprite.src = new URL('./RPGCharacterSprites32x32.png', import.meta.url).href;
 
 const oreImage = new Image();
-oreImage.src = './ore.png';
+oreImage.src = new URL('./ore.png', import.meta.url).href;
 
 const logImage = new Image();
-logImage.src = './log.png';
+logImage.src = new URL('./log.png', import.meta.url).href;
 
 const tileImage = new Image();
-tileImage.src = './Futuristic Industrial Tileset.png';
+tileImage.src = new URL('./Futuristic Industrial Tileset.png', import.meta.url).href;
 
 let world;
 let player;
