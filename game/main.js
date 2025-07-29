@@ -2,10 +2,12 @@ import { tileSize, mapWidth, mapHeight, backgroundColor, tickDuration } from './
 import World from './world/world.js';
 import Player from './entities/player.js';
 import Camera from './camera.js';
+import Minimap from './minimap.js';
 
 let world;
 let player;
 let camera;
+let minimap;
 let canvas;
 let ctx;
 let lastFrameTime = 0;
@@ -30,6 +32,8 @@ function createGame() {
   }
   player = new Player(world, spawnX, spawnY);
   camera = new Camera(world, player);
+  minimap = new Minimap(world, player);
+  minimap.attach(container);
 
   canvas.addEventListener('click', (event) => {
     const rect = canvas.getBoundingClientRect();
@@ -60,6 +64,7 @@ function gameLoop(timestamp) {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   world.draw(ctx, camera.x, camera.y);
   player.draw(ctx, camera.x, camera.y);
+  minimap.draw();
   requestAnimationFrame(gameLoop);
 }
 
