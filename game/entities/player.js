@@ -1,4 +1,4 @@
-import { tileSize, playerColor } from './config.js';
+import { tileSize, playerColor } from '../config.js';
 
 export default class Player {
   constructor(world, x, y) {
@@ -8,10 +8,14 @@ export default class Player {
     // Pixel position for drawing center of tile
     this.pixelX = x * tileSize + tileSize / 2;
     this.pixelY = y * tileSize + tileSize / 2;
-    // Load saved XP and inventory
+    // Load saved state
     const saved = JSON.parse(localStorage.getItem('pazneriaGameState') || '{}');
-    this.xp = saved.xp || 0;
+    this.skills = {
+      mining: { xp: saved.skills?.mining?.xp || 0 },
+      scavenging: { xp: saved.skills?.scavenging?.xp || 0 },
+    };
     this.inventory = saved.inventory || {};
+    this.equipment = saved.equipment || { mainHand: null };
     // Pathfinding and gathering state
     this.path = [];
     this.gatherTarget = null;
@@ -89,8 +93,9 @@ export default class Player {
 
   saveState() {
     const state = {
-      xp: this.xp,
+      skills: this.skills,
       inventory: this.inventory,
+      equipment: this.equipment,
     };
     localStorage.setItem('pazneriaGameState', JSON.stringify(state));
   }

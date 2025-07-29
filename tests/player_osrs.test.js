@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import World from '../game/world.js';
-import Player from '../game/player_osrs.js';
+import World from '../game/world/world.js';
+import Player from '../game/entities/player.js';
 
 function setupWorld() {
   const world = new World();
@@ -23,6 +23,7 @@ test('player gathers only the targeted resource', () => {
   };
   const world = setupWorld();
   const player = new Player(world, 0, 0);
+  player.equipment.mainHand = 'pickaxe';
 
   // Target the ore at (1,0)
   player.gatherTarget = { x: 1, y: 0 };

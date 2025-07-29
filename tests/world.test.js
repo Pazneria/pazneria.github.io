@@ -1,9 +1,13 @@
 import assert from 'node:assert/strict';
-import World from '../game/world.js';
+import World from '../game/world/world.js';
 
 // Dummy player object for gathering resources
 function createPlayer() {
-  return { xp: 0, inventory: {} };
+  return {
+    skills: { mining: { xp: 0 }, scavenging: { xp: 0 } },
+    inventory: {},
+    equipment: { mainHand: 'pickaxe' },
+  };
 }
 
 // Ensure deterministic tile for testing
@@ -54,8 +58,8 @@ test('gatherAdjacentResources collects from all neighbouring tiles', () => {
 
   const count = world.gatherAdjacentResources(0, 0, player);
 
-  assert.equal(count, 3, 'gathered three resources');
+  assert.equal(count, 2, 'gathered two resources with pickaxe');
   assert.equal(world.tiles[0][1].type, 'empty');
-  assert.equal(world.tiles[1][0].type, 'empty');
   assert.equal(world.tiles[1][1].type, 'empty');
+  assert.equal(world.tiles[1][0].type, 'scrap');
 });
