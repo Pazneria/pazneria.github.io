@@ -1,6 +1,20 @@
+# Root-level overrides for the game page
+:root {
+  /* Reduce the navigation bar height so the game fits without scrolling */
+  --nav-height: 40px;
+  /* Height of the footer used in layout calculations */
+  --footer-height: 50px;
+}
+
+main {
+  /* Remove the default top/bottom margin that other pages use */
+  margin: 0;
+}
+
 #game-container {
   width: 100%;
-  height: calc(100vh - var(--nav-height));
+  /* Fill the viewport minus header and footer */
+  height: calc(100vh - var(--nav-height) - var(--footer-height));
   overflow: hidden;
   position: relative;
   touch-action: none;
@@ -54,5 +68,13 @@ body.game-focused {
 
 body.game-focused #game-container {
   pointer-events: auto;
+}
+
+/* Keep the footer fixed so it doesn't add to page height */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
