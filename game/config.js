@@ -14,7 +14,7 @@ export const defaultTileColor = '#1a253a';
 
 export const resourceColors = {
   ore: '#8888aa',
-  scrap: '#aa8844'
+  logs: '#aa8844'
 };
 
 export const resourceDefinitions = {
@@ -25,12 +25,12 @@ export const resourceDefinitions = {
     respawnMax: 34,
     skill: 'mining',
   },
-  scrap: {
+  logs: {
     xpValue: 8,
-    requiredTool: 'salvage_kit',
+    requiredTool: 'axe',
     respawnMin: 17,
     respawnMax: 34,
-    skill: 'scavenging',
+    skill: 'woodcutting',
   },
 };
 
@@ -42,8 +42,8 @@ export const resourceRespawnTicks = {
     min: resourceDefinitions.ore.respawnMin,
     max: resourceDefinitions.ore.respawnMax,
   },
-  scrap: {
-    min: resourceDefinitions.scrap.respawnMin,
-    max: resourceDefinitions.scrap.respawnMax,
+  logs: {
+    min: resourceDefinitions.logs.respawnMin,
+    max: resourceDefinitions.logs.respawnMax,
   },
 };

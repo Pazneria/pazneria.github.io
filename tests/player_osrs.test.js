@@ -12,7 +12,7 @@ function setupWorld() {
     }
   }
   world.tiles[0][1] = { type: 'ore', respawnType: null, respawnTicksRemaining: 0 };
-  world.tiles[1][1] = { type: 'scrap', respawnType: null, respawnTicksRemaining: 0 };
+  world.tiles[1][1] = { type: 'logs', respawnType: null, respawnTicksRemaining: 0 };
   return world;
 }
 
@@ -30,9 +30,9 @@ test('player gathers only the targeted resource', () => {
   player.update();
 
   assert.equal(world.tiles[0][1].type, 'empty');
-  assert.equal(world.tiles[1][1].type, 'scrap');
+  assert.equal(world.tiles[1][1].type, 'logs');
   assert.equal(player.inventory.ore, 1);
-  assert.ok(!player.inventory.scrap);
+  assert.ok(!player.inventory.logs);
 });
 
 test('player chooses the closest adjacent tile to gather', () => {

@@ -19,7 +19,7 @@ export default class World {
   generateTiles() {
     // Initialize tiles using the layout from defaultMap. Characters in the map
     // correspond to resource types:
-    //   'o' -> ore, 's' -> scrap, '.' -> empty
+    //   'o' -> ore, 't' -> logs, '.' -> empty
     for (let y = 0; y < this.height; y++) {
       this.tiles[y] = [];
       const row = defaultMap[y] || '';
@@ -28,8 +28,8 @@ export default class World {
         let type = 'empty';
         if (ch === 'o') {
           type = 'ore';
-        } else if (ch === 's') {
-          type = 'scrap';
+        } else if (ch === 't') {
+          type = 'logs';
         }
         this.tiles[y][x] = {
           type,
