@@ -45,3 +45,14 @@
   width: auto !important;
   height: auto !important;
 }
+
+/* When the game is focused, disable page interaction outside the game */
+body.game-focused {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+body.game-focused #game-container {
+  pointer-events: auto;
+}
+

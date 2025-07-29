@@ -36,6 +36,18 @@ function createGame() {
   minimap = new Minimap(world, player);
   minimap.attach(container);
 
+  canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  canvas.addEventListener('mousedown', () => {
+    document.body.classList.add('game-focused');
+  });
+
+  document.addEventListener('mousedown', (e) => {
+    if (!container.contains(e.target)) {
+      document.body.classList.remove('game-focused');
+    }
+  });
+
   canvas.addEventListener('click', (event) => {
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
