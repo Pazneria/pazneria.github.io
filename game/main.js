@@ -1,11 +1,14 @@
 import { tileSize, mapWidth, mapHeight, backgroundColor, tickDuration } from './config.js';
 import World from './world/world.js';
 import Player from './entities/player.js';
+import Camera from './camera.js';
 
 let world;
 let player;
+let camera;
 let canvas;
 let ctx;
+let lastFrameTime = 0;
 
 function createGame() {
   const container = document.getElementById('game-container');
@@ -26,6 +29,7 @@ function createGame() {
     world.tiles[spawnY][spawnX].type = 'empty';
   }
   player = new Player(world, spawnX, spawnY);
+  camera = new Camera(world, player);
 
   canvas.addEventListener('click', (event) => {
     const rect = canvas.getBoundingClientRect();
@@ -33,33 +37,29 @@ function createGame() {
     const scaleY = canvas.height / rect.height;
     const pixelX = (event.clientX - rect.left) * scaleX;
     const pixelY = (event.clientY - rect.top) * scaleY;
-    const { camX, camY } = getCamera();
-    const { x, y } = world.getTileCoordinates(pixelX, pixelY, camX, camY);
+    const { x, y } = world.getTileCoordinates(pixelX, pixelY, camera.x, camera.y);
     player.moveTo(x, y);
   });
 
   setInterval(() => {
     player.update();
     world.tick();
+    camera.checkPlayerMovement();
   }, tickDuration);
 
+  lastFrameTime = performance.now();
   requestAnimationFrame(gameLoop);
 }
 
-function getCamera() {
-  const halfW = Math.floor(mapWidth / 2);
-  const halfH = Math.floor(mapHeight / 2);
-  const camX = Math.max(0, Math.min(player.x - halfW, world.width - mapWidth));
-  const camY = Math.max(0, Math.min(player.y - halfH, world.height - mapHeight));
-  return { camX, camY };
-}
+function gameLoop(timestamp) {
+  const delta = timestamp - lastFrameTime;
+  lastFrameTime = timestamp;
+  camera.update(delta);
 
-function gameLoop() {
   ctx.fillStyle = backgroundColor;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  const { camX, camY } = getCamera();
-  world.draw(ctx, camX, camY);
-  player.draw(ctx, camX, camY);
+  world.draw(ctx, camera.x, camera.y);
+  player.draw(ctx, camera.x, camera.y);
   requestAnimationFrame(gameLoop);
 }
 
