@@ -29,11 +29,11 @@ export default class Player {
           const nx = tileX + dx;
           const ny = tileY + dy;
           if (this.world.isWalkable(nx, ny)) {
-            const candidatePath = this.world.findPath(startX, startY, nx, ny);
-            if (candidatePath) {
-              const dist = Math.hypot(startX - nx, startY - ny);
-              candidates.push({ path: candidatePath, nx, ny, dist });
-            }
+          const candidatePath = this.world.findPath(startX, startY, nx, ny);
+          if (candidatePath && candidatePath.length > 0) {
+            const dist = Math.hypot(startX - nx, startY - ny);
+            candidates.push({ path: candidatePath, nx, ny, dist });
+          }
           }
         }
       }

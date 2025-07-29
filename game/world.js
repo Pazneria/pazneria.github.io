@@ -152,14 +152,15 @@ export default class World {
       { dx: -1, dy: -1 },
     ];
     const queue = [];
+    let front = 0;
     const visited = new Set();
     const key = (x, y) => `${x},${y}`;
     queue.push({ x: startX, y: startY });
     const cameFrom = {};
     visited.add(key(startX, startY));
     let found = false;
-    while (queue.length > 0) {
-      const current = queue.shift();
+    while (front < queue.length) {
+      const current = queue[front++];
       if (current.x === endX && current.y === endY) {
         found = true;
         break;
