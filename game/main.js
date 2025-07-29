@@ -20,6 +20,11 @@ function createGame() {
   const saved = JSON.parse(localStorage.getItem('pazneriaGameState')) || {};
   let spawnX = saved.x !== undefined ? saved.x : Math.floor(mapWidth / 2);
   let spawnY = saved.y !== undefined ? saved.y : Math.floor(mapHeight / 2);
+  // Ensure the spawn tile is always empty so the player doesn't start
+  // on top of a resource node.
+  if (world.isWithinBounds(spawnX, spawnY)) {
+    world.tiles[spawnY][spawnX].type = 'empty';
+  }
   player = new Player(world, spawnX, spawnY);
 
   canvas.addEventListener('click', (event) => {
