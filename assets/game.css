@@ -7,8 +7,10 @@
 }
 
 main {
-  /* Remove the default top/bottom margin that other pages use */
+  /* Remove the default margins and width restrictions used by other pages */
   margin: 0;
+  max-width: none;
+  width: 100%;
 }
 
 #game-container {
