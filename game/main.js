@@ -1,6 +1,6 @@
 import { tileSize, mapWidth, mapHeight, backgroundColor, tickDuration } from './config.js';
-import World from './world.js';
-import Player from './player_osrs.js';
+import World from './world/world.js';
+import Player from './entities/player.js';
 
 let world;
 let player;

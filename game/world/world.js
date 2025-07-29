@@ -1,5 +1,12 @@
-import { tileSize, mapWidth, mapHeight, resourceColors, defaultTileColor, resourceRespawnTicks } from './config.js';
-import { defaultMap } from './world_map.js';
+import {
+  tileSize,
+  mapWidth,
+  mapHeight,
+  resourceColors,
+  defaultTileColor,
+  resourceDefinitions,
+} from '../config.js';
+import { defaultMap } from './maps/default.js';
 
 export default class World {
   constructor() {
@@ -87,23 +94,23 @@ export default class World {
   gatherResourceAt(x, y, player) {
     if (!this.isResource(x, y)) return false;
     const tile = this.tiles[y][x];
-    // Award XP and inventory based on resource type
-    if (tile.type === 'ore' || tile.type === 'scrap') {
-      player.xp += 1;
-      player.inventory[tile.type] = (player.inventory[tile.type] || 0) + 1;
-      // Set respawn info and clear tile. Respawn times are defined in ticks,
-      // so no conversion is needed here.
-      tile.respawnType = tile.type;
-      tile.respawnTicksRemaining = Math.floor(
-        resourceRespawnTicks[tile.type].min +
-          Math.random() *
-            (resourceRespawnTicks[tile.type].max -
-              resourceRespawnTicks[tile.type].min)
-      );
-      tile.type = 'empty';
-      return true;
+    const def = resourceDefinitions[tile.type];
+    if (!def) return false;
+
+    if (def.requiredTool && player.equipment.mainHand !== def.requiredTool) {
+      return false;
     }
-    return false;
+
+    player.inventory[tile.type] = (player.inventory[tile.type] || 0) + 1;
+    const skill = player.skills[def.skill];
+    if (skill) skill.xp += def.xpValue;
+
+    tile.respawnType = tile.type;
+    tile.respawnTicksRemaining = Math.floor(
+      def.respawnMin + Math.random() * (def.respawnMax - def.respawnMin)
+    );
+    tile.type = 'empty';
+    return true;
   }
 
   // Gather resources from all tiles adjacent (including diagonally) to the
