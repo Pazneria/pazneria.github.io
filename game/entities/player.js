@@ -12,7 +12,7 @@ export default class Player {
     const saved = JSON.parse(localStorage.getItem('pazneriaGameState') || '{}');
     this.skills = {
       mining: { xp: saved.skills?.mining?.xp || 0 },
-      scavenging: { xp: saved.skills?.scavenging?.xp || 0 },
+      woodcutting: { xp: saved.skills?.woodcutting?.xp || 0 },
     };
     this.inventory = saved.inventory || {};
     this.equipment = saved.equipment || { mainHand: null };

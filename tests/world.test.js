@@ -4,7 +4,7 @@ import World from '../game/world/world.js';
 // Dummy player object for gathering resources
 function createPlayer() {
   return {
-    skills: { mining: { xp: 0 }, scavenging: { xp: 0 } },
+    skills: { mining: { xp: 0 }, woodcutting: { xp: 0 } },
     inventory: {},
     equipment: { mainHand: 'pickaxe' },
   };
@@ -53,7 +53,7 @@ test('gatherAdjacentResources collects from all neighbouring tiles', () => {
 
   // Place three resources around (0,0)
   world.tiles[0][1] = { type: 'ore', respawnType: null, respawnTicksRemaining: 0 };
-  world.tiles[1][0] = { type: 'scrap', respawnType: null, respawnTicksRemaining: 0 };
+  world.tiles[1][0] = { type: 'logs', respawnType: null, respawnTicksRemaining: 0 };
   world.tiles[1][1] = { type: 'ore', respawnType: null, respawnTicksRemaining: 0 };
 
   const count = world.gatherAdjacentResources(0, 0, player);
@@ -61,5 +61,5 @@ test('gatherAdjacentResources collects from all neighbouring tiles', () => {
   assert.equal(count, 2, 'gathered two resources with pickaxe');
   assert.equal(world.tiles[0][1].type, 'empty');
   assert.equal(world.tiles[1][1].type, 'empty');
-  assert.equal(world.tiles[1][0].type, 'scrap');
+  assert.equal(world.tiles[1][0].type, 'logs');
 });
