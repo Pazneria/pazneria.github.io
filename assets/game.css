@@ -4,6 +4,8 @@
   --nav-height: 40px;
   /* Height of the footer used in layout calculations */
   --footer-height: 50px;
+  /* Additional top spacing for the game container */
+  --game-offset: 20px;
 }
 
 main {
@@ -18,8 +20,9 @@ main {
   max-width: 1000px;
   width: 100%;
   margin: 0 auto;
-  /* Fill the viewport minus header and footer */
-  height: calc(100vh - var(--nav-height) - var(--footer-height));
+  margin-top: var(--game-offset);
+  /* Fill the viewport minus header, footer and top offset */
+  height: calc(100vh - var(--nav-height) - var(--footer-height) - var(--game-offset));
   overflow: hidden;
   position: relative;
   touch-action: none;
