@@ -54,10 +54,16 @@ export default class World {
   }
 
   draw(ctx, cameraX = 0, cameraY = 0) {
-    // Fill background with tile image or fallback color
+    const baseX = Math.floor(cameraX);
+    const baseY = Math.floor(cameraY);
+
+    ctx.save();
+    ctx.translate(-cameraX * tileSize, -cameraY * tileSize);
+
+    // Draw ground tiles using the same camera transform so they stay fixed
     if (this.images.tile && this.images.tile.complete) {
-      for (let y = 0; y < mapHeight; y++) {
-        for (let x = 0; x < mapWidth; x++) {
+      for (let y = baseY; y <= baseY + mapHeight; y++) {
+        for (let x = baseX; x <= baseX + mapWidth; x++) {
           ctx.drawImage(
             this.images.tile,
             0,
@@ -73,16 +79,13 @@ export default class World {
       }
     } else {
       ctx.fillStyle = defaultTileColor;
-      ctx.fillRect(0, 0, mapWidth * tileSize, mapHeight * tileSize);
+      ctx.fillRect(
+        baseX * tileSize,
+        baseY * tileSize,
+        (mapWidth + 1) * tileSize,
+        (mapHeight + 1) * tileSize
+      );
     }
-
-    const baseX = Math.floor(cameraX);
-    const baseY = Math.floor(cameraY);
-    const offX = -(cameraX - baseX) * tileSize;
-    const offY = -(cameraY - baseY) * tileSize;
-
-    ctx.save();
-    ctx.translate(offX, offY);
 
     // Draw resources within the viewport
     for (let vy = 0; vy <= mapHeight; vy++) {
@@ -101,14 +104,14 @@ export default class World {
               0,
               img.width,
               img.height,
-              vx * tileSize,
-              vy * tileSize,
+              wx * tileSize,
+              wy * tileSize,
               tileSize,
               tileSize
             );
           } else {
             ctx.fillStyle = resourceColors[tile.type];
-            ctx.fillRect(vx * tileSize, vy * tileSize, tileSize, tileSize);
+            ctx.fillRect(wx * tileSize, wy * tileSize, tileSize, tileSize);
           }
         }
       }
