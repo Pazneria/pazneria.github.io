@@ -103,8 +103,8 @@ export default class Minimap {
     const tileSize = this.baseScale / this.zoom;
     const viewWidth = this.world.chunkWidth * this.zoom;
     const viewHeight = this.world.chunkHeight * this.zoom;
-    const startX = Math.floor(this.player.x - viewWidth / 2);
-    const startY = Math.floor(this.player.y - viewHeight / 2);
+    const startX = this.player.x - Math.floor(viewWidth / 2);
+    const startY = this.player.y - Math.floor(viewHeight / 2);
     const x = Math.floor(px / tileSize) + startX;
     const y = Math.floor(py / tileSize) + startY;
     return { x, y };
@@ -115,8 +115,8 @@ export default class Minimap {
     const tileSize = this.baseScale / this.zoom;
     const viewWidth = Math.ceil(this.world.chunkWidth * this.zoom);
     const viewHeight = Math.ceil(this.world.chunkHeight * this.zoom);
-    const startX = Math.floor(this.player.x - viewWidth / 2);
-    const startY = Math.floor(this.player.y - viewHeight / 2);
+    const startX = this.player.x - Math.floor(viewWidth / 2);
+    const startY = this.player.y - Math.floor(viewHeight / 2);
 
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
