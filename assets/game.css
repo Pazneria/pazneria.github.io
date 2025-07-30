@@ -6,7 +6,7 @@
   --footer-height: 50px;
   /* Additional top spacing for the game container */
   /* Shift the entire game window further down */
-  --game-offset: 40px;
+  --game-offset: 32px;
 }
 
 main {
