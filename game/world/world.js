@@ -114,21 +114,8 @@ export default class World {
       }
     }
 
-    // Optional grid lines
-    ctx.strokeStyle = '#222222';
-    ctx.lineWidth = 1;
-    for (let x = 0; x <= mapWidth; x++) {
-      ctx.beginPath();
-      ctx.moveTo(x * tileSize, 0);
-      ctx.lineTo(x * tileSize, mapHeight * tileSize);
-      ctx.stroke();
-    }
-    for (let y = 0; y <= mapHeight; y++) {
-      ctx.beginPath();
-      ctx.moveTo(0, y * tileSize);
-      ctx.lineTo(mapWidth * tileSize, y * tileSize);
-      ctx.stroke();
-    }
+    // Optional grid lines were previously drawn here. They have been removed to
+    // create a cleaner game view without tile borders.
 
     ctx.restore();
   }
