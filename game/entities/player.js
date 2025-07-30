@@ -25,6 +25,8 @@ export default class Player {
     this.spriteOffsetX = 0;
     this.spriteOffsetY = 0;
     this.direction = 'south';
+    this.isMoving = false;
+    this.walkFrame = 0;
   }
 
   moveTo(tileX, tileY) {
@@ -81,6 +83,8 @@ export default class Player {
       }
       this.x = nextTile.x;
       this.y = nextTile.y;
+      this.isMoving = true;
+      this.walkFrame = (this.walkFrame + 1) % 2;
       // Update pixel coordinates for drawing
       this.pixelX = this.x * tileSize + tileSize / 2;
       this.pixelY = this.y * tileSize + tileSize / 2;
@@ -95,6 +99,7 @@ export default class Player {
           this.saveState();
         }
       }
+      this.isMoving = false;
     }
   }
 
@@ -102,23 +107,49 @@ export default class Player {
     const drawX = (this.x - cameraX) * tileSize;
     const drawY = (this.y - cameraY) * tileSize;
     if (this.spriteSheet && this.spriteSheet.complete) {
-      const dirOffset = {
-        south: 0,
-        west: 3,
-        east: 6,
-        north: 9,
-      }[this.direction] * tileSize + this.spriteOffsetX;
-      ctx.drawImage(
-        this.spriteSheet,
-        dirOffset,
-        this.spriteOffsetY,
-        tileSize,
-        tileSize,
-        drawX,
-        drawY,
-        tileSize,
-        tileSize
-      );
+      let frameIndex = 0;
+      let flip = false;
+      if (this.direction === 'south') {
+        frameIndex = this.isMoving ? (this.walkFrame === 0 ? 0 : 2) : 1;
+      } else if (this.direction === 'north') {
+        frameIndex = this.isMoving ? (this.walkFrame === 0 ? 4 : 6) : 5;
+      } else if (this.direction === 'east') {
+        frameIndex = this.isMoving ? (this.walkFrame === 0 ? 8 : 10) : 9;
+      } else if (this.direction === 'west') {
+        frameIndex = this.isMoving ? (this.walkFrame === 0 ? 8 : 10) : 9;
+        flip = true;
+      }
+
+      const sx = frameIndex * tileSize + this.spriteOffsetX;
+      const sy = this.spriteOffsetY;
+      if (flip) {
+        ctx.save();
+        ctx.scale(-1, 1);
+        ctx.drawImage(
+          this.spriteSheet,
+          sx,
+          sy,
+          tileSize,
+          tileSize,
+          -(drawX + tileSize),
+          drawY,
+          tileSize,
+          tileSize
+        );
+        ctx.restore();
+      } else {
+        ctx.drawImage(
+          this.spriteSheet,
+          sx,
+          sy,
+          tileSize,
+          tileSize,
+          drawX,
+          drawY,
+          tileSize,
+          tileSize
+        );
+      }
     } else {
       ctx.fillStyle = playerColor;
       ctx.fillRect(drawX + 3, drawY + 3, tileSize - 6, tileSize - 6);
