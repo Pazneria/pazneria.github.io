@@ -68,7 +68,7 @@ function createGame() {
   // Assign sprite sheet to the player
   player.spriteSheet = characterSprite;
   player.spriteOffsetX = 0;
-  player.spriteOffsetY = 0;
+  player.spriteOffsetY = tileSize * 2; // use third row of the sprite sheet
   camera = new Camera(world, player);
   minimap = new Minimap(world, player);
   minimap.attach(container);
