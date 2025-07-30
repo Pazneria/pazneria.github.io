@@ -24,6 +24,7 @@ export default class Player {
     this.spriteSheet = null;
     this.spriteOffsetX = 0;
     this.spriteOffsetY = 0;
+    this.direction = 'south';
   }
 
   moveTo(tileX, tileY) {
@@ -71,6 +72,13 @@ export default class Player {
     // Execute one step along path each tick
     if (this.path && this.path.length > 0) {
       const nextTile = this.path.shift();
+      const dx = nextTile.x - this.x;
+      const dy = nextTile.y - this.y;
+      if (Math.abs(dx) > Math.abs(dy)) {
+        this.direction = dx > 0 ? 'east' : 'west';
+      } else if (dy !== 0) {
+        this.direction = dy > 0 ? 'south' : 'north';
+      }
       this.x = nextTile.x;
       this.y = nextTile.y;
       // Update pixel coordinates for drawing
@@ -94,9 +102,15 @@ export default class Player {
     const drawX = (this.x - cameraX) * tileSize;
     const drawY = (this.y - cameraY) * tileSize;
     if (this.spriteSheet && this.spriteSheet.complete) {
+      const dirOffset = {
+        south: 0,
+        west: 3,
+        east: 6,
+        north: 9,
+      }[this.direction] * tileSize + this.spriteOffsetX;
       ctx.drawImage(
         this.spriteSheet,
-        this.spriteOffsetX,
+        dirOffset,
         this.spriteOffsetY,
         tileSize,
         tileSize,
