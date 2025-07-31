@@ -6,23 +6,27 @@ import Minimap from './minimap.js';
 
 // Load character sprite sheet and resource icons
 const characterSprite = new Image();
-characterSprite.src = new URL('./RPGCharacterSprites32x32.png', import.meta.url).href;
-characterSprite.onload = () => {
-  const off = document.createElement('canvas');
-  off.width = characterSprite.width;
-  off.height = characterSprite.height;
-  const octx = off.getContext('2d');
-  octx.drawImage(characterSprite, 0, 0);
-  const imgData = octx.getImageData(0, 0, off.width, off.height);
-  const data = imgData.data;
-  for (let i = 0; i < data.length; i += 4) {
-    if (data[i] === 255 && data[i + 1] === 0 && data[i + 2] === 255) {
-      data[i + 3] = 0;
+characterSprite.addEventListener(
+  'load',
+  function handler() {
+    const off = document.createElement('canvas');
+    off.width = characterSprite.width;
+    off.height = characterSprite.height;
+    const octx = off.getContext('2d');
+    octx.drawImage(characterSprite, 0, 0);
+    const imgData = octx.getImageData(0, 0, off.width, off.height);
+    const data = imgData.data;
+    for (let i = 0; i < data.length; i += 4) {
+      if (data[i] === 255 && data[i + 1] === 0 && data[i + 2] === 255) {
+        data[i + 3] = 0;
+      }
     }
-  }
-  octx.putImageData(imgData, 0, 0);
-  characterSprite.src = off.toDataURL();
-};
+    octx.putImageData(imgData, 0, 0);
+    characterSprite.src = off.toDataURL();
+  },
+  { once: true }
+);
+characterSprite.src = new URL('./RPGCharacterSprites32x32.png', import.meta.url).href;
 
 const oreImage = new Image();
 oreImage.src = new URL('./ore.png', import.meta.url).href;
