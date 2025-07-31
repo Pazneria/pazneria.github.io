@@ -59,10 +59,12 @@ function createGame() {
   const saved = JSON.parse(localStorage.getItem('pazneriaGameState')) || {};
   let spawnX = saved.x !== undefined ? saved.x : Math.floor(world.width / 2);
   let spawnY = saved.y !== undefined ? saved.y : Math.floor(world.height / 2);
+  world.ensureChunksAround(spawnX, spawnY);
   // Ensure the spawn tile is always empty so the player doesn't start
   // on top of a resource node.
   if (world.isWithinBounds(spawnX, spawnY)) {
-    world.tiles[spawnY][spawnX].type = 'empty';
+    const tile = world.getTile(spawnX, spawnY);
+    if (tile) tile.type = 'empty';
   }
   player = new Player(world, spawnX, spawnY);
   // Assign sprite sheet to the player

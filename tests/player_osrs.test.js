@@ -6,13 +6,18 @@ import Player from '../game/entities/player.js';
 function setupWorld() {
   const world = new World();
   // Clear map and place two resources next to player start
-  for (let y = 0; y < world.height; y++) {
-    for (let x = 0; x < world.width; x++) {
-      world.tiles[y][x].type = 'empty';
+  for (let cy = world.minChunkY; cy <= world.maxChunkY; cy++) {
+    for (let cx = world.minChunkX; cx <= world.maxChunkX; cx++) {
+      world.loadChunk(cx, cy);
+      for (let y = 0; y < world.chunkHeight; y++) {
+        for (let x = 0; x < world.chunkWidth; x++) {
+          world.getTile(cx * world.chunkWidth + x, cy * world.chunkHeight + y).type = 'empty';
+        }
+      }
     }
   }
-  world.tiles[0][1] = { type: 'ore', respawnType: null, respawnTicksRemaining: 0 };
-  world.tiles[1][1] = { type: 'logs', respawnType: null, respawnTicksRemaining: 0 };
+  world.getTile(1, 0).type = 'ore';
+  world.getTile(1, 1).type = 'logs';
   return world;
 }
 
@@ -29,8 +34,8 @@ test('player gathers only the targeted resource', () => {
   player.gatherTarget = { x: 1, y: 0 };
   player.update();
 
-  assert.equal(world.tiles[0][1].type, 'empty');
-  assert.equal(world.tiles[1][1].type, 'logs');
+  assert.equal(world.getTile(1, 0).type, 'empty');
+  assert.equal(world.getTile(1, 1).type, 'logs');
   assert.equal(player.inventory.ore, 1);
   assert.ok(!player.inventory.logs);
 });
@@ -41,14 +46,17 @@ test('player chooses the closest adjacent tile to gather', () => {
     setItem() {}
   };
   const world = new World();
-  // Clear map
-  for (let y = 0; y < world.height; y++) {
-    for (let x = 0; x < world.width; x++) {
-      world.tiles[y][x].type = 'empty';
+  for (let cy = world.minChunkY; cy <= world.maxChunkY; cy++) {
+    for (let cx = world.minChunkX; cx <= world.maxChunkX; cx++) {
+      world.loadChunk(cx, cy);
+      for (let y = 0; y < world.chunkHeight; y++) {
+        for (let x = 0; x < world.chunkWidth; x++) {
+          world.getTile(cx * world.chunkWidth + x, cy * world.chunkHeight + y).type = 'empty';
+        }
+      }
     }
   }
-  // Place a resource two tiles east of the player
-  world.tiles[1][3] = { type: 'ore', respawnType: null, respawnTicksRemaining: 0 };
+  world.getTile(3, 1).type = 'ore';
 
   const player = new Player(world, 1, 1);
 
