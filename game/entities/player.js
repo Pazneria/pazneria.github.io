@@ -90,6 +90,7 @@ export default class Player {
       // Update pixel coordinates for drawing
       this.pixelX = this.x * tileSize + tileSize / 2;
       this.pixelY = this.y * tileSize + tileSize / 2;
+      this.saveState();
     } else {
       // If reached destination and have a gather target, collect only that tile
       if (this.gatherTarget) {
@@ -160,6 +161,8 @@ export default class Player {
 
   saveState() {
     const state = {
+      x: this.x,
+      y: this.y,
       skills: this.skills,
       inventory: this.inventory,
       equipment: this.equipment,
