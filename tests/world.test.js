@@ -13,11 +13,10 @@ function createPlayer() {
 // Ensure deterministic tile for testing
 function setupWorldWithResource() {
   const world = new World();
-  world.tiles[0][0] = {
-    type: 'ore',
-    respawnType: null,
-    respawnTicksRemaining: 0
-  };
+  const tile = world.getTile(0, 0);
+  tile.type = 'ore';
+  tile.respawnType = null;
+  tile.respawnTicksRemaining = 0;
   return world;
 }
 
@@ -32,7 +31,7 @@ test('gathering a resource respawns after the configured number of ticks', () =>
   const gathered = world.gatherResourceAt(0, 0, player);
   assert.ok(gathered, 'resource should be gathered');
 
-  const tile = world.tiles[0][0];
+  const tile = world.getTile(0, 0);
   assert.equal(tile.type, 'empty', 'tile is empty after gathering');
   const ticks = tile.respawnTicksRemaining;
   const respawnType = tile.respawnType;
@@ -52,14 +51,14 @@ test('gatherAdjacentResources collects from all neighbouring tiles', () => {
   const player = createPlayer();
 
   // Place three resources around (0,0)
-  world.tiles[0][1] = { type: 'ore', respawnType: null, respawnTicksRemaining: 0 };
-  world.tiles[1][0] = { type: 'logs', respawnType: null, respawnTicksRemaining: 0 };
-  world.tiles[1][1] = { type: 'ore', respawnType: null, respawnTicksRemaining: 0 };
+  world.getTile(1, 0).type = 'ore';
+  world.getTile(0, 1).type = 'logs';
+  world.getTile(1, 1).type = 'ore';
 
   const count = world.gatherAdjacentResources(0, 0, player);
 
   assert.equal(count, 2, 'gathered two resources with pickaxe');
-  assert.equal(world.tiles[0][1].type, 'empty');
-  assert.equal(world.tiles[1][1].type, 'empty');
-  assert.equal(world.tiles[1][0].type, 'logs');
+  assert.equal(world.getTile(1, 0).type, 'empty');
+  assert.equal(world.getTile(1, 1).type, 'empty');
+  assert.equal(world.getTile(0, 1).type, 'logs');
 });

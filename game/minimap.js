@@ -122,10 +122,9 @@ export default class Minimap {
 
     for (let vy = 0; vy < viewHeight; vy++) {
       const wy = startY + vy;
-      if (!this.world.tiles[wy]) continue;
       for (let vx = 0; vx < viewWidth; vx++) {
         const wx = startX + vx;
-        const tile = this.world.tiles[wy][wx];
+        const tile = this.world.getTile(wx, wy);
         if (!tile) continue;
         let color = '#1a253a';
         if (tile.type && tile.type !== 'empty') {

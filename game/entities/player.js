@@ -71,6 +71,8 @@ export default class Player {
   }
 
   update() {
+    // Ensure nearby chunks are loaded before movement
+    this.world.ensureChunksAround(this.x, this.y);
     // Execute one step along path each tick
     if (this.path && this.path.length > 0) {
       const nextTile = this.path.shift();
