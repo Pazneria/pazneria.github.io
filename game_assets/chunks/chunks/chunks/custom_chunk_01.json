@@ -1,0 +1,23 @@
+{
+  "name": "custom_chunk_01",
+  "description": "Test chunk created by agent; random terrain and sample objects.",
+  "tiles": [
+    ["grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass", "grass", "grass", "dirt", "dirt", "grass", "grass", "sand", "sand", "grass"],
+    ["grass", "dirt", "dirt", "grass", "grass", "grass", "sand", "sand", "grass", "grass"],
+    ["grass", "grass", "grass", "grass", "water", "water", "grass", "grass", "grass", "grass"],
+    ["grass", "grass", "road", "road", "road", "road", "road", "grass", "grass", "grass"],
+    ["grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "gravel", "gravel"],
+    ["grass", "grass", "grass", "mud", "mud", "grass", "grass", "gravel", "gravel", "grass"],
+    ["grass", "grass", "grass", "mud", "mud", "grass", "grass", "gravel", "gravel", "grass"],
+    ["grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"]
+  ],
+  "objects": [
+    {"type": "tree_oak", "x": 3, "y": 2},
+    {"type": "ore_iron", "x": 1, "y": 5},
+    {"type": "enemy_goblin", "x": 5, "y": 4},
+    {"type": "building_house", "x": 7, "y": 7},
+    {"type": "container_chest", "x": 8, "y": 3}
+  ]
+}
