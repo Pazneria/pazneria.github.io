@@ -16,8 +16,8 @@ function setupWorld() {
       }
     }
   }
-  world.getTile(1, 0).type = 'ore';
-  world.getTile(1, 1).type = 'logs';
+  world.getTile(1, 0).type = 'copperOre';
+  world.getTile(1, 1).type = 'oakTree';
   return world;
 }
 
@@ -35,9 +35,9 @@ test('player gathers only the targeted resource', () => {
   player.update();
 
   assert.equal(world.getTile(1, 0).type, 'empty');
-  assert.equal(world.getTile(1, 1).type, 'logs');
-  assert.equal(player.inventory.ore, 1);
-  assert.ok(!player.inventory.logs);
+  assert.equal(world.getTile(1, 1).type, 'oakTree');
+  assert.equal(player.inventory.copperOre, 1);
+  assert.ok(!player.inventory.oakTree);
 });
 
 test('player chooses the closest adjacent tile to gather', () => {
@@ -56,7 +56,7 @@ test('player chooses the closest adjacent tile to gather', () => {
       }
     }
   }
-  world.getTile(3, 1).type = 'ore';
+  world.getTile(3, 1).type = 'copperOre';
 
   const player = new Player(world, 1, 1);
 

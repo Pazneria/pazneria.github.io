@@ -28,11 +28,23 @@ characterSprite.addEventListener(
 );
 characterSprite.src = new URL('./RPGCharacterSprites32x32.png', import.meta.url).href;
 
-const oreImage = new Image();
-oreImage.src = new URL('./ore.png', import.meta.url).href;
+const copperOreImage = new Image();
+copperOreImage.src = new URL(
+  '../game_assets/assets/ores/copper/copper.png',
+  import.meta.url
+).href;
 
-const logImage = new Image();
-logImage.src = new URL('./log.png', import.meta.url).href;
+const tinOreImage = new Image();
+tinOreImage.src = new URL(
+  '../game_assets/assets/ores/tin/tin.png',
+  import.meta.url
+).href;
+
+const oakTreeImage = new Image();
+oakTreeImage.src = new URL(
+  '../game_assets/assets/trees/oak/oak.png',
+  import.meta.url
+).href;
 
 const tileImage = new Image();
 tileImage.src = new URL('./grass_tile.png', import.meta.url).href;
@@ -59,7 +71,12 @@ function createGame() {
 
   world = new World();
   // Provide resource and tile images to the world
-  world.images = { ore: oreImage, logs: logImage, tile: tileImage };
+  world.images = {
+    copperOre: copperOreImage,
+    tinOre: tinOreImage,
+    oakTree: oakTreeImage,
+    tile: tileImage,
+  };
   const saved = JSON.parse(localStorage.getItem('pazneriaGameState')) || {};
   let spawnX = saved.x !== undefined ? saved.x : Math.floor(world.width / 2);
   let spawnY = saved.y !== undefined ? saved.y : Math.floor(world.height / 2);

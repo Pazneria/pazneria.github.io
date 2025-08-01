@@ -14,7 +14,7 @@ function createPlayer() {
 function setupWorldWithResource() {
   const world = new World();
   const tile = world.getTile(0, 0);
-  tile.type = 'ore';
+  tile.type = 'copperOre';
   tile.respawnType = null;
   tile.respawnTicksRemaining = 0;
   return world;
@@ -51,14 +51,14 @@ test('gatherAdjacentResources collects from all neighbouring tiles', () => {
   const player = createPlayer();
 
   // Place three resources around (0,0)
-  world.getTile(1, 0).type = 'ore';
-  world.getTile(0, 1).type = 'logs';
-  world.getTile(1, 1).type = 'ore';
+  world.getTile(1, 0).type = 'copperOre';
+  world.getTile(0, 1).type = 'oakTree';
+  world.getTile(1, 1).type = 'copperOre';
 
   const count = world.gatherAdjacentResources(0, 0, player);
 
   assert.equal(count, 2, 'gathered two resources with pickaxe');
   assert.equal(world.getTile(1, 0).type, 'empty');
   assert.equal(world.getTile(1, 1).type, 'empty');
-  assert.equal(world.getTile(0, 1).type, 'logs');
+  assert.equal(world.getTile(0, 1).type, 'oakTree');
 });

@@ -129,8 +129,9 @@ export default class Minimap {
         let color = '#1a253a';
         if (tile.type && tile.type !== 'empty') {
           color = {
-            ore: '#8888aa',
-            logs: '#aa8844'
+            copperOre: '#c08050',
+            tinOre: '#aaaaaa',
+            oakTree: '#aa8844',
           }[tile.type] || color;
         }
         ctx.fillStyle = color;
