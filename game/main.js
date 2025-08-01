@@ -35,7 +35,7 @@ const logImage = new Image();
 logImage.src = new URL('./log.png', import.meta.url).href;
 
 const tileImage = new Image();
-tileImage.src = new URL('./Futuristic Industrial Tileset.png', import.meta.url).href;
+tileImage.src = new URL('./grass_tile.png', import.meta.url).href;
 
 let world;
 let player;
