@@ -1,14 +1,9 @@
 <!--
-  Main entry point for the Pazneria site.
+Main entry point for the Pazneria site.
 
-  This new structure breaks the monolithic tabbed page into separate
-  documents, making it much easier to grow the site over time. Each
-  major feature lives on its own page (e.g. AGI forecasting, the
-  tile‑based game) and shares a common navigation bar and styling.
+This new structure breaks the monolithic tabbed page into separate documents, making it much easier to grow the site over time. Each major feature lives on its own page (e.g. AGI timeline, game) and shares a common navigation bar and styling.
 
-  To add new sections, simply create another HTML file in the root
-  directory (or a subfolder) and add a corresponding link to the
-  navigation below.
+To add new sections, simply create another HTML file in the root directory (or a subfolder) and add a corresponding link to the navigation below.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +12,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pazneria</title>
   <link rel="stylesheet" href="assets/style.css" />
-  <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADElEQVQImWP4DwQAARIAAdpSPUEAAAAASUVORK5CYII=" />
+  <!-- Re-use the same favicon embedded as base64 from the original site -->
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAECAYAAAFCSJAAAADELEQvQ1imPW4DwQARIAAdpsPUEAAASUVORK5CYII=" />
 </head>
 <body>
   <header>
@@ -25,8 +21,8 @@
       <a href="index.html" class="logo">Pazneria</a>
       <ul class="nav-list">
         <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="agi.html" class="nav-link">AGI Forecasting</a></li>
-        <li><a href="game.html" class="nav-link">Game</a></li>
+        <li><a href="agi//" class="nav-link">AGI Timeline</a></li>
+        <li><a href="game/" class="nav-link">Game</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
@@ -36,10 +32,9 @@
     <section class="hero">
       <h1>Welcome to Pazneria</h1>
       <p>
-        This site is a playground for experiments in AI, computer
-        science and interactive art. Explore our AGI forecasting research,
-        play the game or browse other projects as they are
-        added.
+        This site is a playground for experiments in AI, computer science and
+        interactive art. Explore our AGI timeline and forecasting research,
+        play the game or browse other projects as they are added.
       </p>
     </section>
   </main>
