@@ -43,9 +43,10 @@ for (const [key, def] of Object.entries(resourceSprites)) {
 }
 
 const tileImage = new Image();
-tileImage.src = new URL('./grass_tile.png', import.meta.url).href;
+tiltileImage.src = new URL('../game_assets/assets/terrain/grass/grass_1.png', import.meta.url).href;
 
 let world;
+
 let player;
 let camera;
 let minimap;
