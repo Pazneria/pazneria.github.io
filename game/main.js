@@ -72,6 +72,11 @@ function createGame() {
   const saved = JSON.parse(localStorage.getItem('pazneriaGameState')) || {};
   let spawnX = saved.x !== undefined ? saved.x : Math.floor(world.width / 2);
   let spawnY = saved.y !== undefined ? saved.y : Math.floor(world.height / 2);
+  // Clamp spawn coordinates so a corrupt save can't place the player
+  // outside the defined world, which would unload all chunks and
+  // result in an empty map.
+  spawnX = Math.max(0, Math.min(world.width - 1, spawnX));
+  spawnY = Math.max(0, Math.min(world.height - 1, spawnY));
   world.ensureChunksAround(spawnX, spawnY);
   // Ensure the spawn tile is always empty so the player doesn't start
   // on top of a resource node.
@@ -84,6 +89,8 @@ function createGame() {
   player.spriteSheet = characterSprite;
   player.spriteOffsetX = 0;
   player.spriteOffsetY = tileSize * 2; // use third row of the sprite sheet
+  // Persist corrected spawn coordinates so future loads start inside bounds
+  player.saveState();
   camera = new Camera(world, player);
   minimap = new Minimap(world, player);
   minimap.attach(container);
