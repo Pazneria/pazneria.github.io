@@ -1,3 +1,4 @@
+
 import {
   tileSize,
   mapWidth,
@@ -43,10 +44,9 @@ for (const [key, def] of Object.entries(resourceSprites)) {
 }
 
 const tileImage = new Image();
-tiltileImage.src = new URL('../game_assets/assets/terrain/grass/grass_1.png', import.meta.url).href;
 
-let world;
 
+tileImage.src = new URL('../game_assets/assets/terrain/grass/grass_1.png', import.meta.url).href;
 let player;
 let camera;
 let minimap;
