@@ -18,6 +18,7 @@ export default class World {
     this.chunkWidth = chunkWidth;
     this.chunkHeight = chunkHeight;
     this.images = {};
+    this.resourceSprites = {};
     this.loadedChunks = new Map(); // key -> tile data
     this.worldMap = worldMap;
 
@@ -126,18 +127,18 @@ export default class World {
         const tile = this.getTile(wx, wy);
         if (!tile) continue;
         if (tile.type !== 'empty') {
-          const img = this.images[tile.type];
-          if (img && img.complete) {
+          const sprite = this.resourceSprites[tile.type];
+          if (sprite && sprite.image.complete) {
             const dx = wx * tileSize;
             const dy = wy * tileSize;
             if (outlinedTypes.has(tile.type)) {
               drawOutlinedImage(
                 ctx,
-                img,
-                0,
-                0,
-                img.width,
-                img.height,
+                sprite.image,
+                sprite.sx,
+                sprite.sy,
+                tileSize,
+                tileSize,
                 dx,
                 dy,
                 tileSize,
@@ -146,11 +147,11 @@ export default class World {
               );
             } else {
               ctx.drawImage(
-                img,
-                0,
-                0,
-                img.width,
-                img.height,
+                sprite.image,
+                sprite.sx,
+                sprite.sy,
+                tileSize,
+                tileSize,
                 dx,
                 dy,
                 tileSize,

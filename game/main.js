@@ -4,14 +4,14 @@ import {
   mapHeight,
   backgroundColor,
   tickDuration,
-  resourceImagePaths,
+  resourceSprites,
 } from './config.js';
 import World from './world/world.js';
 import Player from './entities/player.js';
 import Camera from './camera.js';
 import Minimap from './minimap.js';
 
-// Load character sprite sheet and resource icons
+// Load character sprite sheet and resource sprites
 const characterSprite = new Image();
 characterSprite.addEventListener(
   'load',
@@ -35,14 +35,12 @@ characterSprite.addEventListener(
 );
 characterSprite.src = new URL('./RPGCharacterSprites32x32.png', import.meta.url).href;
 
-const copperOreImage = new Image();
-copperOreImage.src = new URL(resourceImagePaths.copperOre, import.meta.url).href;
-
-const tinOreImage = new Image();
-tinOreImage.src = new URL(resourceImagePaths.tinOre, import.meta.url).href;
-
-const oakTreeImage = new Image();
-oakTreeImage.src = new URL(resourceImagePaths.oakTree, import.meta.url).href;
+const resourceSpriteImages = {};
+for (const [key, def] of Object.entries(resourceSprites)) {
+  const img = new Image();
+  img.src = new URL(def.src, import.meta.url).href;
+  resourceSpriteImages[key] = { image: img, sx: def.sx, sy: def.sy };
+}
 
 const tileImage = new Image();
 tileImage.src = new URL('./grass_tile.png', import.meta.url).href;
@@ -69,12 +67,8 @@ function createGame() {
 
   world = new World();
   // Provide resource and tile images to the world
-  world.images = {
-    copperOre: copperOreImage,
-    tinOre: tinOreImage,
-    oakTree: oakTreeImage,
-    tile: tileImage,
-  };
+  world.images = { tile: tileImage };
+  world.resourceSprites = resourceSpriteImages;
   const saved = JSON.parse(localStorage.getItem('pazneriaGameState')) || {};
   let spawnX = saved.x !== undefined ? saved.x : Math.floor(world.width / 2);
   let spawnY = saved.y !== undefined ? saved.y : Math.floor(world.height / 2);
