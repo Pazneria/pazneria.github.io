@@ -35,7 +35,7 @@ export const resourceSprites = {
     sy: 0,
   },
   oakTree: {
-    src: '../game_assets/assets/trees/Trees.png',
+    src: './log.png',
     sx: 0,
     sy: 0,
   },
