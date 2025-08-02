@@ -90,33 +90,33 @@ export default class World {
   draw(ctx, cameraX = 0, cameraY = 0) {
     const baseX = Math.floor(cameraX);
     const baseY = Math.floor(cameraY);
-
-    ctx.save();
-    ctx.translate(-cameraX * tileSize, -cameraY * tileSize);
+    const offsetX = (baseX - cameraX) * tileSize;
+    const offsetY = (baseY - cameraY) * tileSize;
 
     // Always paint a base color so missing tiles don't show the canvas background
     ctx.fillStyle = defaultTileColor;
-    ctx.fillRect(
-      baseX * tileSize,
-      baseY * tileSize,
-      (mapWidth + 1) * tileSize,
-      (mapHeight + 1) * tileSize
-    );
+    ctx.fillRect(0, 0, (mapWidth + 1) * tileSize, (mapHeight + 1) * tileSize);
 
-    const tile = this.images.tile;
-    if (tile && tile.complete && tile.naturalWidth > 0 && tile.naturalHeight > 0) {
-      const srcW = tile.naturalWidth;
-      const srcH = tile.naturalHeight;
-      for (let y = baseY; y <= baseY + mapHeight; y++) {
-        for (let x = baseX; x <= baseX + mapWidth; x++) {
+    // Draw base terrain tiles
+    const tileImg = this.images.tile;
+    if (
+      tileImg &&
+      tileImg.complete &&
+      tileImg.naturalWidth > 0 &&
+      tileImg.naturalHeight > 0
+    ) {
+      const srcW = tileImg.naturalWidth;
+      const srcH = tileImg.naturalHeight;
+      for (let y = 0; y <= mapHeight; y++) {
+        for (let x = 0; x <= mapWidth; x++) {
           ctx.drawImage(
-            tile,
+            tileImg,
             0,
             0,
             srcW,
             srcH,
-            x * tileSize,
-            y * tileSize,
+            offsetX + x * tileSize,
+            offsetY + y * tileSize,
             tileSize,
             tileSize
           );
@@ -124,53 +124,50 @@ export default class World {
       }
     }
 
+    // Draw resources on top of terrain
     for (let vy = 0; vy <= mapHeight; vy++) {
       const wy = baseY + vy;
+      const dy = offsetY + vy * tileSize;
       for (let vx = 0; vx <= mapWidth; vx++) {
         const wx = baseX + vx;
+        const dx = offsetX + vx * tileSize;
         const tile = this.getTile(wx, wy);
-        if (!tile) continue;
-        if (tile.type !== 'empty') {
-          const sprite = this.resourceSprites[tile.type];
-          if (sprite && sprite.image.complete) {
-            const dx = wx * tileSize;
-            const dy = wy * tileSize;
-            if (outlinedTypes.has(tile.type)) {
-              drawOutlinedImage(
-                ctx,
-                sprite.image,
-                sprite.sx,
-                sprite.sy,
-                tileSize,
-                tileSize,
-                dx,
-                dy,
-                tileSize,
-                tileSize,
-                '#003300'
-              );
-            } else {
-              ctx.drawImage(
-                sprite.image,
-                sprite.sx,
-                sprite.sy,
-                tileSize,
-                tileSize,
-                dx,
-                dy,
-                tileSize,
-                tileSize
-              );
-            }
+        if (!tile || tile.type === 'empty') continue;
+        const sprite = this.resourceSprites[tile.type];
+        if (sprite && sprite.image.complete) {
+          if (outlinedTypes.has(tile.type)) {
+            drawOutlinedImage(
+              ctx,
+              sprite.image,
+              sprite.sx,
+              sprite.sy,
+              tileSize,
+              tileSize,
+              dx,
+              dy,
+              tileSize,
+              tileSize,
+              '#003300'
+            );
           } else {
-            ctx.fillStyle = resourceColors[tile.type];
-            ctx.fillRect(wx * tileSize, wy * tileSize, tileSize, tileSize);
+            ctx.drawImage(
+              sprite.image,
+              sprite.sx,
+              sprite.sy,
+              tileSize,
+              tileSize,
+              dx,
+              dy,
+              tileSize,
+              tileSize
+            );
           }
+        } else {
+          ctx.fillStyle = resourceColors[tile.type];
+          ctx.fillRect(dx, dy, tileSize, tileSize);
         }
       }
     }
-
-    ctx.restore();
   }
 
   getTileCoordinates(pixelX, pixelY, cameraX = 0, cameraY = 0) {
