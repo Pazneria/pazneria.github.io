@@ -23,6 +23,12 @@ export const resourceColors = {
   oakTree: '#aa8844',
 };
 
+export const resourceImagePaths = {
+  copperOre: '../game_assets/assets/ores/copper/copper.png',
+  tinOre: '../game_assets/assets/ores/tin/tin.png',
+  oakTree: '../game_assets/assets/trees/oak/oak.png',
+};
+
 export const resourceDefinitions = {
   copperOre: {
     xpValue: 10,
