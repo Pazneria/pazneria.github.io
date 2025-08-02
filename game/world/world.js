@@ -9,6 +9,9 @@ import {
   resourceDefinitions,
 } from '../config.js';
 import { worldMap } from './chunks/index.js';
+import { drawOutlinedImage } from '../renderUtils.js';
+
+const outlinedTypes = new Set(['oakTree']);
 
 export default class World {
   constructor() {
@@ -125,17 +128,35 @@ export default class World {
         if (tile.type !== 'empty') {
           const img = this.images[tile.type];
           if (img && img.complete) {
-            ctx.drawImage(
-              img,
-              0,
-              0,
-              img.width,
-              img.height,
-              wx * tileSize,
-              wy * tileSize,
-              tileSize,
-              tileSize
-            );
+            const dx = wx * tileSize;
+            const dy = wy * tileSize;
+            if (outlinedTypes.has(tile.type)) {
+              drawOutlinedImage(
+                ctx,
+                img,
+                0,
+                0,
+                img.width,
+                img.height,
+                dx,
+                dy,
+                tileSize,
+                tileSize,
+                '#003300'
+              );
+            } else {
+              ctx.drawImage(
+                img,
+                0,
+                0,
+                img.width,
+                img.height,
+                dx,
+                dy,
+                tileSize,
+                tileSize
+              );
+            }
           } else {
             ctx.fillStyle = resourceColors[tile.type];
             ctx.fillRect(wx * tileSize, wy * tileSize, tileSize, tileSize);
