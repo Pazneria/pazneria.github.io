@@ -94,15 +94,27 @@ export default class World {
     ctx.save();
     ctx.translate(-cameraX * tileSize, -cameraY * tileSize);
 
-    if (this.images.tile && this.images.tile.complete) {
+    // Always paint a base color so missing tiles don't show the canvas background
+    ctx.fillStyle = defaultTileColor;
+    ctx.fillRect(
+      baseX * tileSize,
+      baseY * tileSize,
+      (mapWidth + 1) * tileSize,
+      (mapHeight + 1) * tileSize
+    );
+
+    const tile = this.images.tile;
+    if (tile && tile.complete && tile.naturalWidth > 0 && tile.naturalHeight > 0) {
+      const srcW = tile.naturalWidth;
+      const srcH = tile.naturalHeight;
       for (let y = baseY; y <= baseY + mapHeight; y++) {
         for (let x = baseX; x <= baseX + mapWidth; x++) {
           ctx.drawImage(
-            this.images.tile,
+            tile,
             0,
             0,
-            16,
-            16,
+            srcW,
+            srcH,
             x * tileSize,
             y * tileSize,
             tileSize,
@@ -110,14 +122,6 @@ export default class World {
           );
         }
       }
-    } else {
-      ctx.fillStyle = defaultTileColor;
-      ctx.fillRect(
-        baseX * tileSize,
-        baseY * tileSize,
-        (mapWidth + 1) * tileSize,
-        (mapHeight + 1) * tileSize
-      );
     }
 
     for (let vy = 0; vy <= mapHeight; vy++) {
