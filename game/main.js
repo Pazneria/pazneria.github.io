@@ -1,4 +1,11 @@
-import { tileSize, mapWidth, mapHeight, backgroundColor, tickDuration } from './config.js';
+import {
+  tileSize,
+  mapWidth,
+  mapHeight,
+  backgroundColor,
+  tickDuration,
+  resourceImagePaths,
+} from './config.js';
 import World from './world/world.js';
 import Player from './entities/player.js';
 import Camera from './camera.js';
@@ -29,22 +36,13 @@ characterSprite.addEventListener(
 characterSprite.src = new URL('./RPGCharacterSprites32x32.png', import.meta.url).href;
 
 const copperOreImage = new Image();
-copperOreImage.src = new URL(
-  '../game_assets/assets/ores/copper/copper.png',
-  import.meta.url
-).href;
+copperOreImage.src = new URL(resourceImagePaths.copperOre, import.meta.url).href;
 
 const tinOreImage = new Image();
-tinOreImage.src = new URL(
-  '../game_assets/assets/ores/tin/tin.png',
-  import.meta.url
-).href;
+tinOreImage.src = new URL(resourceImagePaths.tinOre, import.meta.url).href;
 
 const oakTreeImage = new Image();
-oakTreeImage.src = new URL(
-  '../game_assets/assets/trees/oak/oak.png',
-  import.meta.url
-).href;
+oakTreeImage.src = new URL(resourceImagePaths.oakTree, import.meta.url).href;
 
 const tileImage = new Image();
 tileImage.src = new URL('./grass_tile.png', import.meta.url).href;
