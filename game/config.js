@@ -1,4 +1,5 @@
 export const tileSize = 32;
+
 // Size of the visible viewport in tiles
 export const mapWidth = 20;
 export const mapHeight = 15;
@@ -35,7 +36,8 @@ export const resourceSprites = {
     sy: 0,
   },
   oakTree: {
-    src: './log.png',
+    // Use the dead tree sprite for oak trees
+    src: '../game_assets/assets/trees/dead/dead.png',
     sx: 0,
     sy: 0,
   },
