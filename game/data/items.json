@@ -1,0 +1,13 @@
+[
+  {
+    "id": "logs",
+    "name": "Logs",
+    "description": "A bundle of freshly cut logs. Useful for fletching or firemaking later.",
+    "value": 2
+  },
+  {
+    "id": "bronze_axe",
+    "name": "Bronze Axe",
+    "description": "A trusty beginner's axe."
+  }
+]
