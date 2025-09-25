@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pazneria - Prototype Game</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="game-header">
+    <h1>Pazneria Prototype</h1>
+    <p class="tagline">An experimental, single-player OSRS-inspired sandbox.</p>
+  </header>
+  <main class="game-layout">
+    <section class="gameplay">
+      <canvas id="game-canvas" width="512" height="512" aria-label="Game world"></canvas>
+      <div class="hint">Use the arrow keys to move and space to interact.</div>
+    </section>
+    <aside class="game-ui" aria-live="polite">
+      <section class="panel">
+        <h2>Inventory</h2>
+        <ul id="inventory" class="inventory"></ul>
+      </section>
+      <section class="panel">
+        <h2>Activity Log</h2>
+        <ul id="log" class="log"></ul>
+      </section>
+    </aside>
+  </main>
+  <footer class="game-footer">
+    <p>This is an early prototype. Systems, assets and data files are intentionally lightweight.</p>
+  </footer>
+  <script type="module" src="./src/game.js"></script>
+</body>
+</html>
