@@ -1,0 +1,12 @@
+[
+  {
+    "id": "guide",
+    "name": "Settler Guide",
+    "position": { "x": 6, "y": 9 },
+    "dialogue": [
+      "Welcome to the clearing!",
+      "These woods are ripe for experimentation.",
+      "Everything you see runs entirely in the browser."
+    ]
+  }
+]
