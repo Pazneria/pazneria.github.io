@@ -1,7 +1,7 @@
-# pazneria.github.io
+# Pazneria
 
-This repository contains the static files for the **Pazneria** website. It is a simple static site composed of HTML, CSS and JavaScript.
+This repository has been reset to a minimal placeholder so it is ready for a fresh start.
 
-The site hosts various small projects and experiments. Notably, under `game/` lives a canvas-based RPG written in JavaScript. Open the `game/` directory (e.g. visit `/game/` in the browser) to launch the prototype.
+- `index.html` &mdash; a simple landing page noting that the site has been cleared.
 
-Previous experiments, such as the early *Dataforge* idle game, have since been removed to keep the repository focused on the current content.
+Feel free to build from here!
