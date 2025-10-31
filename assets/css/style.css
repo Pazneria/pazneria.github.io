@@ -1,0 +1,193 @@
+:root {
+  --bg: #0f172a;
+  --bg-alt: #111b31;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent-arcade: #f97316;
+  --accent-school: #0ea5e9;
+  --accent-lab: #22c55e;
+  --accent-blog: #a855f7;
+  --card-radius: 1rem;
+  --max-width: min(1100px, 92vw);
+  --shadow: 0 25px 45px rgba(15, 23, 42, 0.35);
+  --transition: 250ms ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(135deg, #0f172a 0%, #0b1120 60%, #020617 100%);
+  color: var(--text);
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  min-height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 6vw, 4rem) 0;
+}
+
+main {
+  width: 100%;
+  max-width: var(--max-width);
+  display: grid;
+  gap: clamp(2rem, 5vw, 3rem);
+}
+
+header {
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+}
+
+.title {
+  font-size: clamp(2.8rem, 6vw, 3.6rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0;
+}
+
+.subtitle {
+  margin: 0 auto;
+  max-width: 60ch;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.section-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.8rem, 3vw, 2.5rem);
+  border-radius: var(--card-radius);
+  background: var(--bg-alt);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  display: grid;
+  gap: 1.25rem;
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.section-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 30%, rgba(148, 163, 184, 0.15));
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.section-card:hover,
+.section-card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: 0 35px 60px rgba(15, 23, 42, 0.45);
+  border-color: rgba(148, 163, 184, 0.25);
+}
+
+.section-card:hover::after,
+.section-card:focus-visible::after {
+  opacity: 1;
+}
+
+.section-card h2 {
+  font-size: clamp(1.6rem, 2.6vw, 2rem);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.section-card span.section-tag {
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.6);
+}
+
+.section-card .cta {
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: inherit;
+}
+
+.section-card .cta svg {
+  width: 1em;
+  height: 1em;
+  transition: transform var(--transition);
+}
+
+.section-card:hover .cta svg,
+.section-card:focus-visible .cta svg {
+  transform: translateX(4px);
+}
+
+.section-card.arcade {
+  border-top: 4px solid var(--accent-arcade);
+}
+
+.section-card.school {
+  border-top: 4px solid var(--accent-school);
+}
+
+.section-card.lab {
+  border-top: 4px solid var(--accent-lab);
+}
+
+.section-card.blog {
+  border-top: 4px solid var(--accent-blog);
+}
+
+footer {
+  text-align: center;
+  color: rgba(226, 232, 240, 0.5);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+footer a {
+  color: rgba(129, 140, 248, 0.8);
+}
+
+@media (max-width: 600px) {
+  header {
+    text-align: left;
+  }
+
+  .subtitle {
+    text-align: left;
+  }
+}

@@ -2,38 +2,126 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Pazneria</title>
+    <title>Pazneria — Systems Playground</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      body {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        margin: 0;
-        padding: 2rem;
-        background: #f9f9f9;
-        color: #333;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-      }
-      main {
-        text-align: center;
-        max-width: 40rem;
-      }
-      h1 {
-        font-size: clamp(2rem, 5vw, 3rem);
-        margin-bottom: 1rem;
-      }
-      p {
-        font-size: 1.1rem;
-        line-height: 1.6;
-      }
-    </style>
+    <meta
+      name="description"
+      content="Pazneria is the central hub that connects the Arcade, School, Lab, and Blog ecosystems."
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
     <main>
-      <h1>Pazneria</h1>
-      <p>This site has been reset and now serves as a clean slate. Come back later for something new.</p>
+      <header>
+        <p class="subtitle">Welcome to</p>
+        <h1 class="title">Pazneria</h1>
+        <p class="subtitle">
+          The command center for a living universe of games, self-directed learning,
+          experiments, and writing. Every section is its own GitHub repository, but
+          together they form one cohesive experience under
+          <strong>pazneria.github.io</strong>.
+        </p>
+      </header>
+
+      <!--
+        Navigation overview:
+        Each card links to a GitHub Pages project that lives under this domain.
+        Use relative paths (/arcade, /school, /lab, /blog) so future project
+        repositories publish seamlessly under the shared hostname.
+        To add more destinations (for new games or sections), duplicate a card
+        and update the href to the project page (e.g. /arcade/new-game).
+      -->
+      <section class="nav-grid" aria-label="Primary navigation">
+        <a class="section-card arcade" href="/arcade">
+          <span class="section-tag">Arcade</span>
+          <h2>Playful Systems &amp; Games</h2>
+          <p>
+            Launch into interactive experiments, from solo puzzlers to ambitious
+            multiplayer worlds. Each game lives in its own repository and ships
+            to <code>/arcade/game-name</code>.
+          </p>
+          <span class="cta">
+            Enter the Arcade
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M5 12h12.17l-4.58-4.59L13 6l7 7-7 7-1.41-1.41L17.17 13H5z"
+              />
+            </svg>
+          </span>
+        </a>
+
+        <a class="section-card school" href="/school">
+          <span class="section-tag">School</span>
+          <h2>Self-Directed Curriculum</h2>
+          <p>
+            A growing library of courses, lessons, tools, and research reports.
+            Built to help future collaborators and AI agents navigate complex
+            study programs.
+          </p>
+          <span class="cta">
+            Visit the School
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M5 12h12.17l-4.58-4.59L13 6l7 7-7 7-1.41-1.41L17.17 13H5z"
+              />
+            </svg>
+          </span>
+        </a>
+
+        <a class="section-card lab" href="/lab">
+          <span class="section-tag">Lab</span>
+          <h2>Simulation &amp; Research Lab</h2>
+          <p>
+            Prototype experimental systems, sandbox emergent behavior, and share
+            findings. The lab houses exploratory repos that publish to
+            <code>/lab/project-name</code>.
+          </p>
+          <span class="cta">
+            Enter the Lab
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M5 12h12.17l-4.58-4.59L13 6l7 7-7 7-1.41-1.41L17.17 13H5z"
+              />
+            </svg>
+          </span>
+        </a>
+
+        <a class="section-card blog" href="/blog">
+          <span class="section-tag">Blog</span>
+          <h2>Notes, Articles &amp; Forecasts</h2>
+          <p>
+            Publish essays, changelogs, and forward-looking roadmaps. Use this
+            space to capture insights that tie the ecosystem together.
+          </p>
+          <span class="cta">
+            Read the Blog
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M5 12h12.17l-4.58-4.59L13 6l7 7-7 7-1.41-1.41L17.17 13H5z"
+              />
+            </svg>
+          </span>
+        </a>
+      </section>
+
+      <footer>
+        <p>
+          Ready for deployment via GitHub Pages. Extend the universe by creating
+          new repositories and publishing them under this hub's navigation.
+        </p>
+        <p>
+          Maintained with intention. <a href="https://github.com/pazneria">See the code</a>.
+        </p>
+      </footer>
     </main>
   </body>
 </html>
