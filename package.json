@@ -1,7 +1,0 @@
-{
-  "name": "pazneria-site",
-  "type": "module",
-  "scripts": {
-    "test": "node --test"
-  }
-}

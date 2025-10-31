@@ -1,49 +1,39 @@
-<!--
-Main entry point for the Pazneria site.
-
-This new structure breaks the monolithic tabbed page into separate documents, making it much easier to grow the site over time. Each major feature lives on its own page (e.g. AGI timeline, game) and shares a common navigation bar and styling.
-
-To add new sections, simply create another HTML file in the root directory (or a subfolder) and add a corresponding link to the navigation below.
--->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pazneria</title>
-  <link rel="stylesheet" href="assets/style.css" />
-  <!-- Re-use the same favicon embedded as base64 from the original site -->
-  <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAECAYAAAFCSJAAAADELEQvQ1imPW4DwQARIAAdpsPUEAAASUVORK5CYII=" />
-</head>
-<body>
-  <header>
-    <nav class="site-nav">
-      <a href="index.html" class="logo">Pazneria</a>
-      <ul class="nav-list">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href=agi//" class="nav-link">AGI Timeline</a></li>
-        <li><a href="game/" class="nav-link">Game</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-        <li><a href="contact.html" class="nav-link">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <section class="hero">
-      <h1>Welcome to Pazneria</h1>
-      <p>
-        This site is a playground for experiments in AI, computer science and
-        interactive art. Explore our AGI timeline and forecasting research,
-        play the game or browse other projects as they are added.
-      </p>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; <span id="year"></span> Pazneria. All rights reserved.</p>
-  </footer>
-  <script>
-    // Update the footer year dynamically.
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Pazneria</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 2rem;
+        background: #f9f9f9;
+        color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      main {
+        text-align: center;
+        max-width: 40rem;
+      }
+      h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-bottom: 1rem;
+      }
+      p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Pazneria</h1>
+      <p>This site has been reset and now serves as a clean slate. Come back later for something new.</p>
+    </main>
+  </body>
 </html>
