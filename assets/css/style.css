@@ -75,9 +75,11 @@ header {
 }
 
 .nav-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: clamp(1.5rem, 4vw, 2.5rem);
+  width: 100%;
 }
 
 .section-card {
@@ -92,6 +94,7 @@ header {
   gap: 1.25rem;
   transition: transform var(--transition), box-shadow var(--transition),
     border-color var(--transition);
+  width: min(420px, 100%);
 }
 
 .section-card::after {
