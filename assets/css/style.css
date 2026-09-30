@@ -19,7 +19,7 @@ h1 { margin: 0; }
 .monogram sup { font-size: .38em; line-height: 0; vertical-align: super; letter-spacing: -.04em; position: relative; top: -.11em; }
 h1 { font-size: clamp(24px, 2.6vw, 34px); line-height: 1.2; font-weight: 500; letter-spacing: -.04em; margin-top: 26px; }
 
-.destinations { min-width: 0; }
+.destinations { min-width: 0; display: grid; gap: 14px; }
 .destination { display: flex; align-items: center; justify-content: space-between; min-height: 98px; gap: 24px; padding: 18px 24px; font-size: clamp(23px, 2.25vw, 29px); line-height: 1.25; font-weight: 400; letter-spacing: -.045em; border-bottom: 1px solid var(--line); transition: background-color 160ms ease; }
 .destination svg { display: block; flex: 0 0 24px; width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; transition: transform 160ms ease; }
 .destination:hover { background: var(--hover); }
@@ -45,6 +45,7 @@ h1 { font-size: clamp(24px, 2.6vw, 34px); line-height: 1.2; font-weight: 500; le
   .identity { padding-bottom: 0; }
   .monogram { font-size: 154px; }
   h1 { font-size: 25px; margin-top: 14px; }
+  .destinations { gap: 10px; }
   .destination { min-height: 74px; font-size: 23px; padding: 18px 20px; }
   .destination-primary { min-height: 80px; padding-inline: 22px; }
   .destination svg { width: 22px; height: 22px; flex-basis: 22px; }
