@@ -27,7 +27,6 @@ h1 { font-size: clamp(24px, 2.6vw, 34px); line-height: 1.2; font-weight: 500; le
 .destination-primary { min-height: 104px; background: var(--ink); color: var(--paper); border: 1px solid var(--ink); border-radius: 5px; font-weight: 500; padding-inline: 27px; }
 .destination-primary:hover { background: #355347; }
 .destination-primary:focus-visible { outline-offset: 7px; }
-.direct-links { margin-top: 14px; }
 
 .footer { display: flex; justify-content: flex-end; border-top: 1px solid var(--line); padding-block: 22px; }
 .footer a { display: inline-flex; align-items: center; min-height: 44px; gap: 10px; font-size: 12px; font-weight: 500; color: var(--muted); }
@@ -49,7 +48,6 @@ h1 { font-size: clamp(24px, 2.6vw, 34px); line-height: 1.2; font-weight: 500; le
   .destination { min-height: 74px; font-size: 23px; padding: 18px 20px; }
   .destination-primary { min-height: 80px; padding-inline: 22px; }
   .destination svg { width: 22px; height: 22px; flex-basis: 22px; }
-  .direct-links { margin-top: 10px; }
   .footer { padding-block: 13px; }
 }
 @media (max-height: 700px) and (min-width: 641px) {

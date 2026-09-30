@@ -18,14 +18,15 @@ or build step. It makes no external runtime requests.
 
 ## Destinations
 
-The Arcade is the main destination. Direct navigation is also available to
-RaceGPT, OSRS Clone, and Sword Guys. Each is a usable, separately deployed
-public page. Root-relative links preserve routing under the shared hostname:
+The Arcade is the sole section destination. Its canonical entry is `/arcade/`.
+Individual games are reached through the Arcade rather than homepage shortcuts.
+The root-relative link preserves routing under the shared hostname.
 
-- `/arcade/`
-- `/racegpt/`
-- `/osrs-clone/`
-- `/sword-guys/`
+The Arcade entry renders its 3D scene on supported desktop browsers. Its current
+published code chooses the game directory on coarse-pointer devices or widths
+below 768px, even when WebGL is supported. There is no separate mobile 3D route.
+The Arcade also preserves its directory when WebGL or the engine is unavailable.
+The homepage does not override these decisions or modify the Arcade repository.
 
 The public GitHub profile is linked in the footer. School, Blog, and Lab are
 excluded because their deployed pages contain only coming-soon placeholders.
