@@ -18,9 +18,10 @@ or build step. It makes no external runtime requests.
 
 ## Destinations
 
-The Arcade is the sole section destination. Its canonical entry is `/arcade/`.
+The section destinations are Arcade at `/arcade/` and Lab at `/lab/`.
 Individual games are reached through the Arcade rather than homepage shortcuts.
-The root-relative link preserves routing under the shared hostname.
+Root-relative links preserve routing under the shared hostname. Lab has a
+published benchmark discovery catalog; the homepage uses only its section name.
 
 The Arcade entry renders its 3D scene on supported desktop browsers. Its current
 published code chooses the game directory on coarse-pointer devices or widths
@@ -28,7 +29,7 @@ below 768px, even when WebGL is supported. There is no separate mobile 3D route.
 The Arcade also preserves its directory when WebGL or the engine is unavailable.
 The homepage does not override these decisions or modify the Arcade repository.
 
-The public GitHub profile is linked in the footer. School, Blog, and Lab are
+The public GitHub profile is linked in the footer. School and Blog are
 excluded because their deployed pages contain only coming-soon placeholders.
 Unpublished work is not advertised. Verify actual content before adding a
 destination; HTTP 200 alone does not establish that a page is useful.
