@@ -2,31 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Pazneria — Systems Playground</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Pazneria is the central hub that connects the Arcade, School, Lab, and Blog ecosystems."
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="theme-color" content="#f5f5f0" />
+    <title>Pazneria</title>
+    <meta name="description" content="Pazneria." />
+    <link rel="canonical" href="https://pazneria.github.io/" />
+    <meta property="og:title" content="Pazneria" />
+    <meta property="og:description" content="Pazneria." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pazneria.github.io/" />
+    <link rel="icon" href="assets/images/mark.svg" type="image/svg+xml" />
+    <link rel="preload" href="assets/fonts/instrument-serif-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <main>
-      <header>
-        <p class="subtitle">Welcome to</p>
-        <h1 class="title">Pazneria</h1>
-        <p class="subtitle">
-          The command center for a living universe of games, self-directed learning,
-          experiments, and writing. Every section is its own GitHub repository, but
-          together they form one cohesive experience under
-          <strong>pazneria.github.io</strong>.
-        </p>
-      </header>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <main class="front-door page-width" id="main" tabindex="-1">
+      <div class="identity">
+        <div class="monogram" aria-hidden="true">J<sup>2</sup></div>
+        <h1>Pazneria</h1>
+      </div>
 
       <!--
         Navigation overview:
@@ -36,92 +32,15 @@
         To add more destinations (for new games or sections), duplicate a card
         and update the href to the project page (e.g. /arcade/new-game).
       -->
-      <section class="nav-grid" aria-label="Primary navigation">
-        <a class="section-card arcade" href="/arcade">
-          <span class="section-tag">Arcade</span>
-          <h2>Playful Systems &amp; Games</h2>
-          <p>
-            Launch into interactive experiments, from solo puzzlers to ambitious
-            multiplayer worlds. Each game lives in its own repository and ships
-            to <code>/arcade/game-name</code>.
-          </p>
-          <span class="cta">
-            Enter the Arcade
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path
-                fill="currentColor"
-                d="M5 12h12.17l-4.58-4.59L13 6l7 7-7 7-1.41-1.41L17.17 13H5z"
-              />
-            </svg>
-          </span>
+      <nav class="destinations" aria-label="Destinations">
+        <a class="destination destination-primary" href="/arcade/">
+          <span>Arcade</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
         </a>
-
-        <a class="section-card school" href="/school">
-          <span class="section-tag">School</span>
-          <h2>Self-Directed Curriculum</h2>
-          <p>
-            A growing library of courses, lessons, tools, and research reports.
-            Built to help future collaborators and AI agents navigate complex
-            study programs.
-          </p>
-          <span class="cta">
-            Visit the School
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path
-                fill="currentColor"
-                d="M5 12h12.17l-4.58-4.59L13 6l7 7-7 7-1.41-1.41L17.17 13H5z"
-              />
-            </svg>
-          </span>
-        </a>
-
-        <a class="section-card lab" href="/lab">
-          <span class="section-tag">Lab</span>
-          <h2>Simulation &amp; Research Lab</h2>
-          <p>
-            Prototype experimental systems, sandbox emergent behavior, and share
-            findings. The lab houses exploratory repos that publish to
-            <code>/lab/project-name</code>.
-          </p>
-          <span class="cta">
-            Enter the Lab
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path
-                fill="currentColor"
-                d="M5 12h12.17l-4.58-4.59L13 6l7 7-7 7-1.41-1.41L17.17 13H5z"
-              />
-            </svg>
-          </span>
-        </a>
-
-        <a class="section-card blog" href="/blog">
-          <span class="section-tag">Blog</span>
-          <h2>Notes, Articles &amp; Forecasts</h2>
-          <p>
-            Publish essays, changelogs, and forward-looking roadmaps. Use this
-            space to capture insights that tie the ecosystem together.
-          </p>
-          <span class="cta">
-            Read the Blog
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path
-                fill="currentColor"
-                d="M5 12h12.17l-4.58-4.59L13 6l7 7-7 7-1.41-1.41L17.17 13H5z"
-              />
-            </svg>
-          </span>
-        </a>
-      </section>
-
-      <footer>
-        <p>
-          Ready for deployment via GitHub Pages. Extend the universe by creating
-          new repositories and publishing them under this hub's navigation.
-        </p>
-        <p>
-          Maintained with intention. <a href="https://github.com/pazneria">See the code</a>.
-        </p>
-      </footer>
+      </nav>
     </main>
+    <footer class="footer page-width">
+      <a href="https://github.com/Pazneria">GitHub <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 18 18 6M6 6h12v12" /></svg></a>
+    </footer>
   </body>
 </html>
