@@ -56,6 +56,11 @@ h1 { font-size: clamp(24px, 2.6vw, 34px); line-height: 1.2; font-weight: 500; le
   .destination { min-height: 80px; }
   .destination-primary { min-height: 86px; }
 }
+@media (max-height: 460px) and (min-width: 641px) {
+  .front-door { padding-block: 24px; }
+  .monogram { font-size: 150px; }
+  h1 { margin-top: 14px; }
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }
   .destination:hover svg { transform: none; }
