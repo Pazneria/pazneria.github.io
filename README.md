@@ -1,62 +1,60 @@
 # Pazneria homepage
 
-The public project index at https://pazneria.github.io/. This is a plain HTML/CSS
-site, deployed by GitHub Pages from the root of the `main` branch. There is no
-build step, package installation, client-side JavaScript, or framework.
+A minimal public landing page at https://pazneria.github.io/. The page contains
+the J² mark, Pazneria name, and navigation to usable public destinations.
+There are no project descriptions, previews, roadmap, or coming-soon sections.
 
-## Layout
+## Files
 
 - `index.html`: content, navigation, metadata, and accessible landmarks.
-- `assets/css/style.css`: typography, colors, responsive layout, focus styles,
-  reduced motion, and forced-color support.
-- `assets/images/mark.svg`: the J² favicon.
-- `assets/images/racegpt-preview.jpg`: a real screenshot of the public RaceGPT
-  build at https://pazneria.github.io/racegpt/?autoplay, captured on 2026-09-30.
-- `assets/fonts/`: locally served Latin fonts and their SIL Open Font Licenses.
-  Instrument Serif and DM Sans came from the official Google Fonts service.
-  No font or third-party runtime requests are required by the homepage.
+- `assets/css/style.css`: colors, typography, responsive layout, focus styles,
+  reduced-motion behavior, and forced-color support.
+- `assets/images/mark.svg`: J² favicon.
+- `assets/fonts/`: locally served DM Sans and Instrument Serif with their
+  included SIL Open Font Licenses, from the official Google Fonts service.
 
-## Content and navigation
+The site is static HTML/CSS with no JavaScript, framework, package installation,
+or build step. It makes no external runtime requests.
 
-The Arcade is the primary live destination. The homepage also links directly to
-RaceGPT, OSRS Clone, and Sword Guys. These games deploy from separate repositories
-at `/racegpt/`, `/osrs-clone/`, and `/sword-guys/`; they are not nested under
-`/arcade/`. Keep live links root-relative under the shared GitHub Pages hostname.
+## Destinations
 
-The benchmark tracker and voter intelligence entries are explicitly labeled
-**In development**, with no public preview, capability claims, or private source
-links. Their names and status are the only project information shown here.
-School, Lab, and Blog currently have coming-soon pages; the homepage does not
-present those pages as finished destinations.
+The Arcade is the main destination. Direct navigation is also available to
+RaceGPT, OSRS Clone, and Sword Guys. Each is a usable, separately deployed
+public page. Root-relative links preserve routing under the shared hostname:
 
-Verify a project's public destination and status before adding a link. Published
-sections and games stay in their own repositories; this homepage indexes them.
+- `/arcade/`
+- `/racegpt/`
+- `/osrs-clone/`
+- `/sword-guys/`
 
-## Local preview
+The public GitHub profile is linked in the footer. School, Blog, and Lab are
+excluded because their deployed pages contain only coming-soon placeholders.
+Unpublished work is not advertised. Verify actual content before adding a
+destination; HTTP 200 alone does not establish that a page is useful.
 
-Open `index.html` directly, or serve this directory with an existing static
-server. For example, with Python already installed:
+## Preview and verification
+
+Open `index.html` directly, or use an existing static server. With Python:
 
 ```powershell
 python -m http.server 5186 --bind 127.0.0.1
 ```
 
-Visit http://127.0.0.1:5186/. Cross-repository root-relative links lead to local
-paths during preview; test their published equivalents separately.
+Visit http://127.0.0.1:5186/. Cross-repository links resolve to local paths in a
+localhost preview; check their published equivalents separately.
 
-Before shipping, inspect desktop and narrow mobile viewports, confirm there is
-no horizontal overflow, use Tab and Enter to check navigation and the skip link,
-and verify public destination URLs. Essential navigation works without JavaScript.
+Inspect desktop and narrow mobile widths, verify keyboard focus and skip-link
+navigation, check text contrast and asset loading, and confirm destinations
+contain usable content. The page remains usable without JavaScript.
 
-## Deployment and contributions
+## Deployment
 
-Use pull requests for homepage changes so the history stays reviewable.
-Merging to `main` publishes the root site through its existing GitHub Pages
-branch deployment. Keep the navigation overview comment in `index.html`.
-The redesign changes homepage files and adds static assets; it does not alter
-deployment configuration or other project repositories.
+Existing GitHub Pages deployment serves `main` from `/`. Use a pull request for
+homepage changes. Keep the navigation overview comment in `index.html`.
+Homepage changes should not modify Arcade, game, or Lab repositories.
+There is no deployment configuration change.
 
 ## License
 
-The bundled fonts use their included SIL Open Font Licenses. This repository
-does not otherwise declare a project-wide license.
+Bundled fonts use their included SIL Open Font Licenses. This repository does
+not otherwise declare a project-wide license.
