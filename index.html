@@ -2,31 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Pazneria — Systems Playground</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Pazneria is the central hub that connects the Arcade, School, Lab, and Blog ecosystems."
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="theme-color" content="#35252f" />
+    <title>Pazneria — Jordan's project index</title>
+    <meta name="description" content="Games and experiments by Jordan. Visit the Arcade, play RaceGPT, and see what's in development." />
+    <link rel="canonical" href="https://pazneria.github.io/" />
+    <meta property="og:title" content="Pazneria — Jordan's project index" />
+    <meta property="og:description" content="Games and experiments. Play what's live and see what's in development." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pazneria.github.io/" />
+    <link rel="icon" href="assets/images/mark.svg" type="image/svg+xml" />
+    <link rel="preload" href="assets/fonts/instrument-serif-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <main>
-      <header>
-        <p class="subtitle">Welcome to</p>
-        <h1 class="title">Pazneria</h1>
-        <p class="subtitle">
-          The command center for a living universe of games, self-directed learning,
-          experiments, and writing. Every section is its own GitHub repository, but
-          together they form one cohesive experience under
-          <strong>pazneria.github.io</strong>.
-        </p>
-      </header>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="masthead page-width">
+      <a class="brand" href="/" aria-label="Pazneria home">
+        <span class="brand-mark" aria-hidden="true">J<sup>2</sup></span>
+        <span class="brand-name">Pazneria<span>Jordan's project index</span></span>
+      </a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="/arcade/">Arcade <span aria-hidden="true">↗</span></a>
+        <a href="#in-progress">In progress</a>
+        <a href="https://github.com/Pazneria">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="intro page-width" aria-labelledby="intro-title">
+        <div class="intro-heading">
+          <p class="eyebrow"><span class="index-line" aria-hidden="true"></span>The project index</p>
+          <h1 id="intro-title">Games &amp;<br /><em>experiments.</em></h1>
+        </div>
+        <div class="intro-note">
+          <svg class="index-flower" viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+            <path d="M40 3C50 3 49 23 49 27C53 23 66 8 73 15C80 22 65 35 61 39C65 39 85 38 85 48C85 58 65 57 61 57C65 61 80 74 73 81C66 88 53 73 49 69C49 73 50 93 40 93C30 93 31 73 31 69C27 73 14 88 7 81C0 74 15 61 19 57C15 57-5 58-5 48C-5 38 15 39 19 39C15 35 0 22 7 15C14 8 27 23 31 27C31 23 30 3 40 3Z" transform="translate(7 -2) scale(.83)" fill="currentColor" />
+          </svg>
+          <p>A collection of playable builds<br class="desktop-break" /> and projects taking shape.</p>
+          <a class="text-link" href="#arcade">Start with the Arcade <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
 
       <!--
         Navigation overview:
@@ -36,92 +53,58 @@
         To add more destinations (for new games or sections), duplicate a card
         and update the href to the project page (e.g. /arcade/new-game).
       -->
-      <section class="nav-grid" aria-label="Primary navigation">
-        <a class="section-card arcade" href="/arcade">
-          <span class="section-tag">Arcade</span>
-          <h2>Playful Systems &amp; Games</h2>
-          <p>
-            Launch into interactive experiments, from solo puzzlers to ambitious
-            multiplayer worlds. Each game lives in its own repository and ships
-            to <code>/arcade/game-name</code>.
-          </p>
-          <span class="cta">
-            Enter the Arcade
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path
-                fill="currentColor"
-                d="M5 12h12.17l-4.58-4.59L13 6l7 7-7 7-1.41-1.41L17.17 13H5z"
-              />
-            </svg>
-          </span>
-        </a>
-
-        <a class="section-card school" href="/school">
-          <span class="section-tag">School</span>
-          <h2>Self-Directed Curriculum</h2>
-          <p>
-            A growing library of courses, lessons, tools, and research reports.
-            Built to help future collaborators and AI agents navigate complex
-            study programs.
-          </p>
-          <span class="cta">
-            Visit the School
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path
-                fill="currentColor"
-                d="M5 12h12.17l-4.58-4.59L13 6l7 7-7 7-1.41-1.41L17.17 13H5z"
-              />
-            </svg>
-          </span>
-        </a>
-
-        <a class="section-card lab" href="/lab">
-          <span class="section-tag">Lab</span>
-          <h2>Simulation &amp; Research Lab</h2>
-          <p>
-            Prototype experimental systems, sandbox emergent behavior, and share
-            findings. The lab houses exploratory repos that publish to
-            <code>/lab/project-name</code>.
-          </p>
-          <span class="cta">
-            Enter the Lab
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path
-                fill="currentColor"
-                d="M5 12h12.17l-4.58-4.59L13 6l7 7-7 7-1.41-1.41L17.17 13H5z"
-              />
-            </svg>
-          </span>
-        </a>
-
-        <a class="section-card blog" href="/blog">
-          <span class="section-tag">Blog</span>
-          <h2>Notes, Articles &amp; Forecasts</h2>
-          <p>
-            Publish essays, changelogs, and forward-looking roadmaps. Use this
-            space to capture insights that tie the ecosystem together.
-          </p>
-          <span class="cta">
-            Read the Blog
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path
-                fill="currentColor"
-                d="M5 12h12.17l-4.58-4.59L13 6l7 7-7 7-1.41-1.41L17.17 13H5z"
-              />
-            </svg>
-          </span>
-        </a>
+      <section class="arcade page-width" id="arcade" aria-labelledby="arcade-title">
+        <div class="arcade-info">
+          <div class="section-topline"><span class="eyebrow">01 / Play</span><span class="status status-live"><span aria-hidden="true"></span>Live</span></div>
+          <div class="arcade-copy">
+            <h2 id="arcade-title">The Arcade</h2>
+            <p>Racing, skilling, and sword fighting.<br />Pick a game and jump in.</p>
+            <a class="button" href="/arcade/">Enter the Arcade <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="game-index">
+            <p class="eyebrow">Go straight to a game</p>
+            <a href="/racegpt/">RaceGPT <span aria-hidden="true">↗</span></a>
+            <a href="/osrs-clone/">OSRS Clone <span aria-hidden="true">↗</span></a>
+            <a href="/sword-guys/">Sword Guys <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <figure class="game-preview">
+          <a class="preview-link" href="/racegpt/" aria-label="Play RaceGPT, the featured racing game">
+            <img src="assets/images/racegpt-preview.jpg" width="1440" height="900" alt="RaceGPT gameplay: a car on a raised test track with red and white curbs and a model lap-time board." fetchpriority="high" />
+            <span class="preview-play" aria-hidden="true">↗</span>
+          </a>
+          <figcaption>
+            <div><span class="eyebrow">Featured game</span><h3>RaceGPT</h3></div>
+            <p>3D time-attack racing.<br /><span>Actual gameplay from the live build.</span></p>
+          </figcaption>
+        </figure>
       </section>
 
-      <footer>
-        <p>
-          Ready for deployment via GitHub Pages. Extend the universe by creating
-          new repositories and publishing them under this hub's navigation.
-        </p>
-        <p>
-          Maintained with intention. <a href="https://github.com/pazneria">See the code</a>.
-        </p>
-      </footer>
+      <section class="workbench page-width" id="in-progress" aria-labelledby="workbench-title">
+        <div class="workbench-heading">
+          <div><p class="eyebrow">02 / In development</p><h2 id="workbench-title">On the workbench<span aria-hidden="true">.</span></h2></div>
+          <p>These projects are still taking shape.<br />Public previews aren't available yet.</p>
+        </div>
+        <div class="project-list">
+          <article class="project project-benchmark" aria-labelledby="benchmark-title">
+            <span class="project-symbol" aria-hidden="true"><svg viewBox="0 0 60 60" focusable="false"><path d="M12 39V23M30 45V15M48 35V25" /><circle cx="12" cy="23" r="3" /><circle cx="30" cy="15" r="3" /><circle cx="48" cy="25" r="3" /></svg></span>
+            <div class="project-name"><p class="eyebrow">Lab</p><h3 id="benchmark-title">Benchmark tracker</h3></div>
+            <span class="status">In development</span>
+          </article>
+          <article class="project project-voter" aria-labelledby="voter-title">
+            <span class="project-symbol" aria-hidden="true"><svg viewBox="0 0 60 60" focusable="false"><path d="M15 15H45V45H15ZM23 30L28 35L38 24" /></svg></span>
+            <div class="project-name"><p class="eyebrow">Research</p><h3 id="voter-title">Voter intelligence</h3></div>
+            <span class="status">In development</span>
+          </article>
+        </div>
+        <p class="future-note">School &amp; writing <span aria-hidden="true">/</span> Spaces for future lessons and notes. No published content yet.</p>
+      </section>
     </main>
+
+    <footer class="footer page-width">
+      <a class="footer-signature" href="/" aria-label="Pazneria home"><span aria-hidden="true">J<sup>2</sup></span> <span>Pazneria</span></a>
+      <p>Games, experiments, works in progress.</p>
+      <a class="text-link" href="https://github.com/Pazneria/pazneria.github.io">Homepage source <span aria-hidden="true">↗</span></a>
+    </footer>
   </body>
 </html>
