@@ -18,7 +18,7 @@ or build step. It makes no external runtime requests.
 
 ## Destinations
 
-The section destinations are Arcade at `/arcade/` and Lab at `/lab/`.
+The section destinations are Arcade at `/arcade/` and Lab at `/lab/lab-space/`.
 Individual games are reached through the Arcade rather than homepage shortcuts.
 Root-relative links preserve routing under the shared hostname. Lab has a
 published benchmark discovery catalog; the homepage uses only its section name.
