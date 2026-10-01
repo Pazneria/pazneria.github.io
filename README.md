@@ -23,10 +23,13 @@ Individual games are reached through the Arcade rather than homepage shortcuts.
 Root-relative links preserve routing under the shared hostname. Lab has a
 published benchmark discovery catalog; the homepage uses only its section name.
 
-The Arcade entry renders its 3D scene on supported desktop browsers. Its current
-published code chooses the game directory on coarse-pointer devices or widths
-below 768px, even when WebGL is supported. There is no separate mobile 3D route.
-The Arcade also preserves its directory when WebGL or the engine is unavailable.
+The Arcade entry renders its 3D scene on supported desktop and mobile browsers.
+Coarse-pointer devices or widths below 768px use touch controls and a lower
+rendering budget within the same `/arcade/` route.
+The game directory remains available while the engine loads and when users
+choose Games. It becomes the fallback when WebGL is unavailable, the engine
+cannot load, or the 3D scene fails to initialize. With JavaScript disabled,
+the entry provides a separate set of static game links.
 The homepage does not override these decisions or modify the Arcade repository.
 
 The public GitHub profile is linked in the footer. School and Blog are
