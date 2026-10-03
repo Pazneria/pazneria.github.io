@@ -92,7 +92,8 @@ kbd { display: inline-block; min-width: 1.8em; padding: 2px 5px 1px; border: 2px
 .clock.urgent { --face: var(--coral); }
 
 /* Arena bezel */
-.arena-wrap { position: relative; width: min(100%, calc((100dvh - 420px) * 1.5)); aspect-ratio: 3 / 2; margin-inline: auto; border: 4px solid var(--ink); border-radius: 20px; overflow: hidden; background: var(--violet); box-shadow: 0 0 0 4px var(--paper), 0 8px 0 4px var(--ink); }
+/* Keep the arena and menu usable in short desktop windows; the page can scroll. */
+.arena-wrap { position: relative; width: min(100%, max(450px, calc((100dvh - 420px) * 1.5))); aspect-ratio: 3 / 2; margin-inline: auto; border: 4px solid var(--ink); border-radius: 20px; overflow: hidden; background: var(--violet); box-shadow: 0 0 0 4px var(--paper), 0 8px 0 4px var(--ink); }
 #arena { display: block; width: 100%; height: 100%; object-fit: contain; touch-action: none; outline: none; }
 .overlay { position: absolute; inset: 0; display: grid; place-items: center; padding: 20px; background: #23124a8c; }
 .overlay[hidden] { display: none; }
