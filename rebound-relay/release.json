@@ -1,0 +1,87 @@
+{
+  "game": "Rebound Relay",
+  "version": "0.4.1",
+  "release_date": "2026-10-03",
+  "launch_url": "https://pazneria.github.io/rebound-relay/",
+  "guide_url": "https://pazneria.github.io/rebound-relay/wiki/",
+  "mechanics_basis_sha256": "551218a34817765d7376e84c050a9b5a2a9ffa5cc1f36391bd88e0a080e9b799",
+  "source_wiki_commit": "cc7897460bae21f4844e5cf8329a4186b52e4d5a",
+  "files": [
+    {
+      "path": "index.html",
+      "sha256": "3c5c25eb63d51437b9877875f8d425da16902b5d2703396050e3374fbd3d8e9a"
+    },
+    {
+      "path": "style.css",
+      "sha256": "fe48bef779007c7d64d42370a08276db5878d289bbd54e1e7bf25fab0f2cb11d"
+    },
+    {
+      "path": "src/physics.js",
+      "sha256": "a4da55f2afab7c612cf3007e029307dc4f601b0fcd19009ba2f53f237fd5f7d5"
+    },
+    {
+      "path": "src/input.js",
+      "sha256": "a3ecfbc07ad6cd7e23e4456749775e6df28a1e8e189f148e7d5b38fb487c7751"
+    },
+    {
+      "path": "src/records.js",
+      "sha256": "56f460d58e88efe9c2eef83fe025056487df1e1e002241dddb96c3952ea760e9"
+    },
+    {
+      "path": "src/feedback.js",
+      "sha256": "6f8a4f35f4bbbfcad691c2a217b2b35e4e6e184780e99266a18f85cd3c22a891"
+    },
+    {
+      "path": "src/sound.js",
+      "sha256": "9b595cd68584040886f3bb59e22c269bb36c2617ccd42b4a11d8429039ea4bd6"
+    },
+    {
+      "path": "src/game.js",
+      "sha256": "f83a4e6f256201e1b73eb8fe470c2d8b3f1ee896f5ea901a0a8959c26d0dc0a7"
+    },
+    {
+      "path": "wiki/index.html",
+      "sha256": "02007883ea2f52a732408aef36c1de07292ccc4dbcf7580b004750a6fbd4621e"
+    },
+    {
+      "path": "wiki/style.css",
+      "sha256": "bef681f7eecd0cbbc81889824d7ee3bf6cbf9cb93ed093873b017ea60e4f1c54"
+    },
+    {
+      "path": "wiki/source-basis.json",
+      "sha256": "692fd8320a8a5755d6a5ea815b89e52836759403af26257b59dc0d0ba415c10b"
+    }
+  ],
+  "validation": {
+    "node_tests": 51,
+    "gameplay_browser_checks": 28,
+    "http_navigation_checks": 12,
+    "runtime_exceptions": 0,
+    "external_page_requests": 0,
+    "wiki_source_hashes_matched": 13,
+    "text_contrast_pairs_at_least_4_5": 13,
+    "viewports": [
+      "1280x900 desktop",
+      "390x844 mobile portrait",
+      "844x390 mobile landscape",
+      "320x740 narrow phone",
+      "1280x720 short desktop"
+    ],
+    "notes": [
+      "Screenshots use staged game state; keyboard and touch tests use real input events.",
+      "Only one isolated hidden browser was used at a time; user browser windows were not controlled."
+    ]
+  },
+  "limits": [
+    "Touch checks use browser emulation; physical-phone validation is not claimed.",
+    "Web Audio lifecycle can be tested automatically; audible quality and human balance need playtesting.",
+    "Best scores are local to this browser. No online leaderboard or obstacle maps."
+  ],
+  "privacy": "No accounts, analytics, external runtime assets, fetched content or backend; preferences and best scores remain browser-local.",
+  "security_review": {
+    "data": "Browser-local settings/bests and keyboard/touch state. No account, names, imports, fetched content, secrets or backend.",
+    "untrusted_inputs": "Malformed saved data and HTML-like URL/hash values tested; values are ignored or validated, and dynamic UI uses textContent.",
+    "links_and_resources": "Relative local resources only. Guide opens with noopener; wiki has no scripts, forms, embeds or external links.",
+    "limits": "Scoped source, negative-input and navigation checks; not a security certification. Local scores are editable and are not an online fairness boundary."
+  }
+}
