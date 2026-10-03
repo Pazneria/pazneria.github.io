@@ -13,7 +13,7 @@
     },
     {
       "path": "style.css",
-      "sha256": "fe48bef779007c7d64d42370a08276db5878d289bbd54e1e7bf25fab0f2cb11d"
+      "sha256": "e2a7b7b4f1a79c48e897403592f7efb6aeab73ec90009b3f5770f90809966596"
     },
     {
       "path": "src/physics.js",
@@ -83,5 +83,25 @@
     "untrusted_inputs": "Malformed saved data and HTML-like URL/hash values tested; values are ignored or validated, and dynamic UI uses textContent.",
     "links_and_resources": "Relative local resources only. Guide opens with noopener; wiki has no scripts, forms, embeds or external links.",
     "limits": "Scoped source, negative-input and navigation checks; not a security certification. Local scores are editable and are not an online fairness boundary."
+  },
+  "cleanup": {
+    "revision": "2026-10-03-short-desktop",
+    "previous_deployed_revision": "9bcc9fbea4a89862059054a389fba770253de5f1",
+    "change": "Keep the arena and menu usable in short desktop windows; vertical scrolling is available.",
+    "confirmed_review": "https://github.com/Pazneria/pazneria.github.io/pull/63#discussion_r4174724043",
+    "unconfirmed_review": "https://github.com/Pazneria/pazneria.github.io/pull/63#discussion_r4174724051",
+    "gradient_result": "Actual sprite pixel checks at three positions and after rotation passed before and after the CSS fix. Existing cached gradients remain unchanged.",
+    "canvas_reference": "https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-createlineargradient-dev",
+    "focused_browser_checks": 14,
+    "gameplay_browser_checks_rerun": 28,
+    "runtime_exceptions": 0,
+    "limits": "One installed Chromium with touch emulation; no physical-device or all-engine claim.",
+    "security_scope": "CSS sizing plus a standalone local regression harness. No new runtime inputs, scripts, dependencies, links, resources, or data handling."
+  },
+  "regression_test": {
+    "path": "tests/presentation-check.cjs",
+    "sha256": "1228b91ab288c76433edfd8c0bb79d32d4061040c9426ca44a1a902faa92d302",
+    "run": "node tests/presentation-check.cjs",
+    "requirements": "Node with built-in WebSocket and an installed Chromium; set REBOUND_BROWSER to its executable if needed."
   }
 }
