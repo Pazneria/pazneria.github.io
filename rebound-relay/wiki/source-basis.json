@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "source_directory": "rebound-relay",
+  "source_checked_date": "2026-10-01",
+  "manifest_generated_utc": "2026-10-01T01:08:08.208366Z",
+  "source_git_commit": null,
+  "source_git_note": "The supplied game folder is not a Git checkout; raw-byte SHA-256 hashes are the version basis.",
+  "versions": {
+    "package": "0.4.1",
+    "readme": "Playtest 0.4.1",
+    "html": "Playtest 0.4.1",
+    "note": "Playtest 0.4.1 with the integrated Guide link; current source hashes verified for the plain-language wiki revision."
+  },
+  "canonical_repo_route": "wiki/",
+  "back_to_game": "../index.html",
+  "mechanics_basis_sha256": "551218a34817765d7376e84c050a9b5a2a9ffa5cc1f36391bd88e0a080e9b799",
+  "baseline_comparisons": [
+    {
+      "path": "src/physics.js",
+      "matches_accepted_02_03": false
+    },
+    {
+      "path": "src/input.js",
+      "matches_accepted_02_03": true
+    },
+    {
+      "path": "src/records.js",
+      "matches_accepted_02_03": false
+    },
+    {
+      "path": "src/feedback.js",
+      "matches_accepted_02_03": true
+    },
+    {
+      "path": "src/sound.js",
+      "matches_accepted_02_03": true
+    }
+  ],
+  "scoring_revision": {
+    "status": "verified",
+    "authority": "User correction verified against source and five focused tests September 30, 2026; all five mechanics hashes unchanged and verified again October 1, 2026.",
+    "start": 500,
+    "deduction": 100,
+    "count": "unique wall hits before each goal; repeats do not deduct",
+    "floor": 0,
+    "reachable_minimum": 100,
+    "floor_note": "The implementation counts only four wall bits; 500 minus at most four deductions remains at least 100. Zero is unreachable in ordinary play.",
+    "goal_contact_is_penalty": false,
+    "reset_after_goal": true,
+    "best_score_namespace": "rebound-relay:clean-shot-v1:best:",
+    "preserved_prior_namespace": "rebound-relay:v02:best:",
+    "post_goal_lock_seconds": 0.2,
+    "post_goal_lock_note": "The last scored wall is excluded while the score lock is active."
+  },
+  "verified_rules": {
+    "constants": {
+      "width": 960,
+      "height": 640,
+      "step": 0.008333333333333333,
+      "duration": 90,
+      "playerRadius": 23,
+      "ballRadius": 13,
+      "acceleration": 1750,
+      "braking": 8.5,
+      "movingDrag": 2.8,
+      "playerSpeed": 340,
+      "boostSpeed": 560,
+      "boostImpulse": 260,
+      "boostDuration": 0.28,
+      "boostCooldown": 1,
+      "ballDrag": 0.055,
+      "wallRestitution": 0.98,
+      "bumperRestitution": 0.88,
+      "playerMass": 3,
+      "maxTravel": 4,
+      "targetMargin": 36,
+      "targetSeparation": 240,
+      "scoreLock": 0.2
+    },
+    "difficulties": {
+      "easy": {
+        "id": "easy",
+        "name": "Chill",
+        "goalHalf": 100,
+        "ballMin": 150,
+        "ballMax": 600,
+        "launchSpeed": 200
+      },
+      "normal": {
+        "id": "normal",
+        "name": "Relay",
+        "goalHalf": 76,
+        "ballMin": 230,
+        "ballMax": 820,
+        "launchSpeed": 290
+      },
+      "hard": {
+        "id": "hard",
+        "name": "Overdrive",
+        "goalHalf": 48,
+        "ballMin": 320,
+        "ballMax": 1050,
+        "launchSpeed": 390
+      }
+    }
+  },
+  "files": [
+    {
+      "path": "src/physics.js",
+      "role": "mechanics",
+      "sha256": "a4da55f2afab7c612cf3007e029307dc4f601b0fcd19009ba2f53f237fd5f7d5"
+    },
+    {
+      "path": "src/input.js",
+      "role": "mechanics",
+      "sha256": "a3ecfbc07ad6cd7e23e4456749775e6df28a1e8e189f148e7d5b38fb487c7751"
+    },
+    {
+      "path": "src/records.js",
+      "role": "mechanics",
+      "sha256": "56f460d58e88efe9c2eef83fe025056487df1e1e002241dddb96c3952ea760e9"
+    },
+    {
+      "path": "src/feedback.js",
+      "role": "mechanics",
+      "sha256": "6f8a4f35f4bbbfcad691c2a217b2b35e4e6e184780e99266a18f85cd3c22a891"
+    },
+    {
+      "path": "src/sound.js",
+      "role": "mechanics",
+      "sha256": "9b595cd68584040886f3bb59e22c269bb36c2617ccd42b4a11d8429039ea4bd6"
+    },
+    {
+      "path": "src/game.js",
+      "role": "supporting",
+      "sha256": "f83a4e6f256201e1b73eb8fe470c2d8b3f1ee896f5ea901a0a8959c26d0dc0a7"
+    },
+    {
+      "path": "index.html",
+      "role": "supporting",
+      "sha256": "3c5c25eb63d51437b9877875f8d425da16902b5d2703396050e3374fbd3d8e9a"
+    },
+    {
+      "path": "README.md",
+      "role": "supporting",
+      "sha256": "4160df514444bbfeec1b73a017f6eaf84949fdb051a6f676eb81bba45f765b5c"
+    },
+    {
+      "path": "QA.md",
+      "role": "supporting",
+      "sha256": "854ada084d9a7cae9da4e5703b6cb9de48c50e7e45c3443c24cd58761ee409ef"
+    },
+    {
+      "path": "ROADMAP.md",
+      "role": "supporting",
+      "sha256": "028b95b55318bbaecfb1a51414adde397a5819efc81686b3e4a54a843794dc80"
+    },
+    {
+      "path": "package.json",
+      "role": "supporting",
+      "sha256": "2d21e430d98f6fc2bf45e34e88330b9d31ffc1014c4ebf8460e0a4da81265a24"
+    },
+    {
+      "path": "tests/physics.test.cjs",
+      "role": "supporting",
+      "sha256": "73ae940bf741c348c1413cb0d2ce50508440a0cbc105cba89f42b8b1f7b9f7a3"
+    },
+    {
+      "path": "tests/feedback-records.test.cjs",
+      "role": "supporting",
+      "sha256": "3653297a9b1e20af11359c6397a979f3839b97ab52f9ef6015ad25d888504c3a"
+    }
+  ],
+  "runtime_handoff": {
+    "filename": "wiki-integration-handoff-v0.4.1.json",
+    "sha256": "75df251acded91b7e02a2f9b0890c709f9c54bf8247ee7fc2c4a0acef20b5037",
+    "version": "0.4.1",
+    "reviewed_date": "2026-10-01",
+    "supporting_files_refreshed": [
+      "src/game.js",
+      "index.html",
+      "README.md",
+      "QA.md",
+      "ROADMAP.md",
+      "package.json"
+    ],
+    "location_note": "The supplied handoff was located in task-9/deliverables, sibling to the rebound-relay source folder."
+  },
+  "verified_ui": {
+    "difficulty_selection": "direct named buttons",
+    "names": [
+      "Chill",
+      "Relay",
+      "Overdrive"
+    ],
+    "pointer": [
+      "click",
+      "tap"
+    ],
+    "keyboard": [
+      "Tab to focus",
+      "Space or Enter to select"
+    ],
+    "labels": [
+      "Select",
+      "Selected"
+    ],
+    "selection_statuses": [
+      "ready",
+      "over"
+    ],
+    "locked_statuses": [
+      "running",
+      "paused"
+    ],
+    "selection_starts_run": false,
+    "target_cue": "green target in the arena",
+    "gate_hud_present": false
+  },
+  "runtime_owner_browser_evidence": {
+    "path": "evidence/v0.4.1/browser-results.json",
+    "sha256": "97bd998324d8950db44f3e357b85a3ce79d4967f1fd734f25b8d5e80355dbc93",
+    "passed": 28,
+    "runtime_exceptions": 0,
+    "note": "Existing runtime-owner results reviewed for mouse, native keyboard, touch mode selection, locking and removed HUD; not rerun by the wiki task."
+  },
+  "local_integration": {
+    "docs_commit": "0a21dba9906f13e8276e9ebfafea8bdc605055b6",
+    "docs_branch": "docs/rebound-relay-wiki",
+    "original_manifest_sha256": "b3363651f01d37b92bc0ea8723c6b7a49339929b9e9f92d9e164ae7337934f30",
+    "checked_utc": "2026-10-01T00:38:11.527567+00:00",
+    "preintegration_all_13_source_hashes_match": true,
+    "mechanics_unchanged": true,
+    "supporting_changes": [
+      {
+        "path": "src/game.js",
+        "before_sha256": "18eeaa5fb8ba4e7ecef4c57a905f6727973b77125327eb960c2a0d99b05973eb",
+        "after_sha256": "f83a4e6f256201e1b73eb8fe470c2d8b3f1ee896f5ea901a0a8959c26d0dc0a7"
+      },
+      {
+        "path": "index.html",
+        "before_sha256": "2e644da838f7399ab4d1516c5d64d6580eb982804c699f4c05e8b1e4c5b9a715",
+        "after_sha256": "3c5c25eb63d51437b9877875f8d425da16902b5d2703396050e3374fbd3d8e9a"
+      },
+      {
+        "path": "README.md",
+        "before_sha256": "03676a929e40bb817d1686f2c0d49b8924e700e7a1033159af84ca26e3ba3d94",
+        "after_sha256": "4160df514444bbfeec1b73a017f6eaf84949fdb051a6f676eb81bba45f765b5c"
+      },
+      {
+        "path": "QA.md",
+        "before_sha256": "d44cd413da3a03f21971acd37b64c1c9d5468aa132189b140bb569f7d797a42d",
+        "after_sha256": "854ada084d9a7cae9da4e5703b6cb9de48c50e7e45c3443c24cd58761ee409ef"
+      },
+      {
+        "path": "ROADMAP.md",
+        "before_sha256": "f6ee111252a9682223da497ffff2a58eed173072744b49087b2e7ad6c678db96",
+        "after_sha256": "028b95b55318bbaecfb1a51414adde397a5819efc81686b3e4a54a843794dc80"
+      }
+    ],
+    "reason": "Expected menu Guide link, keyboard event isolation for the link and integration-status documentation only; wiki HTML/CSS copied unchanged.",
+    "original_runtime_handoff_retained": true,
+    "browser_evidence": {
+      "path": "evidence/wiki-integration/browser-results.json",
+      "sha256": "2c30dcd693137c6a872d712f5c11aa2af877d730d790d383e03cbacb68d38374",
+      "passed": 11
+    }
+  },
+  "documentation_revision": {
+    "name": "plain-language review",
+    "checked_date": "2026-10-01",
+    "scope": "All player-facing wiki content; unchanged rules, mode catalog, anchors, CSS and relative return links.",
+    "base_docs_commit": "0a21dba9906f13e8276e9ebfafea8bdc605055b6"
+  }
+}

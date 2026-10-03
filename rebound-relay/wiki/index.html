@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5ee">
+  <meta name="description" content="How to play Rebound Relay: 90-second rallies, scoring, targets, controls, difficulty modes, settings, and local bests.">
+  <title>Rebound Relay &mdash; How to play</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to guide</a>
+  <header class="site-header wrap">
+    <a class="brand" href="#main" aria-label="Rebound Relay guide, top"><span class="brand-mark" aria-hidden="true">&#8599;</span><span>REBOUND<br>RELAY <small>GAME GUIDE</small></span></a>
+    <a class="game-link" href="../index.html"><span aria-hidden="true">&#8592;</span> Back to game</a>
+  </header>
+  <nav class="guide-nav wrap" aria-label="Guide sections">
+    <a href="#quick-start">Start a run</a><a href="#scoring">Scoring</a><a href="#targets">Targets</a><a href="#modes">Difficulty</a><a href="#controls">Controls</a><a href="#settings">Settings</a><a href="#limits">Limits</a>
+  </nav>
+  <main id="main" class="wrap" tabindex="-1">
+    <section class="hero" aria-labelledby="guide-title">
+      <div class="hero-copy">
+        <h1 id="guide-title">How to play</h1>
+        <p class="hero-lead">Control your bumper and knock the ball into the green target. Score as many points as you can before the timer ends.</p>
+        <div class="hero-facts"><span><strong data-rule="duration">90</strong> seconds per run</span><span><strong>3</strong> difficulty modes</span></div>
+        <a class="primary-link" href="#quick-start">Start a run <span aria-hidden="true">&#8594;</span></a>
+      </div>
+      <aside class="relay-card" aria-labelledby="relay-title">
+        <p class="eyebrow" id="relay-title">TARGET ORDER</p>
+        <div class="relay-diagram" role="img" aria-label="Targets advance clockwise: North, East, South, West, then North again. Their position along each wall changes.">
+          <span class="wall north">01 &middot; NORTH</span><span class="wall east">02 &middot; EAST</span><span class="wall south">03 &middot; SOUTH</span><span class="wall west">04 &middot; WEST</span>
+          <span class="relay-arrow" aria-hidden="true">&#8635;</span>
+        </div>
+        <p>After a goal, the target moves to the next wall. The same ball keeps moving.</p>
+      </aside>
+    </section>
+
+    <section id="quick-start" class="guide-section" aria-labelledby="start-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">01</span><div><h2 id="start-title">Start a run</h2></div></div>
+      <ol class="steps">
+        <li><span class="step-number" aria-hidden="true">1</span><h3>Select a mode</h3><p>Click or tap <strong>Chill</strong>, <strong>Relay</strong>, or <strong>Overdrive</strong>, then select <strong>Start</strong>. Chill has the widest targets and slowest ball.</p></li>
+        <li><span class="step-number" aria-hidden="true">2</span><h3>Steer into the ball</h3><p>The ball launches automatically. Use <kbd>WASD</kbd>, the arrow keys, or the touch joystick to steer your bumper into it. Release steering to brake.</p></li>
+        <li><span class="step-number" aria-hidden="true">3</span><h3>Aim for the target</h3><p>The whole ball must fit within the green target when it reaches the wall. A miss rebounds off the wall, so keep playing.</p></li>
+        <li><span class="step-number" aria-hidden="true">4</span><h3>Follow the next target</h3><p>A goal adds points and moves the target clockwise. The ball rebounds without resetting either the ball or your bumper to the center.</p></li>
+      </ol>
+      <p class="note">There are no breaks between goals. The ball keeps moving at a minimum speed, and the run ends when the timer reaches zero.</p>
+    </section>
+
+    <section id="scoring" class="guide-section" aria-labelledby="scoring-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">02</span><div><h2 id="scoring-title">Goal value and wall hits</h2></div></div>
+      <p class="section-lead">Each new target starts worth <strong>500 points</strong>. Each unique wall the ball hits before a goal deducts <strong>100</strong> from that goal's value. Repeated hits on the same wall make no further deduction, and your bumper touching a wall does not count.</p>
+      <ol class="charge-ladder" aria-label="Goal value by number of unique walls hit before scoring">
+        <li><span>No wall hits</span><strong data-points="0">500</strong><small>Fresh target</small></li>
+        <li><span>1 unique wall</span><strong data-points="1">400</strong><small>100 deducted</small></li>
+        <li><span>2 unique walls</span><strong data-points="2">300</strong><small>200 deducted</small></li>
+        <li><span>3 unique walls</span><strong data-points="3">200</strong><small>300 deducted</small></li>
+        <li><span>4 unique walls</span><strong data-points="4">100</strong><small>400 deducted</small></li>
+      </ol>
+      <div class="two-columns">
+        <div><h3>When a goal scores</h3><p>A bounce outside the green target counts as a wall hit, even on the target's wall. Hitting the target awards the remaining value without another deduction. The next target resets to 500, and all four walls can count again.</p><p>Bumping the ball does not clear its counted walls. Wall hits affect the next goal's value; they never subtract points you have already scored.</p></div>
+        <div class="example"><h3>Repeated-wall example</h3><p class="example-route">North hit <span aria-hidden="true">&#8594;</span> North hit <span aria-hidden="true">&#8594;</span> West hit <span aria-hidden="true">&#8594;</span> Target</p><p>This goal scores <strong>300 points</strong>: North and West each cost 100, while the second North hit costs nothing.</p></div>
+      </div>
+      <p class="note"><strong>SHOT VALUE</strong> shows what the next goal will score. The N/E/S/W indicators show which walls have already counted for that target.</p>
+      <details><summary>Scoring formula and minimum value</summary><div class="detail-body"><p><code>points = 500 - 100 &times; unique walls hit</code></p><p>With only four walls to count, the lowest goal value is 100. Repeated bounces cannot bring it to zero. A <span data-rule="scoreLock">0.2</span>-second lock after a goal prevents immediate duplicate scoring; the just-scored wall does not count during that lock.</p></div></details>
+    </section>
+
+    <section id="targets" class="guide-section" aria-labelledby="targets-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">03</span><div><h2 id="targets-title">Target order and placement</h2></div></div>
+      <div class="two-columns">
+        <div><h3>Where the target moves</h3><p>Every run starts with a target on North, the top wall. Goals advance the target clockwise: <strong>North &#8594; East &#8594; South &#8594; West &#8594; North</strong>.</p><p>The position along each wall is random, including the first target. It stays fixed until you score. Look for the <strong>green target in the arena</strong> to line up your next bump.</p></div>
+        <div><h3>How the ball fits</h3><p>Aim inside the opening rather than at its edge. The ball's center must be at least its <span data-rule="ballRadius">13</span>-pixel radius inside either end of the target for the whole ball to fit.</p></div>
+      </div>
+      <details><summary>Target spacing</summary><div class="detail-body"><p>Distances use a <span data-rule="width">960</span> &times; <span data-rule="height">640</span>-pixel arena that scales to your screen. Target ends stay at least <span data-rule="targetMargin">36</span> pixels from a corner. After a goal, the next target's nearest edge is at least <span data-rule="targetSeparation">240</span> pixels from the ball's center at the scoring contact.</p></div></details>
+    </section>
+
+    <section id="modes" class="guide-section" aria-labelledby="modes-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">04</span><div><h2 id="modes-title">Choose a difficulty</h2></div></div>
+      <p id="mode-selection-instructions">Click or tap <strong>Chill</strong>, <strong>Relay</strong>, or <strong>Overdrive</strong> before starting or after a run finishes. With a keyboard, press <kbd>Tab</kbd> to focus a mode button, then <kbd>Space</kbd> or <kbd>Enter</kbd> to select it. The chosen button says <strong>Selected</strong>; the others say <strong>Select</strong>.</p>
+      <p>Choosing a mode prepares the run. Press <kbd>Tab</kbd> to focus <strong>Start</strong>, then <kbd>Enter</kbd> to begin; the playfield receives keyboard focus automatically. Difficulty is locked during a run, including while paused. All three modes use the same timer and scoring rule, with a separate best for each mode.</p>
+      <div class="table-wrap"><table class="mode-table"><caption>Target widths are arena pixels; speeds are arena pixels per second.</caption><thead><tr><th scope="col">Mode</th><th scope="col">Target width</th><th scope="col">Ball min / max speed</th><th scope="col">Launch speed</th></tr></thead><tbody>
+        <tr data-mode="easy"><th scope="row">Chill <small>Wider &amp; slower</small></th><td data-field="width">200</td><td><span data-field="min">150</span> / <span data-field="max">600</span></td><td data-field="launch">200</td></tr>
+        <tr data-mode="normal"><th scope="row">Relay <small>Medium width &amp; speed</small></th><td data-field="width">152</td><td><span data-field="min">230</span> / <span data-field="max">820</span></td><td data-field="launch">290</td></tr>
+        <tr data-mode="hard"><th scope="row">Overdrive <small>Narrower &amp; faster</small></th><td data-field="width">96</td><td><span data-field="min">320</span> / <span data-field="max">1050</span></td><td data-field="launch">390</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section id="controls" class="guide-section" aria-labelledby="controls-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">05</span><div><h2 id="controls-title">Keyboard and touch controls</h2></div></div>
+      <div class="two-columns controls-columns">
+        <div><h3>Keyboard</h3><dl class="control-list">
+          <div><dt><kbd>Tab</kbd>, then <kbd>Space</kbd> / <kbd>Enter</kbd></dt><dd>Focus and select a mode button before starting or after a run finishes.</dd></div>
+          <div><dt><kbd>WASD</kbd> / arrow keys</dt><dd>Steer your bumper. Release to brake.</dd></div>
+          <div><dt><kbd>Space</kbd></dt><dd>Boost in your steering direction, or your last steering direction if you are not steering.</dd></div>
+          <div><dt><kbd>Enter</kbd></dt><dd>Start, resume a paused run, or play again after the result.</dd></div>
+          <div><dt><kbd>Esc</kbd></dt><dd>Pause or resume an active run.</dd></div>
+          <div><dt><kbd>R</kbd></dt><dd>Restart immediately in the selected mode.</dd></div>
+        </dl><p class="small-copy">When a button has keyboard focus, Enter or Space activates that button. Starting or resuming focuses the playfield automatically. To return focus after using another button, press Tab until the playfield is focused, or click or tap it.</p></div>
+        <div class="touch-card"><h3>Touch</h3><p>Drag the on-screen joystick with your left thumb to steer; release it to brake. Tap <strong>Boost</strong> with your right thumb while continuing to steer.</p><p>Tap <strong>Pause / Resume</strong> to stop or continue the run, or <strong>Restart</strong> to begin again. Releasing or cancelling a joystick touch clears its steering input.</p><div class="touch-illustration" aria-hidden="true"><span class="stick-outline"><i></i></span><span class="touch-boost">BOOST</span></div></div>
+      </div>
+      <div class="boost-note"><strong>Boost recharges in <span data-rule="boostCooldown">1</span> second.</strong><p>Press or tap again when it is ready. Holding Space or Boost does not repeat it, and a press during recharge will not fire later. The display shows <strong>BOOST READY</strong> or the remaining recharge time.</p></div>
+      <details><summary>Movement speeds and boost</summary><div class="detail-body"><p>The steering speed limit is <span data-rule="playerSpeed">340</span> arena pixels per second. Boost adds a <span data-rule="boostImpulse">260</span>-pixel-per-second impulse in your steering direction and raises the speed limit to <span data-rule="boostSpeed">560</span> for <span data-rule="boostDuration">0.28</span> seconds. Bumping transfers momentum to the ball; boost does not aim it for you.</p></div></details>
+    </section>
+
+    <section id="settings" class="guide-section" aria-labelledby="settings-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">06</span><div><h2 id="settings-title">Settings and local bests</h2></div></div>
+      <div class="settings-grid">
+        <article><span class="setting-icon" aria-hidden="true">&#8545;</span><h3>Pause and restart</h3><p>Pause stops the timer and keeps your positions, score and counted walls. Switching tabs or windows also pauses the game and clears steering input. Select <strong>Resume</strong> when you return.</p><p>Restart begins a fresh run in the same mode, resetting the score, timer, counted walls and boost recharge. It discards the unfinished run, which cannot update your best.</p><p>The game's <strong>Guide</strong> link opens a new tab. Switch back to the original game tab to resume that run; <strong>Back to game</strong> opens a fresh game page.</p></article>
+        <article><span class="setting-icon" aria-hidden="true">&#9834;</span><h3>Sound</h3><p>Select <strong>Sound</strong> to turn effects on or off. Sound begins after a play gesture such as Start or Restart, or after turning it on. Muting stops queued tones, and the setting is saved when browser storage is available.</p></article>
+        <article><span class="setting-icon" aria-hidden="true">&#8776;</span><h3>Calm</h3><p><strong>Calm: on</strong> removes camera shake, particles, expanding rings and trails. Goal points remain visible without rising, and the physics, scoring and difficulty stay the same.</p><p>Calm follows your system's reduced-motion setting by default. An explicit choice is saved when browser storage is available.</p></article>
+        <article><span class="setting-icon" aria-hidden="true">&#9733;</span><h3>Local bests</h3><p>Only completed runs can update your best. Each mode saves its own record in this browser; records do not sync to another browser or device. Restarting keeps existing bests.</p><p>If storage is blocked or fails, <strong>Tab best</strong> lasts only until this game page is closed or reloaded. Earlier bonus-scoring bests remain separate and are not compared with the current records.</p></article>
+      </div>
+    </section>
+
+    <section id="limits" class="guide-section limits-section" aria-labelledby="limits-title">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">07</span><div><h2 id="limits-title">Current limits</h2></div></div>
+      <div class="two-columns"><div><h3>Local play</h3><p>The game needs no account or online scoring service and can open directly from <code>index.html</code>. At sustained frame rates below 10 FPS, the timer can run slower than real time.</p></div><div><h3>Planned features</h3><p><strong>Leaderboards and obstacle maps are planned but unavailable.</strong> This version has no online score submission or map selector.</p><p>Physical-phone controls, audible sound quality and difficulty balance still need playtesting.</p></div></div>
+      <details><summary>Version and source</summary><div class="detail-body"><p>This guide covers <strong>Playtest 0.4.1</strong>, checked on <time datetime="2026-10-01">October 1, 2026</time>. <a href="source-basis.json">Source versions and SHA-256 hashes</a> identify the files used to verify the rules.</p><p class="basis-tag">Mechanics basis <code id="basis-hash">551218a34817765d</code></p></div></details>
+    </section>
+  </main>
+  <footer class="site-footer wrap"><p>REBOUND RELAY <span>&middot;</span> GAME GUIDE</p><div><a href="#main">Back to top &#8593;</a><a href="../index.html">Back to game &#8594;</a></div></footer>
+</body>
+</html>
