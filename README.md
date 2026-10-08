@@ -18,10 +18,16 @@ or build step. It makes no external runtime requests.
 
 ## Destinations
 
-The section destinations are Arcade at `/arcade/` and Lab at `/lab/lab-space/`.
+The section destinations are Arcade at `/arcade/`, Lab at `/lab/lab-space/`,
+and Library at `/library/`.
 Individual games are reached through the Arcade rather than homepage shortcuts.
 Root-relative links preserve routing under the shared hostname. Lab has a
 published benchmark discovery catalog; the homepage uses only its section name.
+
+Library opens the separate optimized Hillside Library scene hosted from
+`Pazneria/library`. Its source and production assets stay in that project repo;
+the frozen Library benchmark remains in Lab. Verify the published scene and its
+asset loading before merging the homepage link.
 
 The Arcade entry renders its 3D scene on supported desktop and mobile browsers.
 Coarse-pointer devices or widths below 768px use touch controls and a lower
