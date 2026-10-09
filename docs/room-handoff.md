@@ -1,10 +1,16 @@
 # Entry preview handoff v1
 
 The homepage uses real, unmodified default entry screenshots, captured on
-2026-10-09 at 1707 x 923. Arcade and Library retain their published v1 captures.
-The Lab v2 replacement is an owner-reviewed isolated draft capture from Lab
-commit `e821df05d19e82cb46ad5eabd7c8401cf040919b`; it is prepared, not yet published.
-All three include the rooms' visible host HUDs.
+2026-10-09 at 1707 x 923. Arcade and Library retain their v1 entry cameras, with
+owner-reviewed refreshes from Arcade PR48 at
+`461c5e7f917edb78854c3de8d38050a76bf4bbf0` and Library PR7 at
+`5f81273b17a47438bdda50e244c4dbf921b14216`. The already-published Lab v2 image
+remains the isolated draft capture from Lab source
+`e821df05d19e82cb46ad5eabd7c8401cf040919b` released in homepage PR67.
+The manifest preserves each owner's original capture-time provenance, including
+draft or publication-pending descriptions; these are not current release status.
+See `library-preview-refresh.md` for the Library capture evidence.
+All three include the rooms' visible entry UI.
 No room engines run on the homepage. Portrait previews are a center crop and
 cannot promise pixel-identical alignment with responsive destination cameras.
 
@@ -147,8 +153,12 @@ cover is removed. Do not mark ready at import or renderer construction.
 
 Camera framing must match the current viewport. These captures match a desktop
 aspect of 1707/923; resize/portrait uses a representative crop and a short fade,
-not a claim of perfect alignment. If a room's entry camera or HUD changes,
-replace its canonical capture and bump the camera/version contract together.
+not a claim of perfect alignment. If a room's entry camera or composition
+requires a new matching-entry contract, replace its capture and bump that room's
+camera revision together. Owner-reviewed image refreshes at the same pose and
+contract retain their camera revision and coordinate the replacement image with
+the matching room release. Do not change canonical bootstrap fingerprints merely
+to refresh image bytes.
 
 There is no browser-independent guarantee of uninterrupted pixels across two
 documents. The inline bootstrap prevents an unthemed destination paint once
@@ -182,10 +192,28 @@ owner-reviewed default frame at 1707 x 923, Chrome 154, NVIDIA RTX 5070 Ti, DPR 
 Deploy the image, entry metadata, homepage producer, canonical bootstrap and
 matching Lab inline/controller together. The prepared canonical Git blob is
 `3a5aff4177e65fc68ddf74be4d0d09c71778f68a`, SHA256 `711b2e813bbf790c53bed4b66aaa163380b2a9f7c59ebc2caf806723d381f4b6`. This draft is based on homepage
-commit `30eb1ebc5d42a47759c20ca1fec4ce7b56aa07de`. Before coordinated publication,
-pin the approved homepage patch commit in the Lab inline source comment and its
-fingerprint test. The prepared Lab source comment identifies the baseline plus
-prepared patch instead of claiming the patched source exists at the baseline
-commit. Publish the matching Lab consumer first, then the homepage producer,
-image and manifest; the brief mixed-version interval uses normal Lab entry.
-Arcade and Library remain on their existing v1 integrations throughout.
+commit `30eb1ebc5d42a47759c20ca1fec4ce7b56aa07de`. The published Lab consumer pins
+approved homepage source commit `39d91163736ed0242a3c381e87de401582c33b4b`.
+That source remains byte-identical in this Arcade/Library image-only refresh;
+retain the verified Lab pin and canonical fingerprint. Lab PR64 was published
+before homepage PR67 so the v2 producer and consumer match. Arcade and Library
+remain on their existing v1 integrations throughout.
+
+## Coordinated Arcade and Library image refreshes
+
+The Arcade JPEG is 270048 bytes, SHA256
+`8b6e1091eda5dc764dad4fde59c1601d6e6fbae5b94f7ef5cf4c5fb39aaa3a6b`.
+The Library JPEG is 434951 bytes, SHA256
+`ad96973832f16f525e3fd203602359a8e537bdfa6e50c9a22448dd6e1f9bded6`.
+Both are exact owner-supplied captures from the reviewed commits above. Preserve
+the already-live Lab JPEG, Lab manifest record, theme, layout and all scripts.
+Publish this refresh only after both matching room deployments are live and
+their public assets are verified against their release source.
+
+Arcade and Library inline bootstraps retain v1 canonical source pinned to
+homepage commit `715d292a94ddda4f92eaf3c67b3f18edb073ed47`, Git blob
+`846960bd15c10cfb1bcf835173022bc42bcdbd19`. Those consumers accept the unchanged
+Arcade/Library v1 producer records. Do not repin them to a newer homepage commit
+whose canonical source has the Lab v2 map without explicitly copying and
+re-verifying that source. No consumer pin or canonical source change is needed
+for these two image refreshes.

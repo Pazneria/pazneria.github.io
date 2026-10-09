@@ -15,10 +15,13 @@
       "path": "assets/images/rooms/arcade-entry.jpg",
       "width": 1707,
       "height": 923,
-      "bytes": 161170,
-      "sha256": "4d27bc621aecfef0283b0233ec2413f403f330f489bcd71d731d86d697bc1dd7",
+      "bytes": 270048,
+      "sha256": "8b6e1091eda5dc764dad4fde59c1601d6e6fbae5b94f7ef5cf4c5fb39aaa3a6b",
       "includes_room_hud": true,
-      "editing": "None; actual published entry screenshot"
+      "editing": "None; unmodified candidate entry capture at source_commit. Coordinated publication pending. Current website navigation and reticle are included; no Claude-authored HUD.",
+      "source_repository": "Pazneria/arcade",
+      "source_commit": "461c5e7f917edb78854c3de8d38050a76bf4bbf0",
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti Laptop GPU (0x00002F58) Direct3D11 vs_5_0 ps_5_0, D3D11)"
     },
     {
       "room": "lab",
@@ -45,10 +48,13 @@
       "path": "assets/images/rooms/library-entry.jpg",
       "width": 1707,
       "height": 923,
-      "bytes": 237295,
-      "sha256": "d8892413d57035d3c8164eeb5325ef774316a76b1acf52ba608302ee609737b8",
+      "bytes": 434951,
+      "sha256": "ad96973832f16f525e3fd203602359a8e537bdfa6e50c9a22448dd6e1f9bded6",
       "includes_room_hud": true,
-      "editing": "None; actual published entry screenshot"
+      "editing": "None; actual locally rendered draft PR7 entry screenshot; publication pending",
+      "source_commit": "5f81273b17a47438bdda50e244c4dbf921b14216",
+      "source_status": "Unpublished draft Library PR7",
+      "capture_url": "http://127.0.0.1:51215/library/"
     }
   ]
 }
