@@ -59,7 +59,7 @@ test('Arcade replacement is the exact PR48 candidate capture at the unchanged v1
 });
 
 test('Library replacement is the exact owner-supplied PR7 capture at the unchanged v1 camera', () => {
-  const original = {"room":"library","source_url":"https://pazneria.github.io/library/","capture_date":"2026-10-09","camera":"default-entry-v1","path":"assets/images/rooms/library-entry.jpg","width":1707,"height":923,"bytes":434951,"sha256":"ad96973832f16f525e3fd203602359a8e537bdfa6e50c9a22448dd6e1f9bded6","includes_room_hud":true,"editing":"None; actual locally rendered draft PR7 entry screenshot; publication pending","source_commit":"5f81273b17a47438bdda50e244c4dbf921b14216","source_status":"Unpublished draft Library PR7","capture_url":"http://127.0.0.1:51215/library/"};
+  const original = {"room":"library","source_url":"https://pazneria.github.io/library/","capture_date":"2026-10-09","camera":"default-entry-v1","path":"assets/images/rooms/library-entry.jpg","width":1707,"height":923,"bytes":434951,"sha256":"ad96973832f16f525e3fd203602359a8e537bdfa6e50c9a22448dd6e1f9bded6","includes_room_hud":true,"editing":"None; actual local entry capture of the byte-identical published Library release","source_commit":"5f81273b17a47438bdda50e244c4dbf921b14216","source_status":"Published Library PR7; runtime bytes verified over HTTP","capture_url":"http://127.0.0.1:51215/library/","publish_commit":"7217dcc5cf88e413630324a7859a67ccb8db3e19","deployment_url":"https://github.com/Pazneria/library/actions/runs/37900515077"};
   const entry = manifest.entries.find(e => e.room === 'library');
   assert.deepEqual(entry, original);
   const image = readFileSync(resolve(__dirname, '..', entry.path));
