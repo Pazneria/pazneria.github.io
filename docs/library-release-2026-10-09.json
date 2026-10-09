@@ -1,0 +1,133 @@
+{
+  "recordedUtc": "2026-10-09T07:46:50.415535+00:00",
+  "room": "library",
+  "liveUrl": "https://pazneria.github.io/library/",
+  "pullRequest": "https://github.com/Pazneria/library/pull/7",
+  "testedHead": "5f81273b17a47438bdda50e244c4dbf921b14216",
+  "previousMain": "f47874c78844936ee048cf45b81cf3827f5b35b7",
+  "mergeCommit": "7217dcc5cf88e413630324a7859a67ccb8db3e19",
+  "mergeParents": [
+    "f47874c78844936ee048cf45b81cf3827f5b35b7",
+    "5f81273b17a47438bdda50e244c4dbf921b14216"
+  ],
+  "testedAndPublishedTree": "204fc5ffc656daabb397324dcd6220b6e8c40fa0",
+  "treeByteExactToTested": true,
+  "pagesRun": {
+    "conclusion": "success",
+    "databaseId": 37900515077,
+    "event": "dynamic",
+    "headSha": "7217dcc5cf88e413630324a7859a67ccb8db3e19",
+    "status": "completed",
+    "url": "https://github.com/Pazneria/library/actions/runs/37900515077",
+    "workflowName": "pages-build-deployment"
+  },
+  "pagesBuild": {
+    "status": "built",
+    "commit": "7217dcc5cf88e413630324a7859a67ccb8db3e19",
+    "updated_at": "2026-10-09T07:42:20Z",
+    "duration": 23142,
+    "error": {
+      "message": null
+    }
+  },
+  "servedAssets": [
+    {
+      "url": "https://pazneria.github.io/library/assets/index-BEw7uotr.js",
+      "status": 200,
+      "bytes": 741071,
+      "sha256": "52ac23041d9abd4702a8ee937b0dc76641135a5e6f174955b4e29bd4f0c8bf45",
+      "matchesTested": true
+    },
+    {
+      "url": "https://pazneria.github.io/library/assets/index-DBfS7BKH.css",
+      "status": 200,
+      "bytes": 12098,
+      "sha256": "d5b3ea54f202a26286fdf2329acad7020e1b491a5643e4caea1631288e903825",
+      "matchesTested": true
+    },
+    {
+      "url": "https://pazneria.github.io/library/assets/rug-albedo-DJLqXdw0.png",
+      "status": 200,
+      "bytes": 864482,
+      "sha256": "e1f0ec48a3bfa213696b9a0dc9e9a0d229c3bfeb11b830405f6af39ba8db7ee4",
+      "matchesTested": true
+    },
+    {
+      "url": "https://pazneria.github.io/library/assets/rug-detail-BtSd2KDf.png",
+      "status": 200,
+      "bytes": 161921,
+      "sha256": "a9634a8ba4c2d49e99a38e49ad182bbafdc9794c0bd552f10ee42dd720d21be4",
+      "matchesTested": true
+    },
+    {
+      "url": "https://pazneria.github.io/library/",
+      "status": 200,
+      "bytes": 15139,
+      "sha256": "781f520a9251537ae6800157a2d71a51fbb179b541dec8e47ca082c8eb639ec2",
+      "matchesTested": true
+    }
+  ],
+  "publicRoutes": [
+    {
+      "url": "https://pazneria.github.io/library",
+      "status": 200,
+      "finalUrl": "https://pazneria.github.io/library/",
+      "redirects": [
+        {
+          "status": 301,
+          "from": "https://pazneria.github.io/library",
+          "to": "https://pazneria.github.io/library/"
+        }
+      ],
+      "matchesTestedIndex": true
+    },
+    {
+      "url": "https://pazneria.github.io/library/index.html",
+      "status": 200,
+      "finalUrl": "https://pazneria.github.io/library/index.html",
+      "redirects": [],
+      "matchesTestedIndex": true
+    },
+    {
+      "url": "https://pazneria.github.io/",
+      "status": 200,
+      "finalUrl": "https://pazneria.github.io/",
+      "redirects": [],
+      "matchesTestedIndex": null
+    }
+  ],
+  "exitAndPrivateBoundaryChecks": {
+    "publicHomeExitUrlPreserved": true,
+    "privateDeskUrlByteExactAndNotFetched": true,
+    "nativeAltXPresent": true,
+    "rigidHingeAndThresholdPresent": true,
+    "threePremiumEditionTitlesPresent": true,
+    "canonicalHandoffKeyPresent": true,
+    "noPrivateUrlInHtml": true
+  },
+  "privateDestinationVisited": false,
+  "newCredentialsOrPermissions": false,
+  "postMergeGraphicsUsed": false,
+  "matchingHomepageEntry": {
+    "room": "library",
+    "source_url": "https://pazneria.github.io/library/",
+    "capture_date": "2026-10-09",
+    "camera": "default-entry-v1",
+    "path": "assets/images/rooms/library-entry.jpg",
+    "width": 1707,
+    "height": 923,
+    "bytes": 434951,
+    "sha256": "ad96973832f16f525e3fd203602359a8e537bdfa6e50c9a22448dd6e1f9bded6",
+    "includes_room_hud": true,
+    "editing": "None; actual local entry capture of the byte-identical published Library release",
+    "source_commit": "5f81273b17a47438bdda50e244c4dbf921b14216",
+    "source_status": "Published Library PR7; runtime bytes verified over HTTP",
+    "capture_url": "http://127.0.0.1:51215/library/",
+    "publish_commit": "7217dcc5cf88e413630324a7859a67ccb8db3e19",
+    "deployment_url": "https://github.com/Pazneria/library/actions/runs/37900515077"
+  },
+  "homepageRefreshDeployment": "Pending homepage owner; this branch does not modify main",
+  "homepageBase": "30eb1ebc5d42a47759c20ca1fec4ce7b56aa07de",
+  "otherHomepageEntriesPreserved": true,
+  "handoffImageEdited": false
+}

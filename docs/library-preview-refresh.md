@@ -1,7 +1,9 @@
 # Prepared Library entrance refresh
 
 This image is a direct, unedited Playwright JPEG capture of the real built
-Library PR7 at `5f81273b17a47438bdda50e244c4dbf921b14216`. It has not been published. Merge this image refresh
+Library PR7 at `5f81273b17a47438bdda50e244c4dbf921b14216`. The byte-identical
+runtime was published as merge `7217dcc5cf88e413630324a7859a67ccb8db3e19` and all public
+HTML/JS/CSS/rug assets verified by HTTP. The homepage image refresh is still pending. Merge this image refresh
 only when that exact Library runtime is approved for deployment, so the homepage
 preview and destination represent the same room. If the runtime changes, capture
 the entrance again before publishing its preview.

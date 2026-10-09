@@ -3,8 +3,9 @@
 The homepage uses real, unmodified default-entry screenshots captured on
 2026-10-09 at 1707 × 923, including the rooms' visible HUDs. Arcade and Lab came
 from their published entries. The prepared Library refresh comes from locally
-rendered draft Library PR7 at `5f81273b17a47438bdda50e244c4dbf921b14216`; its
-publication remains pending. See `library-preview-refresh.md` for provenance.
+rendered tested Library PR7 at `5f81273b17a47438bdda50e244c4dbf921b14216`. That
+byte-identical runtime is now published; this homepage image refresh remains
+pending. See `library-preview-refresh.md` for provenance.
 No room engines run on the homepage. Portrait previews are a center crop and
 cannot promise pixel-identical alignment with responsive destination cameras.
 

@@ -40,10 +40,12 @@
       "bytes": 434951,
       "sha256": "ad96973832f16f525e3fd203602359a8e537bdfa6e50c9a22448dd6e1f9bded6",
       "includes_room_hud": true,
-      "editing": "None; actual locally rendered draft PR7 entry screenshot; publication pending",
+      "editing": "None; actual local entry capture of the byte-identical published Library release",
       "source_commit": "5f81273b17a47438bdda50e244c4dbf921b14216",
-      "source_status": "Unpublished draft Library PR7",
-      "capture_url": "http://127.0.0.1:51215/library/"
+      "source_status": "Published Library PR7; runtime bytes verified over HTTP",
+      "capture_url": "http://127.0.0.1:51215/library/",
+      "publish_commit": "7217dcc5cf88e413630324a7859a67ccb8db3e19",
+      "deployment_url": "https://github.com/Pazneria/library/actions/runs/37900515077"
     }
   ]
 }
