@@ -130,3 +130,20 @@ test('loading cover keeps keyboard focus in visible controls and respects live a
   assert.equal(fading.window.pazneriaRoomHandoff.active, false);
   assert.equal(fading.timers.size, 0);
 });
+
+test('camera revisions are room-specific: Lab v2 and unchanged Arcade/Library v1', () => {
+  for (const [room, path, camera] of [['arcade', '/arcade/', 'default-entry-v1'], ['lab', '/lab/lab-space/', 'default-entry-v2'], ['library', '/library/', 'default-entry-v1']]) {
+    const change = { room, path, camera, image: 'https://pazneria.github.io/assets/images/rooms/' + room + '-entry.jpg' };
+    const valid = setup({ path, change });
+    assert.equal(valid.window.pazneriaRoomHandoff?.active, true);
+    assert.equal(valid.window.pazneriaRoomHandoff.camera, camera);
+    valid.window.pazneriaRoomHandoff.fail();
+    for (const wrongCamera of ['default-entry-v1', 'default-entry-v2', 'default-entry-v3', undefined]) {
+      if (wrongCamera === camera) continue;
+      const invalid = setup({ path, change: { ...change, camera: wrongCamera } });
+      assert.equal(invalid.window.pazneriaRoomHandoff, undefined);
+      assert.equal(invalid.document.head.children.length, 0);
+      assert.equal(invalid.consumed(), true);
+    }
+  }
+});

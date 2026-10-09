@@ -1,7 +1,10 @@
 # Entry preview handoff v1
 
-The homepage uses real, unmodified screenshots of the published default entry
-views, captured on 2026-10-09 at 1707 × 923. They include the rooms' visible HUDs.
+The homepage uses real, unmodified default entry screenshots, captured on
+2026-10-09 at 1707 x 923. Arcade and Library retain their published v1 captures.
+The Lab v2 replacement is an owner-reviewed isolated draft capture from Lab
+commit `e821df05d19e82cb46ad5eabd7c8401cf040919b`; it is prepared, not yet published.
+All three include the rooms' visible host HUDs.
 No room engines run on the homepage. Portrait previews are a center crop and
 cannot promise pixel-identical alignment with responsive destination cameras.
 
@@ -63,6 +66,22 @@ the head, and exposes
 and forced colors stay on the existing destination path. Direct header links,
 new tabs and modified clicks do not create a record.
 
+Camera revisions are per room. Keep the numeric transport version `1`, key,
+15s lifetime, destination/image allowlists, recovery timer and fade unchanged:
+
+| Room | Accepted camera |
+| --- | --- |
+| Arcade | `default-entry-v1` |
+| Lab | `default-entry-v2` |
+| Library | `default-entry-v1` |
+
+The homepage producer and canonical consumer use the same `entryCameras` map.
+Lab must copy the updated canonical source exactly. The deployed Arcade and
+Library v1 consumers remain compatible and need no update. The Lab
+controller must also accept only `default-entry-v2`; it still uses `spawn()` and
+default comparison prompt=01 for that one incoming visit. A v1 Lab token falls
+back to normal destination entry. Arcade and Library v1 tokens remain valid.
+
 ## Ready boundary and camera
 
 The camera angles below are radians. All three use a vertical field of view of
@@ -95,7 +114,11 @@ Verified source commits and Git blob hashes:
 The three JPEGs and their SHA256 hashes, byte sizes, capture source URLs and
 dimensions are in `assets/images/rooms/entry-views.json` in the homepage repo.
 Destination owners use that homepage-origin image path; do not duplicate or
-regenerate the captures. They include the published room HUDs.
+regenerate the captures. The Lab entry records the local draft capture URL,
+source commit, prepared status, actual byte size and SHA256; `intended_url` is
+its future public destination. Its QA-only query did not change the renderer,
+pose or prompt. Do not describe that capture or the coordinated patch as live
+until publication is approved and the exact deployed assets are verified.
 
 - Arcade: `assets/arcade-app.js` currently restores inspection state or calls
   `startExplore()` before `loading.finish()`. A valid handoff should use the
@@ -147,3 +170,22 @@ Consume the record once; clear covers on pageshow/Back and release listeners on
 pagehide. Modified clicks and new tabs have no handoff token and stay native.
 Do not change permissions, credentials, site routing, quality budgets, controls,
 or any persistent preference as part of this bridge.
+
+## Coordinated Lab v2 draft
+
+The v2 pose remains x=0, eye=1.62, z=7.3, yaw=0, pitch=-.04, standing with
+zero velocity; vertical FOV=70, near=.04, far=80, Euler YXZ. Version v2 identifies
+the changed composition: Compare Worlds is now the lower screen in the west
+alcove, and the default prompt is 01. The capture is the unedited JPEG quality 78
+owner-reviewed default frame at 1707 x 923, Chrome 154, NVIDIA RTX 5070 Ti, DPR 1.
+
+Deploy the image, entry metadata, homepage producer, canonical bootstrap and
+matching Lab inline/controller together. The prepared canonical Git blob is
+`3a5aff4177e65fc68ddf74be4d0d09c71778f68a`, SHA256 `711b2e813bbf790c53bed4b66aaa163380b2a9f7c59ebc2caf806723d381f4b6`. This draft is based on homepage
+commit `30eb1ebc5d42a47759c20ca1fec4ce7b56aa07de`. Before coordinated publication,
+pin the approved homepage patch commit in the Lab inline source comment and its
+fingerprint test. The prepared Lab source comment identifies the baseline plus
+prepared patch instead of claiming the patched source exists at the baseline
+commit. Publish the matching Lab consumer first, then the homepage producer,
+image and manifest; the brief mixed-version interval uses normal Lab entry.
+Arcade and Library remain on their existing v1 integrations throughout.

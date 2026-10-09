@@ -6,14 +6,19 @@
     lab: '/lab/lab-space/',
     library: '/library/',
   };
+  const entryCameras = Object.freeze({
+    arcade: 'default-entry-v1',
+    lab: 'default-entry-v2',
+    library: 'default-entry-v1',
+  });
   let record;
   try {
     record = JSON.parse(window.sessionStorage.getItem(KEY));
     window.sessionStorage.removeItem(KEY);
   } catch { return; }
-  if (!record || record.version !== 1 || record.camera !== 'default-entry-v1') return;
+  if (!record || record.version !== 1) return;
   if (!Number.isFinite(record.createdAt) || record.createdAt > Date.now() || Date.now() - record.createdAt > 15000) return;
-  if (!Object.hasOwn(destinations, record.room) || record.path !== destinations[record.room] || window.location.pathname !== record.path) return;
+  if (!Object.hasOwn(destinations, record.room) || record.path !== destinations[record.room] || window.location.pathname !== record.path || record.camera !== entryCameras[record.room]) return;
   let image;
   try { image = new URL(record.image, window.location.href); } catch { return; }
   const allowedImage = '/assets/images/rooms/' + record.room + '-entry.jpg';

@@ -2,6 +2,11 @@
   'use strict';
 
   const HANDOFF_KEY = 'pazneria.room-handoff.v1';
+  const entryCameras = Object.freeze({
+    arcade: 'default-entry-v1',
+    lab: 'default-entry-v2',
+    library: 'default-entry-v1',
+  });
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const forcedColors = window.matchMedia('(forced-colors: active)');
   const root = document.documentElement;
@@ -82,7 +87,7 @@
   function writeHandoff(room, image, destination) {
     const record = {
       version: 1, room: room.dataset.room, path: destination.pathname,
-      image: image.currentSrc || image.src, camera: 'default-entry-v1',
+      image: image.currentSrc || image.src, camera: entryCameras[room.dataset.room],
       createdAt: Date.now(), viewport: { width: window.innerWidth, height: window.innerHeight },
     };
     try { window.sessionStorage.setItem(HANDOFF_KEY, JSON.stringify(record)); } catch { /* Optional bridge only. */ }
