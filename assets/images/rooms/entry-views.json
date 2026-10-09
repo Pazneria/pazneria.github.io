@@ -37,10 +37,13 @@
       "path": "assets/images/rooms/library-entry.jpg",
       "width": 1707,
       "height": 923,
-      "bytes": 237295,
-      "sha256": "d8892413d57035d3c8164eeb5325ef774316a76b1acf52ba608302ee609737b8",
+      "bytes": 434951,
+      "sha256": "ad96973832f16f525e3fd203602359a8e537bdfa6e50c9a22448dd6e1f9bded6",
       "includes_room_hud": true,
-      "editing": "None; actual published entry screenshot"
+      "editing": "None; actual locally rendered draft PR7 entry screenshot; publication pending",
+      "source_commit": "5f81273b17a47438bdda50e244c4dbf921b14216",
+      "source_status": "Unpublished draft Library PR7",
+      "capture_url": "http://127.0.0.1:51215/library/"
     }
   ]
 }
