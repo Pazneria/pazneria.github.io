@@ -17,37 +17,67 @@
     <link rel="preload" href="assets/fonts/instrument-serif-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="assets/js/homepage.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <main class="front-door page-width" id="main" tabindex="-1">
-      <div class="identity">
-        <div class="monogram" aria-hidden="true">J<sup>2</sup></div>
-        <h1>Pazneria</h1>
-      </div>
+    <header class="header page-width">
+      <a class="wordmark" href="#main">Pazneria</a>
+      <nav class="quick-links" aria-label="Destinations">
+        <a href="/arcade/">Arcade</a>
+        <a href="/lab/lab-space/">Lab</a>
+        <a href="/library/">Library</a>
+      </nav>
+    </header>
+    <main id="main" tabindex="-1">
+      <section class="hero page-width" aria-labelledby="homepage-title">
+        <div class="identity">
+          <div class="monogram" aria-hidden="true">J<sup>2</sup></div>
+          <h1 id="homepage-title">Pazneria</h1>
+        </div>
+        <a class="explore-link" href="#arcade">Explore <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v15M6 13l6 6 6-6" /></svg></a>
+      </section>
 
       <!--
         Navigation overview:
         Each card links to a GitHub Pages project that lives under this domain.
         Use relative paths (/arcade, /library, /school, /lab, /blog) so future project
         repositories publish seamlessly under the shared hostname.
-        To add more destinations (for new games or sections), duplicate a card
+        To add more destinations (for new games or sections), duplicate a section
         and update the href to the project page (e.g. /arcade/new-game).
       -->
-      <nav class="destinations" aria-label="Destinations">
-        <a class="destination destination-primary" href="/arcade/">
-          <span>Arcade</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
-        </a>
-        <a class="destination" href="/lab/lab-space/">
-          <span>Lab</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
-        </a>
-        <a class="destination" href="/library/">
-          <span>Library</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
-        </a>
-      </nav>
+      <div class="destinations page-width">
+        <section class="destination-section" id="arcade" aria-labelledby="arcade-title">
+          <div class="destination-card destination-primary" data-destination>
+            <span class="destination-number" aria-hidden="true">01</span>
+            <div class="destination-content">
+              <h2 id="arcade-title">Arcade</h2>
+              <a class="visit-link" href="/arcade/" data-transition>Visit Arcade <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" /></svg></a>
+            </div>
+            <div class="depth-mark arcade-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          </div>
+        </section>
+        <section class="destination-section" id="lab" aria-labelledby="lab-title">
+          <div class="destination-card" data-destination>
+            <span class="destination-number" aria-hidden="true">02</span>
+            <div class="destination-content">
+              <h2 id="lab-title">Lab</h2>
+              <a class="visit-link" href="/lab/lab-space/" data-transition>Visit Lab <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" /></svg></a>
+            </div>
+            <div class="depth-mark lab-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          </div>
+        </section>
+        <section class="destination-section" id="library" aria-labelledby="library-title">
+          <div class="destination-card" data-destination>
+            <span class="destination-number" aria-hidden="true">03</span>
+            <div class="destination-content">
+              <h2 id="library-title">Library</h2>
+              <a class="visit-link" href="/library/" data-transition>Visit Library <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" /></svg></a>
+            </div>
+            <div class="depth-mark library-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          </div>
+        </section>
+      </div>
     </main>
     <footer class="footer page-width">
       <a href="https://github.com/Pazneria">GitHub <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 18 18 6M6 6h12v12" /></svg></a>

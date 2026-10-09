@@ -1,6 +1,6 @@
 # Pazneria homepage
 
-A minimal public landing page at https://pazneria.github.io/. The page contains
+A lightweight public landing page at https://pazneria.github.io/. The page contains
 the J² mark, Pazneria name, and navigation to usable public destinations.
 There are no project descriptions, previews, roadmap, or coming-soon sections.
 
@@ -9,19 +9,37 @@ There are no project descriptions, previews, roadmap, or coming-soon sections.
 - `index.html`: content, navigation, metadata, and accessible landmarks.
 - `assets/css/style.css`: colors, typography, responsive layout, focus styles,
   reduced-motion behavior, and forced-color support.
+- `assets/js/homepage.js`: optional section reveals and brief visit transitions.
+- `tests/homepage.test.cjs`: dependency-free CPU navigation behavior checks.
 - `assets/images/mark.svg`: J² favicon.
 - `assets/fonts/`: locally served DM Sans and Instrument Serif with their
   included SIL Open Font Licenses, from the official Google Fonts service.
 
-The site is static HTML/CSS with no JavaScript, framework, package installation,
-or build step. It makes no external runtime requests.
+The site is static HTML/CSS with a small JavaScript enhancement. It needs no
+framework, package installation, or build step, and makes no external runtime
+requests. All destinations remain ordinary links when JavaScript is disabled.
 
 The homepage follows the browser's `prefers-color-scheme` preference, including
 changes while the page is open. Light mode retains the paper and green palette;
 dark mode uses a deep green canvas with pale green text and an inverted Arcade
 card. Early color-scheme metadata and the render-blocking stylesheet apply the
 preferred theme before first paint; native UI and browser theme colors follow
-the same preference. No JavaScript or stored theme setting is needed.
+the same preference. The theme needs no JavaScript or stored preference.
+
+Native scrolling leads from the J² hero to Arcade, Lab, and Library panels.
+IntersectionObserver triggers a one-time lift and layered outline reveal; there
+are no wheel handlers, scrolling animation loops, or hidden live scenes. Header
+links go directly to each destination. A panel's Visit link gives a 180ms local
+zoom before normal navigation; this does not provide a seamless transition into
+another document. Modified clicks, new tabs, downloads, and external links keep
+native behavior. Escape, another link activation, backgrounding, and page exit
+cancel a pending visit. Back restores the panel without a lingering zoom.
+
+Reduced motion and forced colors disable reveals and delayed navigation,
+including preference changes while open. Keyboard focus reveals its panel
+immediately. Touch and keyboard activation use the same links, and text remains
+readable before reveal. The earlier compact homepage with automatic light/dark
+mode is preserved at commit `88195c40542ec76e06059d49a8c92a24f3606604`.
 
 ## Destinations
 
@@ -67,6 +85,13 @@ contain usable content. The page remains usable without JavaScript.
 Check light and dark browser preferences on initial load and switch preferences
 while the page is open. Verify card and footer hover, keyboard focus, text
 selection, reduced motion, and forced colors in both themes.
+Check native scrolling, touch and keyboard visits, modified and middle clicks,
+Escape cancellation, and browser Back after a visit. CPU checks need only Node:
+
+```powershell
+node --check assets/js/homepage.js
+node --test tests/homepage.test.cjs
+```
 
 ## Deployment
 
