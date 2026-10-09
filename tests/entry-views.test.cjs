@@ -26,15 +26,18 @@ test('entry metadata revisions match the room-specific transport contract', () =
   for (const entry of manifest.entries) assert.equal(entry.camera, manifest.cameras[entry.room]);
 });
 
-test('Lab replacement is the exact owner-reviewed draft capture, never a live screenshot claim', () => {
+test('corrective Lab replacement is the exact owner-prepared PR65 capture, never a live screenshot claim', () => {
   const entry = manifest.entries.find(e => e.room === 'lab');
   const image = readFileSync(resolve(__dirname, '..', entry.path));
-  assert.equal(image.length, 170994); assert.equal(entry.bytes, image.length);
-  assert.equal(createHash('sha256').update(image).digest('hex'), 'a2328ea468562b7827f2e9daaffec1edd7ac3b6990f3cac4c667e1ec5e0b263c');
-  assert.equal(entry.sha256, 'a2328ea468562b7827f2e9daaffec1edd7ac3b6990f3cac4c667e1ec5e0b263c');
-  assert.equal(entry.source_commit, 'e821df05d19e82cb46ad5eabd7c8401cf040919b');
+  assert.equal(image.length, 171898); assert.equal(entry.bytes, image.length);
+  assert.equal(createHash('sha256').update(image).digest('hex'), '9379003c054b3daa59886b3b6b46d9c8999646388eeabc97b4ca460efd7cc17b');
+  assert.equal(entry.sha256, '9379003c054b3daa59886b3b6b46d9c8999646388eeabc97b4ca460efd7cc17b');
+  assert.equal(entry.source_commit, '05db8f5173d969a93babc5ead1329c96b5628ed6');
+  assert.equal(entry.review_commit, '92e2d40dba3996fcbb2aeda3639910b0f9935828');
+  assert.equal(entry.review_pr, 'https://github.com/Pazneria/lab/pull/65');
+  assert.equal(entry.source_image_path, 'docs/previews/lab-physical-screen/lab-entry.jpg');
   assert.equal(entry.publication_status, 'prepared-draft');
-  assert.equal(entry.source_url, 'http://127.0.0.1:63325/lab/lab-space/?prompt=01&labqa=1');
+  assert.equal(entry.source_url, 'https://github.com/Pazneria/lab/pull/65');
   assert.equal(entry.intended_url, 'https://pazneria.github.io/lab/lab-space/?prompt=01');
   assert.equal(entry.capture_date, '2026-10-09'); assert.equal(entry.includes_room_hud, true);
   const size = dimensions(image);

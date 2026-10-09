@@ -4,9 +4,12 @@ The homepage uses real, unmodified default entry screenshots, captured on
 2026-10-09 at 1707 x 923. Arcade and Library retain their v1 entry cameras, with
 owner-reviewed refreshes from Arcade PR48 at
 `461c5e7f917edb78854c3de8d38050a76bf4bbf0` and Library PR7 at
-`5f81273b17a47438bdda50e244c4dbf921b14216`. The already-published Lab v2 image
-remains the isolated draft capture from Lab source
-`e821df05d19e82cb46ad5eabd7c8401cf040919b` released in homepage PR67.
+`5f81273b17a47438bdda50e244c4dbf921b14216`. The live Lab v2 image from homepage
+PR67 was captured from `e821df05d19e82cb46ad5eabd7c8401cf040919b`. This local
+draft prepares its corrective physical-screen replacement from Lab source
+`05db8f5173d969a93babc5ead1329c96b5628ed6`, reviewed at
+`92e2d40dba3996fcbb2aeda3639910b0f9935828` in draft Lab PR65. Publication is
+pending; see `lab-physical-screen-preview.md` for the exact capture and contract.
 The manifest preserves each owner's original capture-time provenance. Arcade
 and Lab draft/publication-pending descriptions reflect their original captures.
 Library also records its verified published merge and deployment, while retaining
@@ -225,3 +228,17 @@ Arcade/Library v1 producer records. Do not repin them to a newer homepage commit
 whose canonical source has the Lab v2 map without explicitly copying and
 re-verifying that source. No consumer pin or canonical source change is needed
 for these two image refreshes.
+
+## Corrective physical-screen Lab preview draft
+
+The owner-supplied corrective Lab JPEG is 171898 bytes, SHA256
+`9379003c054b3daa59886b3b6b46d9c8999646388eeabc97b4ca460efd7cc17b`.
+It is the unedited 1707 x 923 local capture supplied alongside the owner manifest.
+It retains `default-entry-v2`, the same pose and the existing pinned bootstrap;
+no homepage producer or destination-consumer change accompanies this draft.
+Its source URL identifies the verified PR65 review rather than reusing the old
+capture's localhost URL; the manifest also records the actual capture source
+commit, review commit and owner image path. Do not describe it as a live capture.
+Publish only after renewed approval of the coordinated corrective release and
+verification that the matching Lab runtime is deployed. Arcade and Library
+images, complete records, all scripts, theme, layout and destinations are unchanged.
