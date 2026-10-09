@@ -16,6 +16,13 @@ There are no project descriptions, previews, roadmap, or coming-soon sections.
 The site is static HTML/CSS with no JavaScript, framework, package installation,
 or build step. It makes no external runtime requests.
 
+The homepage follows the browser's `prefers-color-scheme` preference, including
+changes while the page is open. Light mode retains the paper and green palette;
+dark mode uses a deep green canvas with pale green text and an inverted Arcade
+card. Early color-scheme metadata and the render-blocking stylesheet apply the
+preferred theme before first paint; native UI and browser theme colors follow
+the same preference. No JavaScript or stored theme setting is needed.
+
 ## Destinations
 
 The section destinations are Arcade at `/arcade/`, Lab at `/lab/lab-space/`,
@@ -57,6 +64,9 @@ localhost preview; check their published equivalents separately.
 Inspect desktop and narrow mobile widths, verify keyboard focus and skip-link
 navigation, check text contrast and asset loading, and confirm destinations
 contain usable content. The page remains usable without JavaScript.
+Check light and dark browser preferences on initial load and switch preferences
+while the page is open. Verify card and footer hover, keyboard focus, text
+selection, reduced motion, and forced colors in both themes.
 
 ## Deployment
 
