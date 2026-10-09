@@ -23,7 +23,8 @@
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const forced = window.matchMedia('(forced-colors: active)');
   if (forced.matches) return;
-  let controls = null, timeout = null, fade = null, finished = false;
+  let controls = null, timeout = null, fade = null, observer = null, finished = false, installed = false, expired = false;
+  const slowMessage = 'The room is still opening. You can retry or go home.';
   const style = document.createElement('style');
   style.textContent =
     'html[data-room-handoff]::after{content:"";position:fixed;inset:0;z-index:2147480000;background:#101916 url("' + image.href + '") center/cover no-repeat;opacity:1;pointer-events:none;transition:opacity 160ms ease}' +
@@ -42,6 +43,8 @@
     style.remove();
     window.clearTimeout(timeout);
     window.clearTimeout(fade);
+    observer?.disconnect();
+    document.removeEventListener('DOMContentLoaded', install);
     document.removeEventListener('keydown', escapeHome, true);
     forced.removeEventListener('change', accessibilityChange);
     reduced.removeEventListener('change', accessibilityChange);
@@ -51,6 +54,7 @@
     if (finished) return;
     window.clearTimeout(timeout);
     controls?.remove();
+    controls = null;
     root.dataset.roomHandoff = 'ready';
     if (reduced.matches) finish();
     else fade = window.setTimeout(finish, 160);
@@ -107,13 +111,24 @@
   forced.addEventListener('change', accessibilityChange);
   reduced.addEventListener('change', accessibilityChange);
   window.pazneriaRoomHandoff = Object.freeze({ get active() { return !finished; }, room: record.room, camera: record.camera, ready, fail });
-  const install = () => {
-    if (finished) return;
-    showControls();
-    timeout = window.setTimeout(() => showControls('The room is still opening. You can retry or go home.'), 8000);
-  };
+  function install() {
+    if (finished || installed || !document.body || root.dataset.roomHandoff === 'ready') return;
+    installed = true;
+    observer?.disconnect();
+    showControls(expired ? slowMessage : '');
+  }
+  // Start the recovery clock in the head; a slow module must not postpone it.
+  timeout = window.setTimeout(() => {
+    expired = true;
+    if (installed) showControls(slowMessage);
+  }, 8000);
   if (document.body) install();
-  else document.addEventListener('DOMContentLoaded', install, { once: true });
+  else {
+    // The body arrives before deferred/modules finish and DOMContentLoaded fires.
+    observer = new MutationObserver(install);
+    observer.observe(root, { childList: true });
+    document.addEventListener('DOMContentLoaded', install, { once: true });
+  }
   window.addEventListener('pagehide', finish, { once: true });
   window.addEventListener('pageshow', event => { if (event.persisted) finish(); });
 })();

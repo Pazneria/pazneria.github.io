@@ -42,20 +42,60 @@ cover`, centered, above both canvas and HUD. Retain it while the actual room
 loads; suppress the usual loading indicator only when a valid handoff is active.
 Direct entries, invalid tokens, disabled JS and errors retain existing fallbacks.
 
-The shared implementation is supplied at `/assets/js/room-handoff.js`. Add this
-blocking script in each destination's head, before its runtime:
+The canonical implementation is supplied at `/assets/js/room-handoff.js`.
+For publication, copy its exact source into an ordinary inline script immediately
+after the destination's charset/viewport metadata, before external styles or
+runtime scripts. Do not add `async`, `defer` or `type="module"`. This installs
+the opaque image cover synchronously without another head-script download.
+Keep a source comment naming the pinned homepage commit and canonical file.
+
+A blocking external reference can be used for development, but its download
+adds an early-paint dependency and cannot establish a no-flash handoff by itself:
 
 ```html
 <script src="/assets/js/room-handoff.js"></script>
 ```
 
 It validates/consumes the record, paints a fixed image through early head CSS,
-provides Home/Cancel and an 8s retry fallback, and exposes
+provides Home/Cancel as soon as the body exists, starts its 8s retry timer from
+the head, and exposes
 `window.pazneriaRoomHandoff`. Missing/invalid records do nothing. Storage denial
 and forced colors stay on the existing destination path. Direct header links,
 new tabs and modified clicks do not create a record.
 
 ## Ready boundary and camera
+
+The camera angles below are radians. All three use a vertical field of view of
+70 degrees, centered capture framing, and current viewport aspect. These are
+the actual default poses in the inspected source; bypass remembered inspection,
+history, or character-return positions only during this valid incoming visit.
+
+| Room | Matching pose | Projection |
+| --- | --- | --- |
+| Arcade | x=0, y/eye=1.62, z=-0.95; yaw=0, pitch=-0.04; crouch=false; Euler YXZ | vertical FOV=70; near=.03; far=40 |
+| Lab | x=0, y/eye=1.62, z=7.3; yaw=0, pitch=-0.04; standing; Euler YXZ; default comparison prompt=01 | vertical FOV=70; near=.04; far=80; canvas client aspect |
+| Library | player feet=(3.4,0,4.3), camera=(3.4,1.62,4.3); yaw=.78, pitch=.1; zero velocity; Euler YXZ; setView(0) then updatePlayer(0) | vertical FOV=70; near=.05; far=2500 |
+
+Verified source commits and Git blob hashes:
+
+| Repository / inspected commit | File | Git blob SHA |
+| --- | --- | --- |
+| Pazneria/arcade @ e72dc07f89f407d1a1d03fafb85b919c487950c6 | assets/arcade-app.js | e218561288b5d937d124d6422180cf27c62710ef |
+| same | assets/arcade-motion.js | cf4e68313a6f7ecbf5feb7c9f2b370d5bf9c55e7 |
+| same | assets/arcade-controller.js | efde7bf88f8d3c199e2360df11d279c500612073 |
+| same | assets/arcade-scene.js | ba4a555c25e581b67307521703235adbe7d475bb |
+| same | assets/arcade-loading.js | 8604c32c6612852d166233aec7d56850d2a81c6a |
+| Pazneria/lab @ e05a3bf36b2ef6966379b50d949ce30a3ebe410a | lab-space/index.html | d601be1e97d19eff3d19edf6b0337b67b2a3955b |
+| same | lab-space/assets/production-space.js | 2a8c51ac9e1baffd731157423fae9cef2055a9bd |
+| same | lab-space/assets/production-navigation.mjs | d8d797fd61a766f6fdf855209cc34743e75a3469 |
+| same | lab-space/assets/production-room.mjs | e385305c27eadb7706961cd2166d331fb7b92e50 |
+| Pazneria/library @ 4a9b6aad25c2291470da9e9ad219472f3ae3d173 | src/main.js | 5e1bcb5f969fde28d03bffa6216c4203ecfd8e82 |
+| same | src/loading.js | da7dd6f9cc2be7ebf2303dde6fc8fc495358d1ca |
+
+The three JPEGs and their SHA256 hashes, byte sizes, capture source URLs and
+dimensions are in `assets/images/rooms/entry-views.json` in the homepage repo.
+Destination owners use that homepage-origin image path; do not duplicate or
+regenerate the captures. They include the published room HUDs.
 
 - Arcade: `assets/arcade-app.js` currently restores inspection state or calls
   `startExplore()` before `loading.finish()`. A valid handoff should use the
@@ -86,6 +126,15 @@ Camera framing must match the current viewport. These captures match a desktop
 aspect of 1707/923; resize/portrait uses a representative crop and a short fade,
 not a claim of perfect alignment. If a room's entry camera or HUD changes,
 replace its canonical capture and bump the camera/version contract together.
+
+There is no browser-independent guarantee of uninterrupted pixels across two
+documents. The inline bootstrap prevents an unthemed destination paint once
+that document's head executes, and the already-visited image is normally cached,
+but browser navigation, cache eviction and image decode timing remain outside
+this bridge. The opaque backing prevents a light flash while the image arrives.
+HUD layouts and ultrawide framing may also differ. Verify the combined flow on
+the actual supported browsers before publishing; do not claim a universal
+seamless transition from the homepage-only result.
 
 ## Failure, navigation and accessibility
 

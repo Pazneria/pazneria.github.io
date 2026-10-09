@@ -11,7 +11,7 @@ function setup({ change = {}, path = '/arcade/', reduced = false, forced = false
   const data = { version: 1, room: 'arcade', path: '/arcade/', image: 'https://pazneria.github.io/assets/images/rooms/arcade-entry.jpg', camera: 'default-entry-v1', createdAt: Date.now(), ...change };
   const events = new Map(), timers = new Map(), navigations = [];
   let consumed = false, id = 0;
-  const preferences = new Map();
+  const preferences = new Map(), observers = [];
   const document = { documentElement: element(), head: element(), body: body ? element() : null, createElement: element,
     addEventListener(k, fn) { events.set(k, fn); }, removeEventListener(k) { events.delete(k); } };
   const window = {
@@ -26,9 +26,14 @@ function setup({ change = {}, path = '/arcade/', reduced = false, forced = false
     setTimeout(fn, delay) { const n = ++id; timers.set(n, { fn, delay }); return n; }, clearTimeout: n => timers.delete(n),
     addEventListener(k, fn) { events.set(k, fn); },
   };
-  runInNewContext(source, { window, document, URL });
+  class MutationObserver {
+    constructor(callback) { this.callback = callback; observers.push(this); }
+    observe() { this.connected = true; }
+    disconnect() { this.connected = false; }
+  }
+  runInNewContext(source, { window, document, URL, MutationObserver });
   const fire = delay => [...timers].filter(([, t]) => t.delay === delay).forEach(([n, t]) => { timers.delete(n); t.fn(); });
-  return { window, document, timers, events, navigations, fire, preferences, consumed: () => consumed };
+  return { window, document, timers, events, navigations, fire, preferences, observers, consumed: () => consumed };
 }
 test('valid handoff paints from the head before body and consumes its record once', () => {
   const app = setup();
@@ -39,6 +44,23 @@ test('valid handoff paints from the head before body and consumes its record onc
   app.document.body = element(); app.events.get('DOMContentLoaded')();
   assert.equal(app.document.body.children[0].children[1].textContent, 'Home / Cancel');
   assert.equal(app.document.body.children[0].children[1].href, '/');
+});
+test('slow deferred modules do not delay controls or the head-started recovery timer', () => {
+  const app = setup();
+  assert.equal([...app.timers.values()][0].delay, 8000);
+  app.document.body = element();
+  app.observers[0].callback();
+  assert.equal(app.document.body.children[0].children[1].textContent, 'Home / Cancel');
+  assert.equal(app.observers[0].connected, false);
+  app.events.get('DOMContentLoaded')();
+  assert.equal(app.document.body.children.length, 1);
+  app.fire(8000);
+  assert.equal(app.document.body.children.at(-1).children[2].textContent, 'Retry');
+  const slowBody = setup(); slowBody.fire(8000);
+  slowBody.document.body = element(); slowBody.observers[0].callback();
+  assert.equal(slowBody.document.body.children[0].children[2].textContent, 'Retry');
+  slowBody.window.pazneriaRoomHandoff.fail();
+  assert.equal(slowBody.observers[0].connected, false);
 });
 test('stale, future, mismatched, cross-origin and modified image records are rejected', () => {
   for (const change of [{ createdAt: Date.now() - 16000 }, { createdAt: Date.now() + 10000 }, { version: 2 }, { room: '__proto__' }, { path: '/library/' }, { camera: 'other' }, { image: 'https://example.com/arcade.jpg' }, { image: 'https://pazneria.github.io/assets/images/rooms/lab-entry.jpg' }, { image: 'https://pazneria.github.io/assets/images/rooms/arcade-entry.jpg?x=1' }, { image: 'https://pazneria.github.io/assets/images/rooms/arcade-entry.jpg#x' }]) {
