@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "camera": "default-entry-v1",
+  "portrait_behavior": "Center crop; responsive destination camera alignment requires a short fade.",
+  "entries": [
+    {
+      "room": "arcade",
+      "source_url": "https://pazneria.github.io/arcade/",
+      "capture_date": "2026-10-09",
+      "camera": "default-entry-v1",
+      "path": "assets/images/rooms/arcade-entry.jpg",
+      "width": 1707,
+      "height": 923,
+      "bytes": 161170,
+      "sha256": "4d27bc621aecfef0283b0233ec2413f403f330f489bcd71d731d86d697bc1dd7",
+      "includes_room_hud": true,
+      "editing": "None; actual published entry screenshot"
+    },
+    {
+      "room": "lab",
+      "source_url": "https://pazneria.github.io/lab/lab-space/?prompt=01",
+      "capture_date": "2026-10-09",
+      "camera": "default-entry-v1",
+      "path": "assets/images/rooms/lab-entry.jpg",
+      "width": 1707,
+      "height": 923,
+      "bytes": 167114,
+      "sha256": "27a1d49b27354b366dabe92e867553bc95e8fe886a179fc05b0012173161f07a",
+      "includes_room_hud": true,
+      "editing": "None; actual published entry screenshot"
+    },
+    {
+      "room": "library",
+      "source_url": "https://pazneria.github.io/library/",
+      "capture_date": "2026-10-09",
+      "camera": "default-entry-v1",
+      "path": "assets/images/rooms/library-entry.jpg",
+      "width": 1707,
+      "height": 923,
+      "bytes": 237295,
+      "sha256": "d8892413d57035d3c8164eeb5325ef774316a76b1acf52ba608302ee609737b8",
+      "includes_room_hud": true,
+      "editing": "None; actual published entry screenshot"
+    }
+  ]
+}
