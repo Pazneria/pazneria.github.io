@@ -7,8 +7,10 @@ owner-reviewed refreshes from Arcade PR48 at
 `5f81273b17a47438bdda50e244c4dbf921b14216`. The already-published Lab v2 image
 remains the isolated draft capture from Lab source
 `e821df05d19e82cb46ad5eabd7c8401cf040919b` released in homepage PR67.
-The manifest preserves each owner's original capture-time provenance, including
-draft or publication-pending descriptions; these are not current release status.
+The manifest preserves each owner's original capture-time provenance. Arcade
+and Lab draft/publication-pending descriptions reflect their original captures.
+Library also records its verified published merge and deployment, while retaining
+its tested source and original local capture URL.
 See `library-preview-refresh.md` for the Library capture evidence.
 All three include the rooms' visible entry UI.
 No room engines run on the homepage. Portrait previews are a center crop and
@@ -209,6 +211,12 @@ Both are exact owner-supplied captures from the reviewed commits above. Preserve
 the already-live Lab JPEG, Lab manifest record, theme, layout and all scripts.
 Publish this refresh only after both matching room deployments are live and
 their public assets are verified against their release source.
+
+Library PR7 was published as `7217dcc5cf88e413630324a7859a67ccb8db3e19`, with
+Pages run `37900515077` and exact runtime HTTP hash verification. Its matching
+homepage JPEG is already released in homepage PR68. The original owner receipt
+is preserved at `library-release-2026-10-09.json`; the Library entry and image
+fingerprint match pinned homepage handoff `79486e9e74757fb9ca790a4cef70b600e92d0047`.
 
 Arcade and Library inline bootstraps retain v1 canonical source pinned to
 homepage commit `715d292a94ddda4f92eaf3c67b3f18edb073ed47`, Git blob
