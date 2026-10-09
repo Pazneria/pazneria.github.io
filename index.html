@@ -24,57 +24,65 @@
     <header class="header page-width">
       <a class="wordmark" href="#main">Pazneria</a>
       <nav class="quick-links" aria-label="Destinations">
-        <a href="/arcade/">Arcade</a>
-        <a href="/lab/lab-space/">Lab</a>
-        <a href="/library/">Library</a>
+        <a href="/arcade/">Arcade</a><a href="/lab/lab-space/">Lab</a><a href="/library/">Library</a>
       </nav>
     </header>
     <main id="main" tabindex="-1">
-      <section class="hero page-width" aria-labelledby="homepage-title">
+      <section class="hero" aria-labelledby="homepage-title">
         <div class="identity">
           <div class="monogram" aria-hidden="true">J<sup>2</sup></div>
           <h1 id="homepage-title">Pazneria</h1>
         </div>
-        <a class="explore-link" href="#arcade">Explore <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v15M6 13l6 6 6-6" /></svg></a>
+        <a class="explore-link" href="#arcade">Explore the rooms <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v15M6 13l6 6 6-6" /></svg></a>
       </section>
-
       <!--
         Navigation overview:
-        Each card links to a GitHub Pages project that lives under this domain.
+        Each room links to a GitHub Pages project that lives under this domain.
         Use relative paths (/arcade, /library, /school, /lab, /blog) so future project
         repositories publish seamlessly under the shared hostname.
-        To add more destinations (for new games or sections), duplicate a section
-        and update the href to the project page (e.g. /arcade/new-game).
+        To add a destination, add its real entry capture and a matching room section.
       -->
-      <div class="destinations page-width">
-        <section class="destination-section" id="arcade" aria-labelledby="arcade-title">
-          <div class="destination-card destination-primary" data-destination>
-            <span class="destination-number" aria-hidden="true">01</span>
-            <div class="destination-content">
+      <div class="destinations">
+        <section class="room-section" id="arcade" data-room="arcade" aria-labelledby="arcade-title">
+          <figure class="room-view">
+            <img src="assets/images/rooms/arcade-entry.jpg" width="1707" height="923" alt="The Arcade entrance, facing neon cabinets and the central machine." decoding="async" fetchpriority="high" />
+          </figure>
+          <div class="room-copy page-width">
+            <div class="room-caption">
+              <span class="room-number" aria-hidden="true">01 / 03</span>
               <h2 id="arcade-title">Arcade</h2>
-              <a class="visit-link" href="/arcade/" data-transition>Visit Arcade <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" /></svg></a>
+              <p>Step into the neon.</p>
+              <a class="visit-link" href="/arcade/" data-transition>Enter Arcade <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" /></svg></a>
+              <p class="preview-fallback" hidden>Preview unavailable. The room link still works.</p>
             </div>
-            <div class="depth-mark arcade-mark" aria-hidden="true"><span></span><span></span><span></span></div>
           </div>
         </section>
-        <section class="destination-section" id="lab" aria-labelledby="lab-title">
-          <div class="destination-card" data-destination>
-            <span class="destination-number" aria-hidden="true">02</span>
-            <div class="destination-content">
+        <section class="room-section" id="lab" data-room="lab" aria-labelledby="lab-title">
+          <figure class="room-view">
+            <img src="assets/images/rooms/lab-entry.jpg" width="1707" height="923" alt="The Lab entrance, facing Ivo inside the camera ring between the testing benches." decoding="async" loading="lazy" />
+          </figure>
+          <div class="room-copy page-width">
+            <div class="room-caption">
+              <span class="room-number" aria-hidden="true">02 / 03</span>
               <h2 id="lab-title">Lab</h2>
-              <a class="visit-link" href="/lab/lab-space/" data-transition>Visit Lab <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" /></svg></a>
+              <p>A different kind of playground.</p>
+              <a class="visit-link" href="/lab/lab-space/" data-transition>Enter Lab <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" /></svg></a>
+              <p class="preview-fallback" hidden>Preview unavailable. The room link still works.</p>
             </div>
-            <div class="depth-mark lab-mark" aria-hidden="true"><span></span><span></span><span></span></div>
           </div>
         </section>
-        <section class="destination-section" id="library" aria-labelledby="library-title">
-          <div class="destination-card" data-destination>
-            <span class="destination-number" aria-hidden="true">03</span>
-            <div class="destination-content">
+        <section class="room-section" id="library" data-room="library" aria-labelledby="library-title">
+          <figure class="room-view">
+            <img src="assets/images/rooms/library-entry.jpg" width="1707" height="923" alt="The Library entrance, with sunlit reading tables and two levels of wooden bookshelves." decoding="async" loading="lazy" />
+          </figure>
+          <div class="room-copy page-width">
+            <div class="room-caption">
+              <span class="room-number" aria-hidden="true">03 / 03</span>
               <h2 id="library-title">Library</h2>
-              <a class="visit-link" href="/library/" data-transition>Visit Library <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" /></svg></a>
+              <p>Find a quieter corner.</p>
+              <a class="visit-link" href="/library/" data-transition>Enter Library <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6" /></svg></a>
+              <p class="preview-fallback" hidden>Preview unavailable. The room link still works.</p>
             </div>
-            <div class="depth-mark library-mark" aria-hidden="true"><span></span><span></span><span></span></div>
           </div>
         </section>
       </div>
@@ -82,5 +90,16 @@
     <footer class="footer page-width">
       <a href="https://github.com/Pazneria">GitHub <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 18 18 6M6 6h12v12" /></svg></a>
     </footer>
+    <div class="entry-cover" id="entry-cover" role="dialog" aria-modal="true" aria-labelledby="entry-status" hidden>
+      <img id="entry-image" alt="" />
+      <div class="entry-controls">
+        <p class="visually-hidden" id="entry-status" role="status" aria-live="polite"></p>
+        <div id="entry-recovery" hidden>
+          <p>The room hasn’t opened yet.</p>
+          <a id="entry-retry" href="/">Try again</a>
+        </div>
+        <button id="entry-cancel" type="button">Cancel</button>
+      </div>
+    </div>
   </body>
 </html>
