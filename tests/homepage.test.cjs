@@ -70,7 +70,7 @@ test('each Enter aligns its actual preview, writes a bounded handoff and navigat
     const record = JSON.parse(app.saved.get(KEY));
     assert.equal(record.version, 1); assert.equal(record.path, path);
     assert.equal(record.room, app.rooms[index].dataset.room);
-    assert.equal(record.camera, 'default-entry-v1');
+    assert.equal(record.camera, index === 1 ? 'default-entry-v2' : 'default-entry-v1');
     assert.equal(record.image, app.coverImage.src);
     assert.ok(Date.now() - record.createdAt < 1000);
     assert.equal(app.document.activeElement, app.cancel);
@@ -183,4 +183,26 @@ test('failed preview shows the direct-entry fallback instead of retaining the wr
   assert.equal(app.rooms[1].fallback.hidden, false);
   assert.equal(app.rooms[0].view.style.opacity, '0');
   assert.equal(app.rooms[1].view.style.opacity, '0');
+});
+
+// Execute the actual producer record against the actual canonical consumer.
+test('each produced token is accepted only by its matching room camera contract', () => {
+  const consumer = readFileSync(resolve(__dirname, '../assets/js/room-handoff.js'), 'utf8');
+  for (const index of [0, 1, 2]) {
+    const app = setup(); app.click(app.link(index));
+    const raw = app.saved.get(KEY), record = JSON.parse(raw);
+    const head = { children: [], appendChild(node) { this.children.push(node); } };
+    const root = { dataset: {} }; let consumed = false;
+    const destination = new URL(record.path, app.window.location.href);
+    const window = { location: destination, sessionStorage: { getItem(key) { assert.equal(key, KEY); return raw; }, removeItem(key) { assert.equal(key, KEY); consumed = true; } },
+      matchMedia: () => ({ matches: false, addEventListener() {}, removeEventListener() {} }),
+      setTimeout() { return 1; }, clearTimeout() {}, addEventListener() {} };
+    const document = { documentElement: root, head, body: null, createElement: () => ({ remove() {} }), addEventListener() {}, removeEventListener() {} };
+    class MutationObserver { observe() {} disconnect() {} }
+    runInNewContext(consumer, { window, document, URL, MutationObserver });
+    assert.equal(consumed, true); assert.equal(root.dataset.roomHandoff, 'loading');
+    assert.equal(window.pazneriaRoomHandoff.room, record.room);
+    assert.equal(window.pazneriaRoomHandoff.camera, index === 1 ? 'default-entry-v2' : 'default-entry-v1');
+    window.pazneriaRoomHandoff.fail();
+  }
 });
